@@ -64,6 +64,7 @@ async function prepareBranchFiles() {
 
   await appendGithubEnv({
     SHOULD_RUN: "true",
+    BRANCH_NAME,
     ISSUE_KEY: branchIssueKey,
     ISSUE_SLUG: slug,
     ISSUE_TITLE: issueTitle,
