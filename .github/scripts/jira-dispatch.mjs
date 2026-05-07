@@ -420,9 +420,15 @@ async function commentResult() {
   const kind = env.KIND || "pr";
   const branchName = env.BRANCH_NAME || "";
   const responseFile = env.RESPONSE_FILE || "";
+  const stateFile = env.STATE_FILE || "";
   const repo = env.GITHUB_REPOSITORY || "";
   const prUrl = env.PR_URL || "";
-  const conclusion = env.CONCLUSION || "unknown";
+  let conclusion = env.CONCLUSION || "";
+  if (!conclusion && stateFile) {
+    const state = await readJsonOrEmpty(stateFile);
+    conclusion = state.last_conclusion || "unknown";
+  }
+  if (!conclusion) conclusion = "unknown";
 
   const content = [];
 
