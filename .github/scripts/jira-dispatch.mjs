@@ -1,6 +1,9 @@
 import { mkdir, readFile, writeFile, access, copyFile } from "node:fs/promises";
 import { execSync } from "node:child_process";
 
+// JSON.stringify is used as a safe shell-arg quoter for known-shape strings
+// like Jira branch names; treat any string passed to execSync that way.
+
 const mode = process.argv[2];
 if (!mode) {
   throw new Error("Usage: jira-dispatch.mjs <prepare-dispatch|record-run|commit-changes|ensure-pr|comment-result>");
@@ -129,6 +132,27 @@ async function prepareDispatch() {
   const summary = fields.summary || key;
   const kind = determineKind(issue);
   const branchName = `tdf/${key.toLowerCase()}`;
+
+  // For PR mode, switch to the existing PR branch if one exists on origin so
+  // that prior state.json, plan.md, transcript.md, and any code changes are
+  // visible to this run. Done before any file writes to avoid untracked-file
+  // collisions with `git checkout`.
+  if (kind === "pr") {
+    let branchExists = false;
+    try {
+      execSync(`git ls-remote --exit-code --heads origin ${JSON.stringify(branchName)}`, { stdio: "ignore" });
+      branchExists = true;
+    } catch {
+      branchExists = false;
+    }
+    if (branchExists) {
+      console.log(`Existing branch ${branchName} found on origin; checking out.`);
+      execSync(`git fetch origin ${JSON.stringify(branchName)}`, { stdio: "inherit" });
+      execSync(`git checkout -B ${JSON.stringify(branchName)} origin/${branchName}`, { stdio: "inherit" });
+    } else {
+      console.log(`No existing branch ${branchName}; will create from main on commit.`);
+    }
+  }
 
   const ticketFolder = `spec/${key}`;
   const stateFile = `${ticketFolder}/state.json`;

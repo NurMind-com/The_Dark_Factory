@@ -32,6 +32,11 @@ jobs:
           token: ${{ secrets.GH_PR_TOKEN }}
           fetch-depth: 0
 
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Prepare ticket context
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -40,18 +45,6 @@ jobs:
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         run: node .github/scripts/jira-dispatch.mjs prepare-dispatch
-
-      - name: Use existing PR branch if any (PR mode)
-        if: env.SHOULD_RUN == 'true' && env.KIND == 'pr'
-        run: |
-          set -euo pipefail
-          if git ls-remote --exit-code --heads origin "${BRANCH_NAME}" > /dev/null 2>&1; then
-            echo "Branch ${BRANCH_NAME} exists on origin; checking out"
-            git fetch origin "${BRANCH_NAME}"
-            git checkout -B "${BRANCH_NAME}" "origin/${BRANCH_NAME}"
-          else
-            echo "Branch ${BRANCH_NAME} does not exist on origin; will create from main on commit"
-          fi
 
       - name: Restore Claude session cache
         if: env.SHOULD_RUN == 'true'
