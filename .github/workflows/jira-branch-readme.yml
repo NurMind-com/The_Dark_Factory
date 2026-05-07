@@ -1,0 +1,41 @@
+name: Create Jira README on branch creation
+
+on:
+  create:
+
+permissions:
+  contents: write
+
+jobs:
+  create-readme:
+    name: Create README from Jira issue
+    if: github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out created branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.ref }}
+
+      - name: Generate README from Jira issue
+        env:
+          BRANCH_NAME: ${{ github.event.ref }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: node .github/scripts/create-readme-from-jira.mjs
+
+      - name: Commit README to branch
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "README.md already up to date"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Create README from Jira ticket"
+          git push origin "HEAD:${{ github.event.ref }}"
