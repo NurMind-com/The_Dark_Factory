@@ -1,16 +1,19 @@
-name: Create Jira README on branch creation
+name: Create Jira spec and Claude plan on branch creation
 
 on:
   create:
 
 permissions:
   contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
-  create-readme:
-    name: Create README from Jira issue
+  create-spec-and-plan:
+    name: Create Jira spec and Claude Code plan
     if: github.event.ref_type == 'branch'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Check out created branch
@@ -18,24 +21,64 @@ jobs:
         with:
           ref: ${{ github.event.ref }}
 
-      - name: Generate README from Jira issue
+      - name: Create README and spec from Jira issue
         env:
           BRANCH_NAME: ${{ github.event.ref }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-        run: node .github/scripts/create-readme-from-jira.mjs
+        run: node .github/scripts/jira-branch-automation.mjs prepare
 
-      - name: Commit README to branch
+      - name: Create implementation plan with Claude Code
+        if: env.SHOULD_RUN == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            You are working on branch `${{ github.event.ref }}` of `${{ github.repository }}`.
+
+            Read the generated Jira spec file at `${{ env.SPEC_FILE }}` fully.
+            Create an implementation plan only.
+            Do not change product code.
+            Do not edit README.md or the spec file.
+            Write the plan to exactly `${{ env.PLAN_FILE }}`.
+
+            The plan must be markdown and include:
+            - Summary of the requested change
+            - Current workflow/script files to inspect
+            - Proposed implementation steps
+            - Secrets/configuration required
+            - Testing plan
+            - Risks and rollback notes
+          claude_args: "--max-turns 8"
+
+      - name: Commit generated files
+        if: env.SHOULD_RUN == 'true'
         run: |
-          if git diff --quiet -- README.md; then
-            echo "README.md already up to date"
+          if [ ! -f "${PLAN_FILE}" ]; then
+            echo "Expected plan file was not created: ${PLAN_FILE}" >&2
+            exit 1
+          fi
+
+          if git diff --quiet -- README.md "${SPEC_FILE}" "${PLAN_FILE}"; then
+            echo "Generated files already up to date"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Create README from Jira ticket"
+          git add README.md "${SPEC_FILE}" "${PLAN_FILE}"
+          git commit -m "Create Jira spec and Claude plan"
           git push origin "HEAD:${{ github.event.ref }}"
+
+      - name: Comment on Jira issue
+        if: env.SHOULD_RUN == 'true'
+        env:
+          BRANCH_NAME: ${{ github.event.ref }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: node .github/scripts/jira-branch-automation.mjs comment
