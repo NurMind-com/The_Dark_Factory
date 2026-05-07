@@ -32,10 +32,9 @@ jobs:
 
       - name: Create implementation plan with Claude Code
         if: env.SHOULD_RUN == 'true'
-        uses: anthropics/claude-code-action@v1
+        uses: anthropics/claude-code-base-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             You are working on branch `${{ github.event.ref }}` of `${{ github.repository }}`.
 
@@ -52,7 +51,8 @@ jobs:
             - Secrets/configuration required
             - Testing plan
             - Risks and rollback notes
-          claude_args: "--max-turns 8"
+          allowed_tools: "Read,Write,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd)"
+          max_turns: "8"
 
       - name: Commit generated files
         if: env.SHOULD_RUN == 'true'
