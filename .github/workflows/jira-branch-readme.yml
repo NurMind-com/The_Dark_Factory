@@ -86,17 +86,22 @@ jobs:
             exit 0
           fi
 
+          pr_body="$(cat <<EOF
+          Automated Claude Code implementation for ${ISSUE_KEY}.
+
+          Jira: ${JIRA_ISSUE_URL}
+          Spec: ${SPEC_FILE}
+          Plan: ${PLAN_FILE}
+
+          Review and merge when ready.
+          EOF
+          )"
+
           pr_url="$(gh pr create \
             --base main \
             --head "${BRANCH_NAME}" \
             --title "${ISSUE_KEY}: ${ISSUE_TITLE}" \
-            --body "Automated Claude Code implementation for ${ISSUE_KEY}.
-
-Jira: ${JIRA_ISSUE_URL}
-Spec: ${SPEC_FILE}
-Plan: ${PLAN_FILE}
-
-Review and merge when ready.")"
+            --body "${pr_body}")"
 
           echo "PR_URL=${pr_url}" >> "${GITHUB_ENV}"
           echo "Created pull request: ${pr_url}"
