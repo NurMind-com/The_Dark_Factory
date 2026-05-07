@@ -53,13 +53,14 @@ async function prepareBranchFiles() {
   const issue = await getIssue(branchIssueKey);
   const fields = issue.fields ?? {};
   const slug = slugify(fields.summary ?? branchIssueKey);
-  const specFile = `spec/${branchIssueKey}-${slug}.md`;
-  const planFile = `${branchIssueKey}-${slug}-plan.md`;
+  const folderName = `${branchIssueKey}-${slug}`;
+  const specFile = `${folderName}/spec.md`;
+  const planFile = `${folderName}/plan.md`;
   const issueTitle = fields.summary ?? branchIssueKey;
   const jiraIssueUrl = `${jiraBaseUrl}/browse/${branchIssueKey}`;
 
-  await mkdir("spec", { recursive: true });
-  await writeFile("README.md", buildReadme({ issue, issueKey: branchIssueKey, slug }), "utf8");
+  await mkdir(folderName, { recursive: true });
+  await writeFile("README.md", buildReadme({ issue, issueKey: branchIssueKey, slug, folderName }), "utf8");
   await writeFile(specFile, buildSpec({ issue, issueKey: branchIssueKey, branchName: BRANCH_NAME }), "utf8");
 
   await appendGithubEnv({
@@ -79,8 +80,9 @@ async function prepareBranchFiles() {
 async function commentOnJira() {
   const issueKey = ISSUE_KEY || branchIssueKey;
   const slug = ISSUE_SLUG || slugify(issueKey);
-  const specFile = SPEC_FILE || `spec/${issueKey}-${slug}.md`;
-  const planFile = PLAN_FILE || `${issueKey}-${slug}-plan.md`;
+  const folderName = `${issueKey}-${slug}`;
+  const specFile = SPEC_FILE || `${folderName}/spec.md`;
+  const planFile = PLAN_FILE || `${folderName}/plan.md`;
 
   const branchUrl = `https://github.com/${GITHUB_REPOSITORY}/tree/${encodeURIComponent(BRANCH_NAME)}`;
   const specUrl = `https://github.com/${GITHUB_REPOSITORY}/blob/${encodeURIComponent(BRANCH_NAME)}/${specFile}`;
