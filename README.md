@@ -1,13 +1,13 @@
-# TDS-3: 2 pizzas page
+# TDS-4: Ticket artefacts in the same folder
 
-Generated from Jira when branch `tds-3-2-pizzas-page-lowercase-test` was created.
+Generated from Jira when branch `tds-4-ticket-artefacts-in-the-same-folder` was created.
 
 ## Generated Files
 
-- Spec: `spec/TDS-3-2-pizzas-page.md`
-- Plan: `TDS-3-2-pizzas-page-plan.md`
+- Spec: `spec/TDS-4-ticket-artefacts-in-the-same-folder.md`
+- Plan: `TDS-4-ticket-artefacts-in-the-same-folder-plan.md`
 
 ## Links
 
-- Jira: https://abouyounes.atlassian.net/browse/TDS-3
+- Jira: https://abouyounes.atlassian.net/browse/TDS-4
 - Repository: https://github.com/NurMind-com/The_Dark_Factory
