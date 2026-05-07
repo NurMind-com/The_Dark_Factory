@@ -200,7 +200,7 @@ ${description}
 }
 
 function extractIssueKey(branchName) {
-  return branchName.match(/^([A-Z][A-Z0-9]+-\d+)/)?.[1] ?? null;
+  return branchName.match(/^([a-z][a-z0-9]+-\d+)/i)?.[1].toUpperCase() ?? null;
 }
 
 function slugify(value) {
