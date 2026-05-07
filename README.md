@@ -1,6 +1,6 @@
 # TDS-3: 2 pizzas page
 
-Generated from Jira when branch `tds-3-2-pizzas-page-lowercase-test` was created.
+Generated from Jira when branch `tds-3-2-pizzas-page` was created.
 
 ## Generated Files
 
