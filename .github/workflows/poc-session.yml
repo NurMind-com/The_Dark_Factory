@@ -1,0 +1,163 @@
+name: POC Claude Session Continuity
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticket_id:
+        description: "POC ticket id (e.g., POC-1)"
+        required: true
+        default: "POC-1"
+      prompt:
+        description: "Prompt to send to Claude"
+        required: true
+        default: "Remember: my favorite color is fuchsia. Reply with just 'OK'."
+
+permissions:
+  contents: write
+
+concurrency:
+  group: poc-session-${{ github.event.inputs.ticket_id }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TICKET_ID: ${{ github.event.inputs.ticket_id }}
+      PROMPT_INPUT: ${{ github.event.inputs.prompt }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GH_PR_TOKEN }}
+          fetch-depth: 0
+
+      - name: Prepare POC state
+        run: |
+          set -euo pipefail
+          POC_DIR="temp/poc/${TICKET_ID}"
+          STATE_FILE="${POC_DIR}/state.json"
+          TRANSCRIPT_FILE="${POC_DIR}/transcript.md"
+          mkdir -p "${POC_DIR}"
+
+          if [ -f "${STATE_FILE}" ]; then
+            LAST_SESSION_ID="$(jq -r '.last_session_id // empty' "${STATE_FILE}")"
+          else
+            LAST_SESSION_ID=""
+            printf '{}\n' > "${STATE_FILE}"
+          fi
+
+          if [ ! -f "${TRANSCRIPT_FILE}" ]; then
+            printf '# %s POC Transcript\n' "${TICKET_ID}" > "${TRANSCRIPT_FILE}"
+          fi
+
+          if [ -n "${LAST_SESSION_ID}" ]; then
+            CLAUDE_ARGS="--max-turns 5 --resume ${LAST_SESSION_ID}"
+            RUN_KIND="continuation"
+          else
+            CLAUDE_ARGS="--max-turns 5"
+            RUN_KIND="new"
+          fi
+
+          mkdir -p "$HOME/.claude/projects"
+
+          {
+            echo "POC_DIR=${POC_DIR}"
+            echo "STATE_FILE=${STATE_FILE}"
+            echo "TRANSCRIPT_FILE=${TRANSCRIPT_FILE}"
+            echo "LAST_SESSION_ID=${LAST_SESSION_ID}"
+            echo "CLAUDE_ARGS=${CLAUDE_ARGS}"
+            echo "RUN_KIND=${RUN_KIND}"
+          } >> "${GITHUB_ENV}"
+
+          echo "Run kind: ${RUN_KIND}"
+          echo "LAST_SESSION_ID: ${LAST_SESSION_ID:-<none>}"
+          echo "CLAUDE_ARGS: ${CLAUDE_ARGS}"
+
+      - name: Restore Claude session cache
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.claude/projects
+          key: poc-claude-${{ env.TICKET_ID }}-${{ github.run_id }}
+          restore-keys: |
+            poc-claude-${{ env.TICKET_ID }}-
+
+      - name: Show cache restore result
+        run: |
+          set -euo pipefail
+          echo "cache-hit: ${{ steps.cache-restore.outputs.cache-hit }}"
+          echo "matched-key: ${{ steps.cache-restore.outputs.cache-matched-key }}"
+          echo "Claude project dir contents:"
+          ls -la "$HOME/.claude/projects" || true
+
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-base-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          settings: |
+            { "model": "sonnet" }
+          prompt: ${{ env.PROMPT_INPUT }}
+          claude_args: ${{ env.CLAUDE_ARGS }}
+
+      - name: Capture run outputs
+        env:
+          NEW_SESSION_ID: ${{ steps.claude.outputs.session_id }}
+          CONCLUSION: ${{ steps.claude.outputs.conclusion }}
+          EXECUTION_FILE: ${{ steps.claude.outputs.execution_file }}
+        run: |
+          set -euo pipefail
+          rm -f output.txt || true
+
+          NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          jq --arg sid "${NEW_SESSION_ID}" \
+             --arg prev "${LAST_SESSION_ID}" \
+             --arg now "${NOW}" \
+             --arg conclusion "${CONCLUSION}" \
+             --arg kind "${RUN_KIND}" \
+             '.last_session_id = $sid
+              | .prev_session_id = (if $prev == "" then null else $prev end)
+              | .last_run_at = $now
+              | .last_conclusion = $conclusion
+              | .last_kind = $kind
+              | .run_count = ((.run_count // 0) + 1)' \
+             "${STATE_FILE}" > "${STATE_FILE}.tmp"
+          mv "${STATE_FILE}.tmp" "${STATE_FILE}"
+
+          {
+            printf '\n## Run %s\n' "${NOW}"
+            printf '- run_kind: %s\n' "${RUN_KIND}"
+            printf '- prev_session_id: %s\n' "${LAST_SESSION_ID:-<none>}"
+            printf '- new_session_id: %s\n' "${NEW_SESSION_ID:-<none>}"
+            printf '- session_id_rotated: %s\n' "$([ "${LAST_SESSION_ID}" != "" ] && [ "${LAST_SESSION_ID}" != "${NEW_SESSION_ID}" ] && echo true || echo false)"
+            printf '- conclusion: %s\n' "${CONCLUSION:-<unknown>}"
+            printf '- prompt: %s\n' "${PROMPT_INPUT}"
+          } >> "${TRANSCRIPT_FILE}"
+
+          echo "State after run:"
+          cat "${STATE_FILE}"
+
+      - name: Save Claude session cache
+        if: steps.claude.outputs.session_id != ''
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.claude/projects
+          key: poc-claude-${{ env.TICKET_ID }}-${{ github.run_id }}
+
+      - name: Commit POC state
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- "${POC_DIR}"; then
+            echo "No POC state changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${POC_DIR}"
+          git commit -m "POC ${TICKET_ID}: run ${{ github.run_id }} (${RUN_KIND})"
+          git push origin HEAD:main
