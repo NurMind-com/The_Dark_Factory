@@ -1,6 +1,6 @@
 # TDS-12: Move Ticket to in progress as soon as work starts
 
-Generated from Jira on 2026-05-07T23:37:03.929Z.
+Generated from Jira on 2026-05-07T23:39:17.969Z.
 
 ## Issue Details
 
@@ -16,7 +16,7 @@ Generated from Jira on 2026-05-07T23:37:03.929Z.
 | Labels | claude:pr |
 | Components | - |
 | Created | 2026-05-08T02:34:18.586+0300 |
-| Updated | 2026-05-08T02:36:14.674+0300 |
+| Updated | 2026-05-08T02:38:53.776+0300 |
 
 ## Description
 
@@ -65,6 +65,36 @@ In `.github/scripts/jira-dispatch.mjs` (mode `prepare-dispatch`), after the Jira
 - Transition back to "Done" / "Resolved" after PR merge. Requires a separate workflow listening for `pull_request: closed` merged PRs. Out of scope here.
 - Add Jira label management hooks if the team wants `claude-code` activity tagged on the ticket.
 
-## Comments (0)
+## Comments (1)
 
-_No comments._
+### Roland Abou Younes on 2026-05-08T02:38:53.776+0300
+
+[TDF-bot] Claude Code processed TDS-12 (conclusion: success).
+
+Branch: [https://github.com/NurMind-com/The_Dark_Factory/tree/tdf%2Ftds-12](https://github.com/NurMind-com/The_Dark_Factory/tree/tdf%2Ftds-12)
+
+Pull request: [https://github.com/NurMind-com/The_Dark_Factory/pull/13](https://github.com/NurMind-com/The_Dark_Factory/pull/13)
+
+## TDS-12 — Move ticket to In Progress when work starts
+
+**What changed**
+
+`.github/scripts/jira-dispatch.mjs` (only) now transitions the Jira ticket to "In Progress" inside `prepareDispatch`, immediately after the issue fetch and before any branch checkout or file write. A new helper `transitionToInProgress(key, issue)` does the work; the existing `initJira()` / `fetchJson()` patterns are reused, so no new secrets are needed.
+
+**How status detection works**
+
+1. Read `status.statusCategory.key` from the already-fetched issue (the existing fetch already requests the `status` field).
+2. If the category is `indeterminate` (already In Progress) or `done`, log and skip — re-runs on those tickets are silent no-ops.
+3. Otherwise, `GET /rest/api/3/issue/{key}/transitions` and pick a transition whose `to.statusCategory.key === "indeterminate"`. If none, fall back to the first transition whose `name` matches `"in progress"` case-insensitively.
+4. `POST /rest/api/3/issue/{key}/transitions` with `{"transition": {"id": "<id>"}}`.
+
+**Fallback behaviour**
+
+- No matching transition for the current state → log a warning and continue. The dispatch run is never aborted.
+- Transitions API request fails or the POST returns non-2xx → log a warning and continue.
+- All failures are best-effort; the ticket workflow is never blocked by a status-flip problem.
+
+**Risks**
+
+- If a Jira workflow exposes more than one `indeterminate` transition for a state (unusual), the helper picks the first one returned by Jira. This matches the spec.
+- Could not exercise live Jira from this run; relying on the documented Jira REST v3 contract that `status.statusCategory.key` is returned with the standard `status` field, and that the transitions endpoint returns `{transitions: [...]}`.
