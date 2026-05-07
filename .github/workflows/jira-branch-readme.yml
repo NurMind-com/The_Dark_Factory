@@ -58,6 +58,9 @@ jobs:
       - name: Commit generated and implemented files
         if: env.SHOULD_RUN == 'true'
         run: |
+          # Claude Code base action may leave local execution artifacts; do not commit them.
+          rm -f output.txt
+
           if [ ! -f "${PLAN_FILE}" ]; then
             echo "Expected plan file was not created: ${PLAN_FILE}" >&2
             exit 1
