@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>diagram</title>
+<style>body{margin:0;padding:24px;background:white;font-family:system-ui;}</style>
+</head><body>
+<div class="mermaid">sequenceDiagram
+    autonumber
+    participant J as Jira
+    participant W as GitHub Actions workflow
+    participant C as Claude Code
+    participant R as Repo / PR
+
+    J->>W: trigger (button or branch create)
+    W->>J: fetch ticket (REST)
+    W->>W: prepare spec/&lt;TICKET-ID&gt;/ artefacts
+    Note over W: dispatch flow only:<br/>restore ~/.claude/projects from cache
+    W->>C: run with prompt + ticket context
+    C->>W: edits, plan.md, response.md
+    Note over W: dispatch flow only:<br/>save ~/.claude/projects to cache
+    W->>R: commit, push branch, open / update PR
+    W->>J: comment back with PR link or answer</div>
+<script type="module">
+  const mermaid = (await import("https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs")).default;
+  mermaid.initialize({ startOnLoad: false, securityLevel: "loose" });
+  await mermaid.run();
+  document.title = "ready";
+</script>
+</body></html>

@@ -55,3 +55,24 @@
   2. GitHub-like CSS, real `mermaid@10` from CDN, `mermaid.run()` to render diagrams in-browser.
   3. Headless Chrome screenshot of the full page (1280 × 2400).
   4. Plus higher-resolution per-diagram renders to confirm zoom legibility.
+
+## Run 2026-05-07T23:53:21.714Z
+- run_kind: continuation
+- prev_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- new_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- session_id_rotated: false
+- conclusion: success
+- run_dir: spec/TDS-10/runs/20260507T234525Z-25528259319
+- assistant_summary:
+  Final state:
+  
+  - **`.github/scripts/visual-check-md.mjs`** (new) — the reusable visual-check tool: takes a markdown file path and an output directory, renders the markdown to a full-page PNG and per-diagram PNGs via `markdown-it` + `mermaid@10` (loaded from jsDelivr inside the page) + headless Chrome. Zero `npm install` needed.
+  - **`docs/workflows.md`** — added `classDef` status colours to the swimlane: green (preferred), amber (legacy), grey (POC).
+  - **`spec/TDS-10/visual-checks/`** (new) — committed screenshots that prove the visual validation actually happened during this run: `full-page.png`, `diagram-1.png`, `diagram-2.png`, plus the source `preview.html` / per-diagram HTML files.
+  - **`spec/TDS-10/plan.md`** — appended a "Run 4" section documenting the tool, the bug-fix iteration, and the colour upgrade.
+  - **`spec/TDS-10/response.md`** — Jira-facing summary with links to the committed screenshots so the reporter can see the visual proof inline in the PR.
+  
+  Iteration loop demonstrated within this run:
+  1. Built the tool, ran it.
+  2. Caught a bug in the tool (per-diagram render produced "Syntax error in text" because `textContent` blocked HTML-entity decoding).
+  3. Fixed the tool, re-ran — clean diagrams.

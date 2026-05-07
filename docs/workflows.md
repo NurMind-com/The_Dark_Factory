@@ -34,9 +34,9 @@ flowchart LR
 
     subgraph WF["Workflows (.github/workflows)"]
         direction TB
-        WD["jira-dispatch.yml<br/>(preferred)"]
-        WB["jira-branch-readme.yml<br/>(legacy)"]
-        WP["poc-session.yml<br/>(POC)"]
+        WD["jira-dispatch.yml<br/>(preferred)"]:::pref
+        WB["jira-branch-readme.yml<br/>(legacy)"]:::legacy
+        WP["poc-session.yml<br/>(POC)"]:::poc
     end
 
     subgraph OUT["Side effects"]
@@ -61,6 +61,10 @@ flowchart LR
 
     WD --> JC
     WB --> JC
+
+    classDef pref fill:#d1f0d8,stroke:#28a745,color:#1f2328
+    classDef legacy fill:#fff3cd,stroke:#d39e00,color:#1f2328
+    classDef poc fill:#e7e9ec,stroke:#868e96,color:#1f2328
 ```
 
 ## Common shape of a Jira-driven run

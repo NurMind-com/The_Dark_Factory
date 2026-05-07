@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>preview</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 1012px; margin: 32px auto; padding: 0 24px; color: #1f2328; line-height: 1.5; }
+  h1, h2 { border-bottom: 1px solid #d0d7de; padding-bottom: .3em; }
+  table { border-collapse: collapse; }
+  th, td { border: 1px solid #d0d7de; padding: 6px 13px; }
+  th { background: #f6f8fa; }
+  pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow: auto; }
+  code { background: #eaeef2; padding: .2em .4em; border-radius: 4px; font-size: 85%; }
+  pre code { background: transparent; padding: 0; font-size: 100%; }
+  .mermaid { background: white; padding: 12px 0; }
+  blockquote { border-left: .25em solid #d0d7de; color: #57606a; padding: 0 1em; }
+  .render-error { color: #b91c1c; background: #fef2f2; padding: 12px; border: 1px solid #fecaca; border-radius: 4px; }
+</style>
+</head><body>
+<div id="content">Loading…</div>
+<script type="module">
+  try {
+    const mditMod = await import("https://cdn.jsdelivr.net/npm/markdown-it@14/+esm");
+    const mdit = mditMod.default || mditMod;
+    const mermaid = (await import("https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs")).default;
+    const md = mdit({ html: true, linkify: true });
+    const defaultFence = md.renderer.rules.fence;
+    md.renderer.rules.fence = (tokens, idx, options, env, slf) => {
+      const t = tokens[idx];
+      if (t.info && t.info.trim() === "mermaid") {
+        return '<div class="mermaid">' + t.content + '</div>';
+      }
+      return defaultFence(tokens, idx, options, env, slf);
+    };
+    document.getElementById("content").innerHTML = md.render("# Workflows Overview\n\nA very high level view of how Jira tickets become repository changes in The Dark Factory.\n\nThe source of truth for behaviour is always the workflow files themselves under\n[`.github/workflows/`](../.github/workflows). For a deeper spec of the dispatch\nflow and Claude session continuity, see\n[`../github_actions_claude_spec.md`](../github_actions_claude_spec.md).\n\n## Workflows in this repo\n\n| Workflow | Trigger | Purpose | Status |\n|---|---|---|---|\n| [`jira-dispatch.yml`](../.github/workflows/jira-dispatch.yml) | `repository_dispatch: jira_manual_button` from Jira automation, or manual `workflow_dispatch` | Turn a Jira ticket into reviewable repo work or a Jira-facing answer. Resumes Claude across runs. | Preferred |\n| [`jira-branch-readme.yml`](../.github/workflows/jira-branch-readme.yml) | Branch creation (`on: create`) | One-shot: when Jira creates a branch, generate a spec, run Claude once, open a PR. No session continuity. | Legacy, kept for compatibility |\n| [`poc-session.yml`](../.github/workflows/poc-session.yml) | Manual `workflow_dispatch` | Proof-of-concept that Claude Code sessions can be resumed across runner invocations. | POC only |\n\n## High level system view\n\nThree-lane swimlane: **Triggers → Workflows → Side effects**. Trigger metadata\n(`repository_dispatch`, `on: create`, `workflow_dispatch`) is encoded in the\ntrigger nodes so all arrows stay unlabelled. `actions/cache` is intentionally\nomitted from this view — it is an implementation detail of session continuity\nand is captured in the workflow comparison table above.\n\n```mermaid\nflowchart LR\n    subgraph TR[\"Triggers\"]\n        direction TB\n        JM[\"Jira: manual button<br/>(repository_dispatch)\"]\n        JB[\"Jira: branch created<br/>(on: create)\"]\n        MD[\"Manual workflow_dispatch\"]\n    end\n\n    subgraph WF[\"Workflows (.github/workflows)\"]\n        direction TB\n        WD[\"jira-dispatch.yml<br/>(preferred)\"]:::pref\n        WB[\"jira-branch-readme.yml<br/>(legacy)\"]:::legacy\n        WP[\"poc-session.yml<br/>(POC)\"]:::poc\n    end\n\n    subgraph OUT[\"Side effects\"]\n        direction TB\n        CC[\"Claude Code run\"]\n        GH[\"Branch + PR\"]\n        JC[\"Jira comment\"]\n    end\n\n    JM --> WD\n    JB --> WB\n    MD --> WP\n    MD --> WD\n\n    WD --> CC\n    WB --> CC\n    WP --> CC\n\n    WD --> GH\n    WB --> GH\n    WP --> GH\n\n    WD --> JC\n    WB --> JC\n\n    classDef pref fill:#d1f0d8,stroke:#28a745,color:#1f2328\n    classDef legacy fill:#fff3cd,stroke:#d39e00,color:#1f2328\n    classDef poc fill:#e7e9ec,stroke:#868e96,color:#1f2328\n```\n\n## Common shape of a Jira-driven run\n\nBoth `jira-dispatch.yml` and `jira-branch-readme.yml` follow the same overall\nshape, just with different trigger semantics and different artefact layouts.\n`jira-dispatch.yml` adds session-cache restore/save around the Claude step.\n\n```mermaid\nsequenceDiagram\n    autonumber\n    participant J as Jira\n    participant W as GitHub Actions workflow\n    participant C as Claude Code\n    participant R as Repo / PR\n\n    J->>W: trigger (button or branch create)\n    W->>J: fetch ticket (REST)\n    W->>W: prepare spec/&lt;TICKET-ID&gt;/ artefacts\n    Note over W: dispatch flow only:<br/>restore ~/.claude/projects from cache\n    W->>C: run with prompt + ticket context\n    C->>W: edits, plan.md, response.md\n    Note over W: dispatch flow only:<br/>save ~/.claude/projects to cache\n    W->>R: commit, push branch, open / update PR\n    W->>J: comment back with PR link or answer\n```\n\n## Artefacts each run produces\n\n```\nspec/<TICKET-ID>/\n  spec.md          ticket snapshot (refreshed each run)\n  plan.md          implementation plan owned by Claude\n  response.md      Jira-facing summary or answer\n  state.json       last_session_id, run_count, kind\n  transcript.md    one section per run\n  runs/<ts>-<id>/  per-run prompt and response copies\n```\n\nThe legacy `jira-branch-readme.yml` flow uses the older flat layout\n(`spec/<KEY>-<slug>.md` and `<KEY>-<slug>-plan.md` at repo root) for backwards\ncompatibility.\n");
+    mermaid.initialize({ startOnLoad: false, securityLevel: "loose" });
+    await mermaid.run();
+    document.title = "ready";
+    window.__renderDone = true;
+  } catch (e) {
+    document.body.innerHTML = '<div class="render-error">Render failed: ' + (e && e.message || e) + '</div>';
+  }
+</script>
+</body></html>

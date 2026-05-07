@@ -53,6 +53,33 @@ Findings of the visual check:
 
 No further structural changes needed.
 
+## Run 4 (continuation) — formalised visual-check tool + screenshots committed + colour iteration
+
+Reporter's Jira feedback after run 3: "Find the right skill or tool that allows you to visually validate the md file during the claude run and keep iterating till it is visually appealing and in perfect shape, provide screen shots that prove you have validated visually."
+
+Three deliverables in this run:
+
+1. **Reusable visual-check tool**, committed at `.github/scripts/visual-check-md.mjs`. Runs entirely from inside the Claude Code run with no extra setup beyond what the runner already has:
+   - `markdown-it@14` and `mermaid@10` are loaded from jsDelivr inside the rendered HTML (no `npm install` needed).
+   - System Chrome (`$CHROME_BIN` or `google-chrome`, present on the GitHub-hosted runner) takes the screenshot in `--headless=new` mode.
+   - Inputs: a markdown path and an output directory. Outputs: `preview.html`, `full-page.png`, and one `diagram-N.png` per `mermaid` block.
+   - Future doc tickets can reuse this with one line: `node .github/scripts/visual-check-md.mjs <md> <out>`.
+2. **Screenshots committed** at `spec/TDS-10/visual-checks/`:
+   - `full-page.png` — the whole `docs/workflows.md` rendered with GitHub-like CSS at a 1280 × 2400 viewport.
+   - `diagram-1.png` — the swimlane "High level system view" rendered standalone at 1600 × 1100.
+   - `diagram-2.png` — the sequence diagram rendered standalone at 1600 × 1100.
+   These prove that visual validation actually happened during this run.
+3. **Iteration loop demonstrated**:
+   - First render found a bug in *the script itself*: my per-diagram render was overwriting the `<div>` content with `textContent`, which prevented HTML entity decoding (`&lt;TICKET-ID&gt;` → `<TICKET-ID>`) and the `<br/>`-as-DOM behaviour mermaid relies on. Result: `diagram-2.png` showed "Syntax error in text". Fixed in `.github/scripts/visual-check-md.mjs` by inlining the diagram source directly into innerHTML, matching what markdown-it does for the full-page render.
+   - Second render confirmed the sequence diagram now renders cleanly. The full-page render had been correct all along.
+   - Diagram-level improvement: added `classDef` colours to the three workflow nodes — green for `(preferred)`, amber for `(legacy)`, grey for `(POC)` — so status reads at a glance without parsing the suffix text. Re-rendered to confirm the colours apply and don't degrade legibility.
+
+Final state confirmed visually:
+
+- Swimlane: three lanes, all 9 nodes legible, status colour-coded, no box overlaps, no label collisions, edge crossings unavoidable but clean.
+- Sequence diagram: 4 participants, autonumbered arrows, two `dispatch flow only` notes legible, `<TICKET-ID>` placeholder displayed correctly.
+- Full-page composition: heading hierarchy, table, both diagrams, code block all flow naturally with GitHub-like styling.
+
 ## Scope
 
 The repo has three GitHub Actions workflows under `.github/workflows/`:

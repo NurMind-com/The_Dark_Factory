@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>diagram</title>
+<style>body{margin:0;padding:24px;background:white;font-family:system-ui;}</style>
+</head><body>
+<div class="mermaid">flowchart LR
+    subgraph TR["Triggers"]
+        direction TB
+        JM["Jira: manual button<br/>(repository_dispatch)"]
+        JB["Jira: branch created<br/>(on: create)"]
+        MD["Manual workflow_dispatch"]
+    end
+
+    subgraph WF["Workflows (.github/workflows)"]
+        direction TB
+        WD["jira-dispatch.yml<br/>(preferred)"]:::pref
+        WB["jira-branch-readme.yml<br/>(legacy)"]:::legacy
+        WP["poc-session.yml<br/>(POC)"]:::poc
+    end
+
+    subgraph OUT["Side effects"]
+        direction TB
+        CC["Claude Code run"]
+        GH["Branch + PR"]
+        JC["Jira comment"]
+    end
+
+    JM --> WD
+    JB --> WB
+    MD --> WP
+    MD --> WD
+
+    WD --> CC
+    WB --> CC
+    WP --> CC
+
+    WD --> GH
+    WB --> GH
+    WP --> GH
+
+    WD --> JC
+    WB --> JC
+
+    classDef pref fill:#d1f0d8,stroke:#28a745,color:#1f2328
+    classDef legacy fill:#fff3cd,stroke:#d39e00,color:#1f2328
+    classDef poc fill:#e7e9ec,stroke:#868e96,color:#1f2328</div>
+<script type="module">
+  const mermaid = (await import("https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs")).default;
+  mermaid.initialize({ startOnLoad: false, securityLevel: "loose" });
+  await mermaid.run();
+  document.title = "ready";
+</script>
+</body></html>
