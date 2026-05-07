@@ -1,13 +1,13 @@
-# TDS-4: Ticket artefacts in the same folder
+# TDS-5: Plan for response to comments
 
-Generated from Jira when branch `tds-4-ticket-artefacts-in-the-same-folder` was created.
+Generated from Jira when branch `tds-5-plan-for-response-to-comments` was created.
 
 ## Generated Files
 
-- Spec: `spec/TDS-4-ticket-artefacts-in-the-same-folder.md`
-- Plan: `TDS-4-ticket-artefacts-in-the-same-folder-plan.md`
+- Spec: `spec/TDS-5-plan-for-response-to-comments.md`
+- Plan: `TDS-5-plan-for-response-to-comments-plan.md`
 
 ## Links
 
-- Jira: https://abouyounes.atlassian.net/browse/TDS-4
+- Jira: https://abouyounes.atlassian.net/browse/TDS-5
 - Repository: https://github.com/NurMind-com/The_Dark_Factory
