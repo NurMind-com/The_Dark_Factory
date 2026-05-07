@@ -1,11 +1,11 @@
 {
   "ticket_id": "TDS-8",
-  "run_count": 1,
+  "run_count": 2,
   "kind": "pr",
   "branch": "tdf/tds-8",
   "last_session_id": "8b4eb0d6-f279-454b-8d58-9e8a095bf4f3",
-  "prev_session_id": null,
-  "last_run_at": "2026-05-07T22:37:51.840Z",
+  "prev_session_id": "8b4eb0d6-f279-454b-8d58-9e8a095bf4f3",
+  "last_run_at": "2026-05-07T22:43:27.638Z",
   "last_conclusion": "success",
   "last_kind": "pr"
 }
