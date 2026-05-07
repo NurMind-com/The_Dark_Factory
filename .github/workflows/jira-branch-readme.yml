@@ -1,4 +1,4 @@
-name: Create Jira spec and Claude plan on branch creation
+name: Create Jira spec, implement with Claude, and open PR
 
 on:
   create:
@@ -9,14 +9,14 @@ permissions:
   pull-requests: write
 
 jobs:
-  create-spec-and-plan:
-    name: Create Jira spec and Claude Code plan
+  create-spec-implement-and-pr:
+    name: Create Jira spec, implement with Claude Code, and open PR
     if: github.event.ref_type == 'branch'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
-      - name: Check out created branch
+      - name: Clone created branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.ref }}
@@ -30,7 +30,7 @@ jobs:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
         run: node .github/scripts/jira-branch-automation.mjs prepare
 
-      - name: Create implementation plan with Claude Code
+      - name: Create plan and implement with Claude Code
         if: env.SHOULD_RUN == 'true'
         uses: anthropics/claude-code-base-action@beta
         with:
@@ -38,11 +38,12 @@ jobs:
           prompt: |
             You are working on branch `${{ github.event.ref }}` of `${{ github.repository }}`.
 
+            The repository has already been cloned and checked out to the created branch.
             Read the generated Jira spec file at `${{ env.SPEC_FILE }}` fully.
-            Create an implementation plan only.
-            Do not change product code.
+            First create an implementation plan and write it to exactly `${{ env.PLAN_FILE }}`.
+            Then execute that plan by making the required repository changes on this branch.
             Do not edit README.md or the spec file.
-            Write the plan to exactly `${{ env.PLAN_FILE }}`.
+            Do not create or merge pull requests yourself; the workflow will create the PR after your changes are committed.
 
             The plan must be markdown and include:
             - Summary of the requested change
@@ -51,10 +52,10 @@ jobs:
             - Secrets/configuration required
             - Testing plan
             - Risks and rollback notes
-          allowed_tools: "Read,Write,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd)"
-          max_turns: "8"
+          allowed_tools: "Read,Write,Edit,MultiEdit,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd),Bash(node --check *),Bash(npm test),Bash(npm run *)"
+          max_turns: "12"
 
-      - name: Commit generated files
+      - name: Commit generated and implemented files
         if: env.SHOULD_RUN == 'true'
         run: |
           if [ ! -f "${PLAN_FILE}" ]; then
@@ -62,16 +63,43 @@ jobs:
             exit 1
           fi
 
-          if git diff --quiet -- README.md "${SPEC_FILE}" "${PLAN_FILE}"; then
-            echo "Generated files already up to date"
+          if git diff --quiet; then
+            echo "No changes to commit"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md "${SPEC_FILE}" "${PLAN_FILE}"
-          git commit -m "Create Jira spec and Claude plan"
+          git add -A
+          git commit -m "Implement ${ISSUE_KEY} from Jira"
           git push origin "HEAD:${{ github.event.ref }}"
+
+      - name: Create pull request
+        if: env.SHOULD_RUN == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          existing_pr="$(gh pr list --head "${BRANCH_NAME}" --base main --state open --json url --jq '.[0].url // empty')"
+          if [ -n "${existing_pr}" ]; then
+            echo "PR_URL=${existing_pr}" >> "${GITHUB_ENV}"
+            echo "Pull request already exists: ${existing_pr}"
+            exit 0
+          fi
+
+          pr_url="$(gh pr create \
+            --base main \
+            --head "${BRANCH_NAME}" \
+            --title "${ISSUE_KEY}: ${ISSUE_TITLE}" \
+            --body "Automated Claude Code implementation for ${ISSUE_KEY}.
+
+Jira: ${JIRA_ISSUE_URL}
+Spec: ${SPEC_FILE}
+Plan: ${PLAN_FILE}
+
+Review and merge when ready.")"
+
+          echo "PR_URL=${pr_url}" >> "${GITHUB_ENV}"
+          echo "Created pull request: ${pr_url}"
 
       - name: Comment on Jira issue
         if: env.SHOULD_RUN == 'true'

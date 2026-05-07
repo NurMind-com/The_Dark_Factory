@@ -10,8 +10,10 @@ const {
   JIRA_API_TOKEN,
   ISSUE_KEY,
   ISSUE_SLUG,
+  ISSUE_TITLE,
   SPEC_FILE,
   PLAN_FILE,
+  PR_URL,
 } = process.env;
 
 if (!BRANCH_NAME) {
@@ -53,6 +55,8 @@ async function prepareBranchFiles() {
   const slug = slugify(fields.summary ?? branchIssueKey);
   const specFile = `spec/${branchIssueKey}-${slug}.md`;
   const planFile = `${branchIssueKey}-${slug}-plan.md`;
+  const issueTitle = fields.summary ?? branchIssueKey;
+  const jiraIssueUrl = `${jiraBaseUrl}/browse/${branchIssueKey}`;
 
   await mkdir("spec", { recursive: true });
   await writeFile("README.md", buildReadme({ issue, issueKey: branchIssueKey, slug }), "utf8");
@@ -62,6 +66,8 @@ async function prepareBranchFiles() {
     SHOULD_RUN: "true",
     ISSUE_KEY: branchIssueKey,
     ISSUE_SLUG: slug,
+    ISSUE_TITLE: issueTitle,
+    JIRA_ISSUE_URL: jiraIssueUrl,
     SPEC_FILE: specFile,
     PLAN_FILE: planFile,
   });
@@ -78,6 +84,7 @@ async function commentOnJira() {
   const branchUrl = `https://github.com/${GITHUB_REPOSITORY}/tree/${encodeURIComponent(BRANCH_NAME)}`;
   const specUrl = `https://github.com/${GITHUB_REPOSITORY}/blob/${encodeURIComponent(BRANCH_NAME)}/${specFile}`;
   const planUrl = `https://github.com/${GITHUB_REPOSITORY}/blob/${encodeURIComponent(BRANCH_NAME)}/${planFile}`;
+  const prUrl = PR_URL || "";
 
   await fetchJson(`${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(issueKey)}/comment`, {
     method: "POST",
@@ -94,6 +101,7 @@ async function commentOnJira() {
           linkParagraph("Branch", branchUrl),
           linkParagraph("Spec", specUrl),
           linkParagraph("Plan", planUrl),
+          ...(prUrl ? [linkParagraph("Pull request", prUrl)] : []),
         ],
       },
     }),
@@ -122,7 +130,13 @@ async function fetchJson(url, options) {
 async function appendGithubEnv(values) {
   if (!GITHUB_ENV) return;
   const body = Object.entries(values)
-    .map(([key, value]) => `${key}=${value}`)
+    .map(([key, value]) => {
+      const normalized = String(value ?? "");
+      if (normalized.includes("\n")) {
+        return `${key}<<EOF_${key}\n${normalized}\nEOF_${key}`;
+      }
+      return `${key}=${normalized}`;
+    })
     .join("\n");
   await writeFile(GITHUB_ENV, `${body}\n`, { flag: "a" });
 }
