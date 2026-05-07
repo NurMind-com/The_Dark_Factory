@@ -175,7 +175,7 @@ async function prepareDispatch() {
   });
   await writeFile(promptFile, prompt, "utf8");
 
-  let claudeArgs = "--max-turns 60";
+  let claudeArgs = "--max-turns 60 --permission-mode bypassPermissions";
   if (lastSessionId) claudeArgs += ` --resume ${lastSessionId}`;
 
   await mkdir(`${requireEnv("HOME")}/.claude/projects`, { recursive: true });
