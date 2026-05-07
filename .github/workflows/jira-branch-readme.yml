@@ -35,10 +35,16 @@ jobs:
         uses: anthropics/claude-code-base-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          settings: |
+            {
+              "model": "opus",
+              "effortLevel": "high"
+            }
           prompt: |
             You are working on branch `${{ github.event.ref }}` of `${{ github.repository }}`.
 
             The repository has already been cloned and checked out to the created branch.
+            Follow the repository instructions in `CLAUDE.md`.
             Read the generated Jira spec file at `${{ env.SPEC_FILE }}` fully.
             First create an implementation plan and write it to exactly `${{ env.PLAN_FILE }}`.
             Then execute that plan by making the required repository changes on this branch.
@@ -52,8 +58,9 @@ jobs:
             - Secrets/configuration required
             - Testing plan
             - Risks and rollback notes
-          allowed_tools: "Read,Write,Edit,MultiEdit,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd),Bash(node --check *),Bash(npm test),Bash(npm run *)"
-          max_turns: "12"
+          claude_args: >-
+            --max-turns 60
+            --allowedTools "Read,Write,Edit,MultiEdit,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd),Bash(node --check *),Bash(npm test),Bash(npm run *)"
 
       - name: Commit generated and implemented files
         if: env.SHOULD_RUN == 'true'
