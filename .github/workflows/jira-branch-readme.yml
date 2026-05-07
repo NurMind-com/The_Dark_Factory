@@ -35,6 +35,7 @@ jobs:
         uses: anthropics/claude-code-base-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          model: opus
           settings: |
             {
               "model": "opus",
@@ -58,9 +59,8 @@ jobs:
             - Secrets/configuration required
             - Testing plan
             - Risks and rollback notes
-          claude_args: >-
-            --max-turns 60
-            --allowedTools "Read,Write,Edit,MultiEdit,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd),Bash(node --check *),Bash(npm test),Bash(npm run *)"
+          allowed_tools: "Read,Write,Edit,MultiEdit,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd),Bash(node --check *),Bash(npm test),Bash(npm run *)"
+          max_turns: "60"
 
       - name: Commit generated and implemented files
         if: env.SHOULD_RUN == 'true'
