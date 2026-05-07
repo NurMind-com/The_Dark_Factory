@@ -312,15 +312,18 @@ jobs:
 ## Gotchas
 
 - `@beta` of `claude-code-base-action` is older and lacks `claude_args` and `session_id` output. Always pin `@main` (or a newer tagged release that includes them).
+- The `@main` action defaults to interactive permission prompts which cannot be answered in CI. Pass `--permission-mode bypassPermissions` via `claude_args`. Without it, `Write` and shell redirection to repo paths are blocked at the harness level even if `--allowedTools` looks correct.
 - `git diff --quiet -- <path>` does not include untracked files. Stage with `git add -A` first, then check `git diff --cached --quiet`. Otherwise the very first run never commits its `state.json`.
 - bash `printf` interprets a leading `-` in the format string as a flag and exits with code 2. Use `printf -- '-...'` whenever the format starts with a hyphen.
 - The `@main` action does not echo the assistant's response into the public step log. Either set `show_full_output: true` or extract the text from `execution_file` with `jq`. Setting `show_full_output: true` also prints tool results, which can leak secrets; prefer the `jq` path.
 - `cache-hit` from `actions/cache/restore@v4` is `false` even when `restore-keys` matches a prior cache. Use `cache-matched-key` to detect the prefix-match case.
 - `actions/cache/save@v4` errors on duplicate exact keys. Always include a unique component (we use `${{ github.run_id }}`).
 - Cache TTL: seven days of inactivity. Plan for cache miss as a normal case, not an error.
-- Workflow steps that push to `main` need a PAT with `contents: write` (`secrets.GH_PR_TOKEN`), not just the default `GITHUB_TOKEN`, if the repo has branch protection or requires PAT for workflow file pushes.
+- Workflow steps that push to `main` or `tdf/<ticket>` need a PAT with `contents: write` (`secrets.GH_PR_TOKEN`), not just the default `GITHUB_TOKEN`, if the repo has branch protection or requires PAT for workflow file pushes.
 - Concurrency group must be per-ticket so the same ticket cannot run twice in parallel and stomp on cache and state. `cancel-in-progress: false` queues, doesn't cancel.
 - Jira-format smart values (`{{comment.body.plainText}}`) and dispatch payloads must use plain JSON for `repository_dispatch`. Never log the GitHub PAT used by the Jira `Send web request` action; mark the Authorization header as Hidden after first successful validation.
+- Branch ordering: do not write files to disk before deciding whether to switch to an existing per-ticket branch. If you do, `git checkout` will refuse to overwrite the untracked files. Either move the branch checkout into the prepare step (before file writes) or split prepare into route/files phases.
+- `commit-changes` for answer mode must `git push origin HEAD:main` while still on `main`. Do not check out a PR branch in answer mode, even if one exists, or pushing `HEAD:main` will push the branch tip to `main`.
 
 ## Cost (Sonnet, observed)
 
@@ -349,14 +352,19 @@ Run 2 (`workflow_dispatch`, same ticket_id):
 
 Both runs committed back to `main`: `temp/poc/POC-2/state.json` and `temp/poc/POC-2/transcript.md`.
 
-## Next Steps
+## Production Implementation (validated 2026-05-08)
 
-When greenlit, build the real Jira flow on top of this:
+The Jira dispatch flow is implemented in this repo:
 
-1. Trigger source: `repository_dispatch` event `jira_manual_button` carrying `issue_key`.
-2. Helper script `prepare-dispatch` mode fetches Jira ticket + comments, decides PR vs answer routing, lays out `spec/<TICKET-ID>/`, computes `CLAUDE_ARGS`.
-3. Use the validated cache + state pattern from this spec.
-4. Add `commit-changes`, `ensure-pr`, `comment-result` modes for the post-run workflow steps.
-5. Retire the legacy create-branch flow once dispatch flow is stable for one week.
+- Helper: `.github/scripts/jira-dispatch.mjs` — modes `prepare-dispatch`, `record-run`, `commit-changes`, `ensure-pr`, `comment-result`.
+- Workflow: `.github/workflows/jira-dispatch.yml` — listens on `repository_dispatch` type `jira_manual_button` with `workflow_dispatch` fallback for manual runs.
+- Updated `CLAUDE.md` with dispatch flow context and PR-vs-answer routing rules.
 
-See `temp/progress_plan.md` for the full design.
+Smoke-test results:
+
+- TDS-7 (label `claude:answer`): two runs against this ticket. Run 1 caught the missing `bypassPermissions` and surfaced a clean failure message; run 2 (after the fix) resumed the same Claude session, recognised the prior failure (referenced commit `efa608a` by hash), and wrote the response file. Jira got the answer comment.
+- TDS-8 (label `claude:pr`): two runs. Run 1 created `tdf/tds-8`, committed the marker file `temp/dispatch_pr_smoke.md`, opened PR #9, posted the Jira comment with branch + PR links. Run 2 (continuation) checked out the existing PR branch, resumed Claude on the same session id, and reused the existing PR (no duplicates).
+
+Both modes survived a real session-continuity hop, both posted Jira comments, both committed to the right ref (main for answer, branch for pr).
+
+The legacy create-branch flow (`.github/workflows/jira-branch-readme.yml`) is left untouched for now. Retire after the dispatch flow has been stable for at least one week of real ticket use.
