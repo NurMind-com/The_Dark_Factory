@@ -96,7 +96,7 @@ jobs:
 
       - name: Run Claude Code
         id: claude
-        uses: anthropics/claude-code-base-action@beta
+        uses: anthropics/claude-code-base-action@main
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           settings: |
@@ -106,7 +106,7 @@ jobs:
 
       - name: Capture run outputs
         env:
-          NEW_SESSION_ID: ${{ steps.claude.outputs.session_id }}
+          ACTION_SESSION_ID: ${{ steps.claude.outputs.session_id }}
           CONCLUSION: ${{ steps.claude.outputs.conclusion }}
           EXECUTION_FILE: ${{ steps.claude.outputs.execution_file }}
         run: |
@@ -114,6 +114,19 @@ jobs:
           rm -f output.txt || true
 
           NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          # Prefer the action's session_id output. Older action versions don't
+          # expose it; in that case parse it from the execution_file JSON.
+          NEW_SESSION_ID="${ACTION_SESSION_ID}"
+          if [ -z "${NEW_SESSION_ID}" ] && [ -n "${EXECUTION_FILE:-}" ] && [ -f "${EXECUTION_FILE}" ]; then
+            NEW_SESSION_ID="$(jq -r '[.[] | select(.session_id != null) | .session_id] | last // ""' "${EXECUTION_FILE}")"
+          fi
+          echo "NEW_SESSION_ID=${NEW_SESSION_ID}" >> "${GITHUB_ENV}"
+
+          ROTATED=false
+          if [ -n "${LAST_SESSION_ID}" ] && [ -n "${NEW_SESSION_ID}" ] && [ "${LAST_SESSION_ID}" != "${NEW_SESSION_ID}" ]; then
+            ROTATED=true
+          fi
 
           jq --arg sid "${NEW_SESSION_ID}" \
              --arg prev "${LAST_SESSION_ID}" \
@@ -131,12 +144,12 @@ jobs:
 
           {
             printf '\n## Run %s\n' "${NOW}"
-            printf '- run_kind: %s\n' "${RUN_KIND}"
-            printf '- prev_session_id: %s\n' "${LAST_SESSION_ID:-<none>}"
-            printf '- new_session_id: %s\n' "${NEW_SESSION_ID:-<none>}"
-            printf '- session_id_rotated: %s\n' "$([ "${LAST_SESSION_ID}" != "" ] && [ "${LAST_SESSION_ID}" != "${NEW_SESSION_ID}" ] && echo true || echo false)"
-            printf '- conclusion: %s\n' "${CONCLUSION:-<unknown>}"
-            printf '- prompt: %s\n' "${PROMPT_INPUT}"
+            printf -- '- run_kind: %s\n' "${RUN_KIND}"
+            printf -- '- prev_session_id: %s\n' "${LAST_SESSION_ID:-<none>}"
+            printf -- '- new_session_id: %s\n' "${NEW_SESSION_ID:-<none>}"
+            printf -- '- session_id_rotated: %s\n' "${ROTATED}"
+            printf -- '- conclusion: %s\n' "${CONCLUSION:-<unknown>}"
+            printf -- '- prompt: %s\n' "${PROMPT_INPUT}"
           } >> "${TRANSCRIPT_FILE}"
 
           echo "State after run:"
