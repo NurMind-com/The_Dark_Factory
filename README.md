@@ -1,13 +1,13 @@
-# TDS-4: Ticket artefacts in the same folder
+# TDS-6: Execute the plan to enable response to comments
 
-Generated from Jira when branch `tds-4-ticket-artefacts-in-the-same-folder` was created.
+Generated from Jira when branch `tds-6-execute-the-plan-to-enable-response-to-comments-retry` was created.
 
 ## Generated Files
 
-- Spec: `spec/TDS-4-ticket-artefacts-in-the-same-folder.md`
-- Plan: `TDS-4-ticket-artefacts-in-the-same-folder-plan.md`
+- Spec: `spec/TDS-6-execute-the-plan-to-enable-response-to-comments.md`
+- Plan: `TDS-6-execute-the-plan-to-enable-response-to-comments-plan.md`
 
 ## Links
 
-- Jira: https://abouyounes.atlassian.net/browse/TDS-4
+- Jira: https://abouyounes.atlassian.net/browse/TDS-6
 - Repository: https://github.com/NurMind-com/The_Dark_Factory

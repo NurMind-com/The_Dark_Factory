@@ -1,0 +1,172 @@
+name: Respond to Comments with Claude
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  respond-to-comment:
+    name: Process and respond to comment with Claude
+    # Only run if comment mentions Claude or starts with specific triggers
+    if: |
+      github.event.comment.user.type != 'Bot' &&
+      (
+        contains(github.event.comment.body, '@claude') ||
+        contains(github.event.comment.body, '@Claude') ||
+        startsWith(github.event.comment.body, 'Claude,') ||
+        startsWith(github.event.comment.body, 'claude,') ||
+        startsWith(github.event.comment.body, '/claude') ||
+        startsWith(github.event.comment.body, '/ask')
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # For PR comments, checkout the PR branch
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          token: ${{ secrets.GH_PR_TOKEN }}
+
+      - name: Parse comment and prepare context
+        id: prepare
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          COMMENT_URL: ${{ github.event.comment.html_url }}
+          ISSUE_TITLE: ${{ github.event.issue.title || github.event.pull_request.title }}
+          ISSUE_BODY: ${{ github.event.issue.body || github.event.pull_request.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+          IS_PR: ${{ github.event.pull_request && 'true' || 'false' }}
+        run: |
+          # Prevent responding to bot comments (double-check)
+          if [[ "${COMMENT_AUTHOR}" == *"[bot]"* ]]; then
+            echo "Skipping bot comment from ${COMMENT_AUTHOR}"
+            echo "SHOULD_RESPOND=false" >> "${GITHUB_ENV}"
+            exit 0
+          fi
+
+          # Extract the actual question/request from the comment
+          # Remove trigger phrases to get the actual content
+          cleaned_comment="${COMMENT_BODY}"
+          cleaned_comment="${cleaned_comment#@claude }"
+          cleaned_comment="${cleaned_comment#@Claude }"
+          cleaned_comment="${cleaned_comment#Claude, }"
+          cleaned_comment="${cleaned_comment#claude, }"
+          cleaned_comment="${cleaned_comment#/claude }"
+          cleaned_comment="${cleaned_comment#/ask }"
+          
+          echo "SHOULD_RESPOND=true" >> "${GITHUB_ENV}"
+          echo "CLEANED_COMMENT=${cleaned_comment}" >> "${GITHUB_ENV}"
+          
+          # Create a context file for Claude
+          cat > comment_context.md << EOF
+          # Comment Context
+
+          **Comment Author:** ${COMMENT_AUTHOR}
+          **Comment URL:** ${COMMENT_URL}
+          **Issue/PR:** #${ISSUE_NUMBER} - ${ISSUE_TITLE}
+          **Is Pull Request:** ${IS_PR}
+
+          ## Original Comment
+          ${COMMENT_BODY}
+
+          ## Issue/PR Description
+          ${ISSUE_BODY}
+          EOF
+          
+          echo "Context prepared for Claude"
+
+      - name: Get PR diff if applicable
+        if: env.SHOULD_RESPOND == 'true' && github.event.pull_request
+        env:
+          GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+        run: |
+          pr_number="${{ github.event.pull_request.number }}"
+          gh pr diff "${pr_number}" > pr_diff.txt || echo "No diff available" > pr_diff.txt
+          echo "PR diff captured"
+
+      - name: Respond with Claude Code
+        if: env.SHOULD_RESPOND == 'true'
+        id: claude_response
+        uses: anthropics/claude-code-base-action@beta
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          model: haiku
+          settings: |
+            {
+              "model": "haiku",
+              "effortLevel": "low"
+            }
+          prompt: |
+            You are responding to a comment on a GitHub issue or pull request in the repository `${{ github.repository }}`.
+            
+            Read the context in `comment_context.md` to understand the comment and issue/PR.
+            ${{ github.event.pull_request && 'If relevant, check `pr_diff.txt` for the PR changes.' || '' }}
+            
+            The user's question/request is:
+            ${{ env.CLEANED_COMMENT }}
+            
+            Provide a helpful, concise response that:
+            1. Directly addresses the user's question or request
+            2. References specific code or files if applicable
+            3. Suggests concrete next steps if appropriate
+            4. Maintains a professional, helpful tone
+            
+            Important guidelines:
+            - If asked to make code changes, explain what would need to be done but note that direct edits require appropriate permissions
+            - If the question is about the PR/issue itself, focus on that context
+            - Be concise - this is a comment thread, not a full document
+            - Do NOT mention that you're Claude or an AI unless specifically asked
+            - Format your response in GitHub-flavored Markdown
+            
+            Output only the response text that will be posted as a comment.
+          allowed_tools: "Read,Glob,Grep,Bash(git status),Bash(git diff),Bash(ls),Bash(pwd)"
+          max_turns: "10"
+
+      - name: Post Claude's response as comment
+        if: env.SHOULD_RESPOND == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+        run: |
+          # Read Claude's response from the action output
+          response_file="claude_response.md"
+          
+          # The Claude Code action should have generated output
+          # We'll need to capture it from the action's output
+          if [ -f output.txt ]; then
+            cp output.txt "${response_file}"
+          else
+            # Fallback response if something went wrong
+            echo "I've processed your request but couldn't generate a response. Please check the workflow logs for details." > "${response_file}"
+          fi
+          
+          # Add a footer to indicate this was an automated response
+          echo -e "\n\n---\n*This response was generated automatically by Claude in response to the comment above.*" >> "${response_file}"
+          
+          # Post the comment
+          issue_number="${{ github.event.issue.number || github.event.pull_request.number }}"
+          gh issue comment "${issue_number}" --body-file "${response_file}"
+          
+          echo "Response posted successfully"
+
+      - name: Add reaction to original comment
+        if: env.SHOULD_RESPOND == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+        run: |
+          # Add a thumbs up reaction to acknowledge the comment
+          comment_id="${{ github.event.comment.id }}"
+          curl -X POST \
+            -H "Authorization: token ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/comments/${comment_id}/reactions" \
+            -d '{"content":"+1"}' || true

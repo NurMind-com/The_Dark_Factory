@@ -45,6 +45,8 @@ if (mode === "prepare") {
   await prepareBranchFiles();
 } else if (mode === "comment") {
   await commentOnJira();
+} else if (mode === "respond") {
+  await respondToComment();
 } else {
   throw new Error(`Unknown mode: ${mode}`);
 }
@@ -111,6 +113,29 @@ async function commentOnJira() {
   });
 
   console.log(`Commented on ${issueKey} with spec and plan links.`);
+}
+
+async function respondToComment() {
+  // This function can be extended to handle comment-specific logic
+  // For now, it provides a hook for future comment response features
+  const { COMMENT_BODY, COMMENT_AUTHOR, ISSUE_NUMBER } = process.env;
+  
+  if (!COMMENT_BODY || !ISSUE_NUMBER) {
+    throw new Error("Missing required environment variables for comment response");
+  }
+  
+  console.log(`Processing comment from ${COMMENT_AUTHOR} on issue/PR #${ISSUE_NUMBER}`);
+  
+  // Check if this is a Jira-linked issue
+  if (branchIssueKey) {
+    console.log(`Comment is on Jira-linked issue: ${branchIssueKey}`);
+    
+    // Optionally, we could post a summary back to Jira
+    // For now, we'll just log that we processed it
+    console.log("Comment processing complete. Response will be handled by Claude Code action.");
+  }
+  
+  return { success: true };
 }
 
 async function getIssue(issueKey) {
