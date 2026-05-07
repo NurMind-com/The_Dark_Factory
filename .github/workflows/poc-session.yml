@@ -142,6 +142,19 @@ jobs:
              "${STATE_FILE}" > "${STATE_FILE}.tmp"
           mv "${STATE_FILE}.tmp" "${STATE_FILE}"
 
+          ASSISTANT_TEXT=""
+          if [ -n "${EXECUTION_FILE:-}" ] && [ -f "${EXECUTION_FILE}" ]; then
+            ASSISTANT_TEXT="$(jq -r '
+              [
+                .[]
+                | select(.type=="assistant")
+                | .message.content[]?
+                | select(.type=="text")
+                | .text
+              ] | last // ""
+            ' "${EXECUTION_FILE}")"
+          fi
+
           {
             printf '\n## Run %s\n' "${NOW}"
             printf -- '- run_kind: %s\n' "${RUN_KIND}"
@@ -150,10 +163,13 @@ jobs:
             printf -- '- session_id_rotated: %s\n' "${ROTATED}"
             printf -- '- conclusion: %s\n' "${CONCLUSION:-<unknown>}"
             printf -- '- prompt: %s\n' "${PROMPT_INPUT}"
+            printf -- '- response: %s\n' "${ASSISTANT_TEXT:-<empty>}"
           } >> "${TRANSCRIPT_FILE}"
 
           echo "State after run:"
           cat "${STATE_FILE}"
+          echo "Assistant text (last):"
+          echo "${ASSISTANT_TEXT}"
 
       - name: Save Claude session cache
         if: steps.claude.outputs.session_id != ''
