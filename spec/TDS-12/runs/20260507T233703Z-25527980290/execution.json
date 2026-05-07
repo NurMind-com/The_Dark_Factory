@@ -1,0 +1,1165 @@
+[
+  {
+    "type": "system",
+    "subtype": "init",
+    "cwd": "/home/runner/work/The_Dark_Factory/The_Dark_Factory",
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "tools": [
+      "Task",
+      "AskUserQuestion",
+      "Bash",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "Edit",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "Read",
+      "RemoteTrigger",
+      "ScheduleWakeup",
+      "Skill",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "ToolSearch",
+      "WebFetch",
+      "WebSearch",
+      "Write"
+    ],
+    "mcp_servers": [],
+    "model": "claude-opus-4-7",
+    "permissionMode": "bypassPermissions",
+    "slash_commands": [
+      "update-config",
+      "debug",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "clear",
+      "compact",
+      "context",
+      "heapdump",
+      "init",
+      "review",
+      "security-review",
+      "usage",
+      "insights",
+      "team-onboarding"
+    ],
+    "apiKeySource": "none",
+    "claude_code_version": "2.1.132",
+    "output_style": "default",
+    "agents": [
+      "claude-code-guide",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "skills": [
+      "update-config",
+      "debug",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "schedule",
+      "claude-api"
+    ],
+    "plugins": [],
+    "analytics_disabled": false,
+    "uuid": "46cf2d1a-bcbb-4b5c-8e3a-4a931a5761dc",
+    "memory_paths": {
+      "auto": "/home/runner/.claude/projects/-home-runner-work-The-Dark-Factory-The-Dark-Factory/memory/"
+    },
+    "fast_mode_state": "off"
+  },
+  {
+    "type": "rate_limit_event",
+    "rate_limit_info": {
+      "status": "allowed",
+      "resetsAt": 1778201400,
+      "rateLimitType": "five_hour",
+      "overageStatus": "allowed",
+      "overageResetsAt": 1778197200,
+      "isUsingOverage": false
+    },
+    "uuid": "a14f2262-5987-407e-a38d-69edb603820f",
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01HcX9WGbJ8ThVUAAfWps4Dp",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "EosCClkIDRgCKkDkdoUPi0D3vDc0CLJAtCkA+ehNzqONl7G8pN28pZAFVkHYF4CD/C9rFUc7Qy4ZsJKaiAyoLlFMmh1A4/YzOSkFMg9jbGF1ZGUtb3B1cy00LTc4ABIMmoOUYS32P1/OXLRvGgzZA8CPVDGrnBw6RHQiMGfZbpF65+kZMnbP7gEc0hdSUTwOmSo2M7VybhJ83rs+56xDRa7xZSivnUC869I6KSpgsAauxRR4SzYUdH6KkJOzTCM2JdsYcAPSQvA9NCkqL2X7nU8kcM0tmB2BeYP5hCZAAlXRmoGDYq0alOPE2FDjXXdBDDrjNVCkOBEHS5OvOwOXyGav7crXLsEqA+0KKonOGAE="
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 5,
+        "cache_creation_input_tokens": 9438,
+        "cache_read_input_tokens": 16550,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 9438
+        },
+        "output_tokens": 0,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "391485d0-efe6-444a-9614-172abc247da5"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01HcX9WGbJ8ThVUAAfWps4Dp",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01EaC4LunPzUzYbLhTZj2c8E",
+          "name": "Read",
+          "input": {
+            "file_path": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/spec.md"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 5,
+        "cache_creation_input_tokens": 9438,
+        "cache_read_input_tokens": 16550,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 9438
+        },
+        "output_tokens": 0,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "c677e9f3-8fe8-4d08-8256-91e408f03040"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01EaC4LunPzUzYbLhTZj2c8E",
+          "type": "tool_result",
+          "content": "1\t# TDS-12: Move Ticket to in progress as soon as work starts\n2\t\n3\tGenerated from Jira on 2026-05-07T23:37:03.929Z.\n4\t\n5\t## Issue Details\n6\t\n7\t| Field | Value |\n8\t|---|---|\n9\t| Key | TDS-12 |\n10\t| Title | Move Ticket to in progress as soon as work starts |\n11\t| Type | Task |\n12\t| Status | To Do |\n13\t| Priority | Medium |\n14\t| Assignee | - |\n15\t| Reporter | Roland Abou Younes |\n16\t| Labels | claude:pr |\n17\t| Components | - |\n18\t| Created | 2026-05-08T02:34:18.586+0300 |\n19\t| Updated | 2026-05-08T02:36:14.674+0300 |\n20\t\n21\t## Description\n22\t\n23\tWhen the dispatch flow starts handling a Jira ticket, transition it to \"In Progress\" so the ticket reflects active work in real time.\n24\t\n25\t## Goal\n26\t\n27\tIn `.github/scripts/jira-dispatch.mjs` (mode `prepare-dispatch`), after the Jira issue is fetched and we have decided to run, transition the ticket to \"In Progress\" if it is currently in a pre-work status.\n28\t\n29\t## Scope\n30\t\n31\t- Add a Jira transition step inside `prepareDispatch` after the Jira fetch and before the PR-branch checkout, so the ticket flips status before any code work begins.\n32\t- Source the transition target from Jira's transitions API (`GET /rest/api/3/issue/{key}/transitions`). Match by `to.statusCategory.key === \"indeterminate\"` (Jira's category for In Progress) or fall back to the transition whose name matches \"In Progress\" case-insensitively.\n33\t- Skip the transition if the issue is already in `indeterminate` (in progress) or `done` status category, so re-runs on Done tickets are no-ops.\n34\t- Skip the transition if no matching transition is available for the current status (some ticket types or workflows may not allow it). Log a warning. Do not fail the run.\n35\t- POST to `/rest/api/3/issue/{key}/transitions` with `{\"transition\": {\"id\": \"<id>\"}}`. No comments or fields to set, just status.\n36\t\n37\t## Acceptance criteria\n38\t\n39\t1. After a manual dispatch on a \"To Do\" ticket, the Jira ticket moves to \"In Progress\" before Claude finishes.\n40\t2. On a re-run of an \"In Progress\" ticket, the transition is skipped silently.\n41\t3. On a re-run of a \"Done\" ticket, the transition is skipped silently.\n42\t4. If the Jira workflow has no available \"In Progress\" transition for the current state, the dispatch run continues normally and logs a warning. Failure to transition must not abort the run.\n43\t5. The transition uses the existing `JIRA_BASE_URL` / `JIRA_EMAIL` / `JIRA_API_TOKEN` secrets. No new secrets.\n44\t\n45\t## Files expected to change\n46\t\n47\t- `.github/scripts/jira-dispatch.mjs` (only).\n48\t\n49\t## Files NOT to change\n50\t\n51\t- `.github/workflows/jira-dispatch.yml`, `.github/workflows/poc-session.yml`\n52\t- `.github/scripts/` (only `jira-dispatch.mjs` may change)\n53\t- `CLAUDE.md`, `README.md`, `github_actions_claude_spec.md`\n54\t- Any existing `spec/<TICKET-ID>/` folder other than this ticket's\n55\t\n56\t## Notes for Claude\n57\t\n58\t- This is a `claude:pr` ticket. Make changes on the per-ticket branch `tdf/<this-key>` and let the workflow open the PR.\n59\t- Update `spec/<this-key>/plan.md` with the implementation plan.\n60\t- Write a short Jira-facing summary to `spec/<this-key>/response.md`: which transition was used, how status detection works, fallback behaviour.\n61\t- Reference: existing `initJira()`, `fetchJson()`, and Jira REST patterns already in `jira-dispatch.mjs`.\n62\t\n63\t## Follow-ups (not in this ticket)\n64\t\n65\t- Transition back to \"Done\" / \"Resolved\" after PR merge. Requires a separate workflow listening for `pull_request: closed` merged PRs. Out of scope here.\n66\t- Add Jira label management hooks if the team wants `claude-code` activity tagged on the ticket.\n67\t\n68\t## Comments (0)\n69\t\n70\t_No comments._\n71\t"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "9ea907b4-aa47-4b1c-afa0-438542a7e185",
+    "timestamp": "2026-05-07T23:37:28.949Z",
+    "tool_use_result": {
+      "type": "text",
+      "file": {
+        "filePath": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/spec.md",
+        "content": "# TDS-12: Move Ticket to in progress as soon as work starts\n\nGenerated from Jira on 2026-05-07T23:37:03.929Z.\n\n## Issue Details\n\n| Field | Value |\n|---|---|\n| Key | TDS-12 |\n| Title | Move Ticket to in progress as soon as work starts |\n| Type | Task |\n| Status | To Do |\n| Priority | Medium |\n| Assignee | - |\n| Reporter | Roland Abou Younes |\n| Labels | claude:pr |\n| Components | - |\n| Created | 2026-05-08T02:34:18.586+0300 |\n| Updated | 2026-05-08T02:36:14.674+0300 |\n\n## Description\n\nWhen the dispatch flow starts handling a Jira ticket, transition it to \"In Progress\" so the ticket reflects active work in real time.\n\n## Goal\n\nIn `.github/scripts/jira-dispatch.mjs` (mode `prepare-dispatch`), after the Jira issue is fetched and we have decided to run, transition the ticket to \"In Progress\" if it is currently in a pre-work status.\n\n## Scope\n\n- Add a Jira transition step inside `prepareDispatch` after the Jira fetch and before the PR-branch checkout, so the ticket flips status before any code work begins.\n- Source the transition target from Jira's transitions API (`GET /rest/api/3/issue/{key}/transitions`). Match by `to.statusCategory.key === \"indeterminate\"` (Jira's category for In Progress) or fall back to the transition whose name matches \"In Progress\" case-insensitively.\n- Skip the transition if the issue is already in `indeterminate` (in progress) or `done` status category, so re-runs on Done tickets are no-ops.\n- Skip the transition if no matching transition is available for the current status (some ticket types or workflows may not allow it). Log a warning. Do not fail the run.\n- POST to `/rest/api/3/issue/{key}/transitions` with `{\"transition\": {\"id\": \"<id>\"}}`. No comments or fields to set, just status.\n\n## Acceptance criteria\n\n1. After a manual dispatch on a \"To Do\" ticket, the Jira ticket moves to \"In Progress\" before Claude finishes.\n2. On a re-run of an \"In Progress\" ticket, the transition is skipped silently.\n3. On a re-run of a \"Done\" ticket, the transition is skipped silently.\n4. If the Jira workflow has no available \"In Progress\" transition for the current state, the dispatch run continues normally and logs a warning. Failure to transition must not abort the run.\n5. The transition uses the existing `JIRA_BASE_URL` / `JIRA_EMAIL` / `JIRA_API_TOKEN` secrets. No new secrets.\n\n## Files expected to change\n\n- `.github/scripts/jira-dispatch.mjs` (only).\n\n## Files NOT to change\n\n- `.github/workflows/jira-dispatch.yml`, `.github/workflows/poc-session.yml`\n- `.github/scripts/` (only `jira-dispatch.mjs` may change)\n- `CLAUDE.md`, `README.md`, `github_actions_claude_spec.md`\n- Any existing `spec/<TICKET-ID>/` folder other than this ticket's\n\n## Notes for Claude\n\n- This is a `claude:pr` ticket. Make changes on the per-ticket branch `tdf/<this-key>` and let the workflow open the PR.\n- Update `spec/<this-key>/plan.md` with the implementation plan.\n- Write a short Jira-facing summary to `spec/<this-key>/response.md`: which transition was used, how status detection works, fallback behaviour.\n- Reference: existing `initJira()`, `fetchJson()`, and Jira REST patterns already in `jira-dispatch.mjs`.\n\n## Follow-ups (not in this ticket)\n\n- Transition back to \"Done\" / \"Resolved\" after PR merge. Requires a separate workflow listening for `pull_request: closed` merged PRs. Out of scope here.\n- Add Jira label management hooks if the team wants `claude-code` activity tagged on the ticket.\n\n## Comments (0)\n\n_No comments._\n",
+        "numLines": 71,
+        "startLine": 1,
+        "totalLines": 71
+      }
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01HcX9WGbJ8ThVUAAfWps4Dp",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_016R443Z1a941MM3AC9Lrths",
+          "name": "Bash",
+          "input": {
+            "command": "ls /home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/",
+            "description": "List TDS-12 folder contents"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 5,
+        "cache_creation_input_tokens": 9438,
+        "cache_read_input_tokens": 16550,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 9438
+        },
+        "output_tokens": 0,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "dfeef0fa-f46d-4fe6-903a-800ccf759c9f"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01HcX9WGbJ8ThVUAAfWps4Dp",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01TgFgB8m2Y9fTc5Emn6SYWE",
+          "name": "Read",
+          "input": {
+            "file_path": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/CLAUDE.md"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 5,
+        "cache_creation_input_tokens": 9438,
+        "cache_read_input_tokens": 16550,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 9438
+        },
+        "output_tokens": 0,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "09bbc860-ea21-4504-962e-94e56089f2c0"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01TgFgB8m2Y9fTc5Emn6SYWE",
+          "type": "tool_result",
+          "content": "1\tIMPORTANT: NEVER expose, print, or commit secrets. Treat Jira, GitHub, and Claude tokens as sensitive.\n2\t\n3\t# The Dark Factory Automation Agent\n4\t\n5\tYou are running inside `NurMind-com/The_Dark_Factory`, usually from GitHub Actions after a Jira ticket is created, updated, or manually triggered.\n6\t\n7\tYour purpose is to turn a Jira ticket into reviewable repository work or a clean Jira-facing answer.\n8\t\n9\tTwo flows trigger you in this repo:\n10\t\n11\t- **Dispatch flow (preferred)**: Jira manual button sends a `repository_dispatch` of type `jira_manual_button` carrying the issue key. The workflow `.github/workflows/jira-dispatch.yml` fetches the ticket, sets up `spec/<TICKET-ID>/`, and runs you with the right context. Session continuity is preserved between runs via `actions/cache` of `~/.claude/projects/` and a `state.json` checked into the ticket folder.\n12\t- **Legacy create-branch flow**: Jira creating a branch fires `.github/workflows/jira-branch-readme.yml`. Older artefact layout. Kept for compatibility.\n13\t\n14\tIn both flows your job is the same:\n15\t\n16\t1. Read the generated ticket artefacts, especially the spec file referenced by `SPEC_FILE` (or `CONTEXT_FILE` in the dispatch flow).\n17\t2. Write or update the implementation plan at the exact path in `PLAN_FILE`.\n18\t3. Implement only the requested ticket work on the current branch.\n19\t4. Write the Jira-facing summary or answer to `RESPONSE_FILE` when the dispatch flow provides one.\n20\t5. Keep generated ticket artefacts organised under `spec/<TICKET-ID>/` and avoid cluttering the repository root.\n21\t6. Leave pull request creation, branch pushes, and Jira commenting to the workflow.\n22\t\n23\t## Dispatch Flow Context\n24\t\n25\tWhen the dispatch flow runs, the workflow exports these env vars before invoking you:\n26\t\n27\t- `ISSUE_KEY`, `ISSUE_TITLE`, `JIRA_ISSUE_URL`\n28\t- `KIND`: `pr` (expects code changes plus a PR) or `answer` (expects only ticket-folder updates and a Jira-facing response)\n29\t- `IS_NEW`: `true` if this is the first run for the ticket, `false` if continuing\n30\t- `LAST_SESSION_ID`: prior Claude session id, when known\n31\t- `TICKET_FOLDER` (e.g. `spec/TDS-7`), `STATE_FILE`, `TRANSCRIPT_FILE`, `SPEC_FILE`, `PLAN_FILE`, `RESPONSE_FILE`, `RUN_DIR`\n32\t\n33\t`KIND` is determined from Jira:\n34\t\n35\t- Label `claude:answer` → `answer` (highest priority).\n36\t- Label `claude:pr` → `pr`.\n37\t- Issue type `Question` → `answer`.\n38\t- Default → `pr`.\n39\t\n40\tIf `KIND=answer`, do not edit any file outside `TICKET_FOLDER`. Write the full answer to `RESPONSE_FILE`.\n41\t\n42\tIf `KIND=pr`, make minimal correct repository changes, update `PLAN_FILE`, and write a short Jira-facing summary to `RESPONSE_FILE`.\n43\t\n44\t## Operating Context\n45\t\n46\t- The branch name normally starts with a Jira key, often lowercased by Jira automation. The dispatch flow uses `tdf/<ticket-id-lowercase>` for PR mode.\n47\t- The workflow normalises Jira keys before generating ticket artefact paths.\n48\t- The current branch is the work branch. Do not switch branches.\n49\t- Do not merge pull requests, close tickets, or edit Jira directly unless the ticket explicitly asks for that behaviour and the workflow provides the required tools.\n50\t- Prefer small, direct changes that match the ticket acceptance criteria.\n51\t\n52\t## Model Use\n53\t\n54\tThe workflow starts you on Opus with high effort for planning and implementation quality.\n55\t\n56\tUse less capable models proactively when the runtime exposes a safe way to do so and the subtask does not require Opus-level reasoning. Good candidates for cheaper models are:\n57\t\n58\t- searching for files or symbols\n59\t- summarizing long logs\n60\t- checking formatting or simple syntax issues\n61\t- drafting routine markdown\n62\t- performing narrow mechanical edits\n63\t\n64\tReserve Opus/high-effort reasoning for architecture, workflow design, security-sensitive logic, ambiguous requirements, and final review before handing work back to the workflow.\n65\t\n66\t## Quality Bar\n67\t\n68\t- Prefer real repository state over assumptions.\n69\t- Validate changed scripts with syntax checks when possible.\n70\t- If a web page or HTML artifact is created, ensure it can render in a browser and mention any unverified visual risk in the plan.\n71\t- Do not commit transient Claude execution files such as `output.txt`.\n72\t"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "e55a2022-cb01-4626-b7b8-fc69de125146",
+    "timestamp": "2026-05-07T23:37:30.087Z",
+    "tool_use_result": {
+      "type": "text",
+      "file": {
+        "filePath": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/CLAUDE.md",
+        "content": "IMPORTANT: NEVER expose, print, or commit secrets. Treat Jira, GitHub, and Claude tokens as sensitive.\n\n# The Dark Factory Automation Agent\n\nYou are running inside `NurMind-com/The_Dark_Factory`, usually from GitHub Actions after a Jira ticket is created, updated, or manually triggered.\n\nYour purpose is to turn a Jira ticket into reviewable repository work or a clean Jira-facing answer.\n\nTwo flows trigger you in this repo:\n\n- **Dispatch flow (preferred)**: Jira manual button sends a `repository_dispatch` of type `jira_manual_button` carrying the issue key. The workflow `.github/workflows/jira-dispatch.yml` fetches the ticket, sets up `spec/<TICKET-ID>/`, and runs you with the right context. Session continuity is preserved between runs via `actions/cache` of `~/.claude/projects/` and a `state.json` checked into the ticket folder.\n- **Legacy create-branch flow**: Jira creating a branch fires `.github/workflows/jira-branch-readme.yml`. Older artefact layout. Kept for compatibility.\n\nIn both flows your job is the same:\n\n1. Read the generated ticket artefacts, especially the spec file referenced by `SPEC_FILE` (or `CONTEXT_FILE` in the dispatch flow).\n2. Write or update the implementation plan at the exact path in `PLAN_FILE`.\n3. Implement only the requested ticket work on the current branch.\n4. Write the Jira-facing summary or answer to `RESPONSE_FILE` when the dispatch flow provides one.\n5. Keep generated ticket artefacts organised under `spec/<TICKET-ID>/` and avoid cluttering the repository root.\n6. Leave pull request creation, branch pushes, and Jira commenting to the workflow.\n\n## Dispatch Flow Context\n\nWhen the dispatch flow runs, the workflow exports these env vars before invoking you:\n\n- `ISSUE_KEY`, `ISSUE_TITLE`, `JIRA_ISSUE_URL`\n- `KIND`: `pr` (expects code changes plus a PR) or `answer` (expects only ticket-folder updates and a Jira-facing response)\n- `IS_NEW`: `true` if this is the first run for the ticket, `false` if continuing\n- `LAST_SESSION_ID`: prior Claude session id, when known\n- `TICKET_FOLDER` (e.g. `spec/TDS-7`), `STATE_FILE`, `TRANSCRIPT_FILE`, `SPEC_FILE`, `PLAN_FILE`, `RESPONSE_FILE`, `RUN_DIR`\n\n`KIND` is determined from Jira:\n\n- Label `claude:answer` → `answer` (highest priority).\n- Label `claude:pr` → `pr`.\n- Issue type `Question` → `answer`.\n- Default → `pr`.\n\nIf `KIND=answer`, do not edit any file outside `TICKET_FOLDER`. Write the full answer to `RESPONSE_FILE`.\n\nIf `KIND=pr`, make minimal correct repository changes, update `PLAN_FILE`, and write a short Jira-facing summary to `RESPONSE_FILE`.\n\n## Operating Context\n\n- The branch name normally starts with a Jira key, often lowercased by Jira automation. The dispatch flow uses `tdf/<ticket-id-lowercase>` for PR mode.\n- The workflow normalises Jira keys before generating ticket artefact paths.\n- The current branch is the work branch. Do not switch branches.\n- Do not merge pull requests, close tickets, or edit Jira directly unless the ticket explicitly asks for that behaviour and the workflow provides the required tools.\n- Prefer small, direct changes that match the ticket acceptance criteria.\n\n## Model Use\n\nThe workflow starts you on Opus with high effort for planning and implementation quality.\n\nUse less capable models proactively when the runtime exposes a safe way to do so and the subtask does not require Opus-level reasoning. Good candidates for cheaper models are:\n\n- searching for files or symbols\n- summarizing long logs\n- checking formatting or simple syntax issues\n- drafting routine markdown\n- performing narrow mechanical edits\n\nReserve Opus/high-effort reasoning for architecture, workflow design, security-sensitive logic, ambiguous requirements, and final review before handing work back to the workflow.\n\n## Quality Bar\n\n- Prefer real repository state over assumptions.\n- Validate changed scripts with syntax checks when possible.\n- If a web page or HTML artifact is created, ensure it can render in a browser and mention any unverified visual risk in the plan.\n- Do not commit transient Claude execution files such as `output.txt`.\n",
+        "numLines": 72,
+        "startLine": 1,
+        "totalLines": 72
+      }
+    }
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_016R443Z1a941MM3AC9Lrths",
+          "type": "tool_result",
+          "content": "runs\nspec.md\nstate.json\ntranscript.md",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "a0c78b92-2643-409a-af62-312fd8072cb5",
+    "timestamp": "2026-05-07T23:37:30.493Z",
+    "tool_use_result": {
+      "stdout": "runs\nspec.md\nstate.json\ntranscript.md",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_013bD82tBhCaSfvN2c3jAUrm",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01H5xjJjqvn1Ngj5k5k4TS1a",
+          "name": "Read",
+          "input": {
+            "file_path": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1828,
+        "cache_creation_input_tokens": 1978,
+        "cache_read_input_tokens": 25988,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1978
+        },
+        "output_tokens": 53,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "2b04a92a-4315-4777-ba5c-9def437063ba"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01H5xjJjqvn1Ngj5k5k4TS1a",
+          "type": "tool_result",
+          "content": "1\timport { mkdir, readFile, writeFile, access, copyFile } from \"node:fs/promises\";\n2\timport { execSync } from \"node:child_process\";\n3\t\n4\t// JSON.stringify is used as a safe shell-arg quoter for known-shape strings\n5\t// like Jira branch names; treat any string passed to execSync that way.\n6\t\n7\tconst mode = process.argv[2];\n8\tif (!mode) {\n9\t  throw new Error(\"Usage: jira-dispatch.mjs <prepare-dispatch|record-run|commit-changes|ensure-pr|comment-result>\");\n10\t}\n11\t\n12\tconst env = process.env;\n13\t\n14\tlet jiraBaseUrl;\n15\tlet jiraHeaders;\n16\t\n17\trun().catch((err) => {\n18\t  console.error(err);\n19\t  process.exit(1);\n20\t});\n21\t\n22\tasync function run() {\n23\t  if (mode === \"prepare-dispatch\") return prepareDispatch();\n24\t  if (mode === \"record-run\") return recordRun();\n25\t  if (mode === \"commit-changes\") return commitChanges();\n26\t  if (mode === \"ensure-pr\") return ensurePr();\n27\t  if (mode === \"comment-result\") return commentResult();\n28\t  throw new Error(`Unknown mode: ${mode}`);\n29\t}\n30\t\n31\tfunction requireEnv(name) {\n32\t  const v = env[name];\n33\t  if (!v) throw new Error(`Missing required environment variable: ${name}`);\n34\t  return v;\n35\t}\n36\t\n37\tfunction initJira() {\n38\t  const baseUrl = requireEnv(\"JIRA_BASE_URL\").replace(/\\/+$/, \"\");\n39\t  const email = requireEnv(\"JIRA_EMAIL\");\n40\t  const token = requireEnv(\"JIRA_API_TOKEN\");\n41\t  jiraBaseUrl = baseUrl;\n42\t  jiraHeaders = {\n43\t    Authorization: `Basic ${Buffer.from(`${email}:${token}`).toString(\"base64\")}`,\n44\t    Accept: \"application/json\",\n45\t    \"Content-Type\": \"application/json\",\n46\t  };\n47\t}\n48\t\n49\tasync function fetchJson(url, options) {\n50\t  const response = await fetch(url, options);\n51\t  if (!response.ok) {\n52\t    const body = await response.text();\n53\t    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n54\t  }\n55\t  return response.json();\n56\t}\n57\t\n58\tasync function appendGithubEnv(values) {\n59\t  const file = env.GITHUB_ENV;\n60\t  if (!file) return;\n61\t  const body = Object.entries(values)\n62\t    .map(([k, v]) => {\n63\t      const s = String(v ?? \"\");\n64\t      if (s.includes(\"\\n\")) return `${k}<<EOF_${k}\\n${s}\\nEOF_${k}`;\n65\t      return `${k}=${s}`;\n66\t    })\n67\t    .join(\"\\n\");\n68\t  await writeFile(file, body + \"\\n\", { flag: \"a\" });\n69\t}\n70\t\n71\tasync function pathExists(p) {\n72\t  try {\n73\t    await access(p);\n74\t    return true;\n75\t  } catch {\n76\t    return false;\n77\t  }\n78\t}\n79\t\n80\tasync function readJsonOrEmpty(p) {\n81\t  try {\n82\t    const raw = await readFile(p, \"utf8\");\n83\t    return raw.trim() ? JSON.parse(raw) : {};\n84\t  } catch {\n85\t    return {};\n86\t  }\n87\t}\n88\t\n89\tfunction nowIso() {\n90\t  return new Date().toISOString();\n91\t}\n92\t\n93\tfunction compactStamp() {\n94\t  return new Date().toISOString().replace(/[-:]/g, \"\").replace(/\\..+$/, \"Z\");\n95\t}\n96\t\n97\tfunction lower(s) {\n98\t  return String(s ?? \"\").toLowerCase();\n99\t}\n100\t\n101\tfunction tableRow(value) {\n102\t  return String(value || \"-\").replace(/\\|/g, \"\\\\|\").replace(/\\n/g, \"<br>\");\n103\t}\n104\t\n105\tfunction normalizeIssueKey(key) {\n106\t  const normalized = String(key || \"\").trim().toUpperCase();\n107\t  if (!/^[A-Z][A-Z0-9]+-\\d+$/.test(normalized)) {\n108\t    throw new Error(`Invalid Jira issue key: ${key}`);\n109\t  }\n110\t  return normalized;\n111\t}\n112\t\n113\tfunction determineKind(issue) {\n114\t  const labels = (issue.fields?.labels ?? []).map(lower);\n115\t  if (labels.includes(\"claude:answer\")) return \"answer\";\n116\t  if (labels.includes(\"claude:pr\")) return \"pr\";\n117\t  const type = lower(issue.fields?.issuetype?.name);\n118\t  if (type === \"question\") return \"answer\";\n119\t  return \"pr\";\n120\t}\n121\t\n122\tasync function prepareDispatch() {\n123\t  initJira();\n124\t  const key = normalizeIssueKey(requireEnv(\"ISSUE_KEY\"));\n125\t\n126\t  const issue = await fetchJson(\n127\t    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n128\t    { headers: jiraHeaders },\n129\t  );\n130\t\n131\t  const fields = issue.fields ?? {};\n132\t  const summary = fields.summary || key;\n133\t  const kind = determineKind(issue);\n134\t  const branchName = `tdf/${key.toLowerCase()}`;\n135\t\n136\t  // For PR mode, switch to the existing PR branch if one exists on origin so\n137\t  // that prior state.json, plan.md, transcript.md, and any code changes are\n138\t  // visible to this run. Done before any file writes to avoid untracked-file\n139\t  // collisions with `git checkout`.\n140\t  if (kind === \"pr\") {\n141\t    let branchExists = false;\n142\t    try {\n143\t      execSync(`git ls-remote --exit-code --heads origin ${JSON.stringify(branchName)}`, { stdio: \"ignore\" });\n144\t      branchExists = true;\n145\t    } catch {\n146\t      branchExists = false;\n147\t    }\n148\t    if (branchExists) {\n149\t      console.log(`Existing branch ${branchName} found on origin; checking out.`);\n150\t      execSync(`git fetch origin ${JSON.stringify(branchName)}`, { stdio: \"inherit\" });\n151\t      execSync(`git checkout -B ${JSON.stringify(branchName)} origin/${branchName}`, { stdio: \"inherit\" });\n152\t    } else {\n153\t      console.log(`No existing branch ${branchName}; will create from main on commit.`);\n154\t    }\n155\t  }\n156\t\n157\t  const ticketFolder = `spec/${key}`;\n158\t  const stateFile = `${ticketFolder}/state.json`;\n159\t  const transcriptFile = `${ticketFolder}/transcript.md`;\n160\t  const specFile = `${ticketFolder}/spec.md`;\n161\t  const planFile = `${ticketFolder}/plan.md`;\n162\t  const responseFile = `${ticketFolder}/response.md`;\n163\t  const runDir = `${ticketFolder}/runs/${compactStamp()}-${env.GITHUB_RUN_ID || \"local\"}`;\n164\t  const promptFile = `${runDir}/prompt.md`;\n165\t\n166\t  await mkdir(runDir, { recursive: true });\n167\t\n168\t  let isNew = true;\n169\t  let lastSessionId = \"\";\n170\t  if (await pathExists(stateFile)) {\n171\t    isNew = false;\n172\t    const state = await readJsonOrEmpty(stateFile);\n173\t    lastSessionId = state.last_session_id || \"\";\n174\t  } else {\n175\t    await writeFile(\n176\t      stateFile,\n177\t      JSON.stringify({ ticket_id: key, run_count: 0, kind, branch: branchName }, null, 2) + \"\\n\",\n178\t      \"utf8\",\n179\t    );\n180\t  }\n181\t\n182\t  if (!(await pathExists(transcriptFile))) {\n183\t    await writeFile(transcriptFile, `# ${key} Transcript\\n`, \"utf8\");\n184\t  }\n185\t\n186\t  const comments = issue.fields?.comment?.comments ?? [];\n187\t  await writeFile(specFile, buildSpec({ issue, comments, key }), \"utf8\");\n188\t\n189\t  const prompt = buildPrompt({\n190\t    key,\n191\t    summary,\n192\t    ticketFolder,\n193\t    kind,\n194\t    isNew,\n195\t    specFile,\n196\t    planFile,\n197\t    responseFile,\n198\t    transcriptFile,\n199\t  });\n200\t  await writeFile(promptFile, prompt, \"utf8\");\n201\t\n202\t  let claudeArgs = \"--max-turns 60 --permission-mode bypassPermissions\";\n203\t  if (lastSessionId) claudeArgs += ` --resume ${lastSessionId}`;\n204\t\n205\t  await mkdir(`${requireEnv(\"HOME\")}/.claude/projects`, { recursive: true });\n206\t\n207\t  await appendGithubEnv({\n208\t    SHOULD_RUN: \"true\",\n209\t    ISSUE_KEY: key,\n210\t    ISSUE_TITLE: summary,\n211\t    JIRA_ISSUE_URL: `${jiraBaseUrl}/browse/${key}`,\n212\t    KIND: kind,\n213\t    BRANCH_NAME: branchName,\n214\t    IS_NEW: isNew ? \"true\" : \"false\",\n215\t    LAST_SESSION_ID: lastSessionId,\n216\t    TICKET_FOLDER: ticketFolder,\n217\t    STATE_FILE: stateFile,\n218\t    TRANSCRIPT_FILE: transcriptFile,\n219\t    SPEC_FILE: specFile,\n220\t    PLAN_FILE: planFile,\n221\t    RESPONSE_FILE: responseFile,\n222\t    RUN_DIR: runDir,\n223\t    PROMPT_FILE: promptFile,\n224\t    CLAUDE_ARGS: claudeArgs,\n225\t  });\n226\t\n227\t  console.log(`Prepared dispatch for ${key} (kind=${kind} new=${isNew} last_session=${lastSessionId || \"<none>\"})`);\n228\t}\n229\t\n230\tasync function recordRun() {\n231\t  const stateFile = requireEnv(\"STATE_FILE\");\n232\t  const transcriptFile = requireEnv(\"TRANSCRIPT_FILE\");\n233\t  const responseFile = env.RESPONSE_FILE || \"\";\n234\t  const promptFile = env.PROMPT_FILE || \"\";\n235\t  const runDir = env.RUN_DIR || \"\";\n236\t  const isNew = env.IS_NEW === \"true\";\n237\t  const kind = env.KIND || \"pr\";\n238\t  const conclusion = env.CONCLUSION || \"unknown\";\n239\t  const lastSessionId = env.LAST_SESSION_ID || \"\";\n240\t  const actionSessionId = env.ACTION_SESSION_ID || \"\";\n241\t  const executionFile = env.EXECUTION_FILE || \"\";\n242\t\n243\t  let newSessionId = actionSessionId;\n244\t  let assistantText = \"\";\n245\t\n246\t  if (executionFile && (await pathExists(executionFile))) {\n247\t    try {\n248\t      const raw = await readFile(executionFile, \"utf8\");\n249\t      const entries = parseExecutionFile(raw);\n250\t      if (!newSessionId) {\n251\t        for (const e of entries) {\n252\t          if (e?.session_id) newSessionId = e.session_id;\n253\t        }\n254\t      }\n255\t      for (const e of entries) {\n256\t        if (e?.type === \"assistant\") {\n257\t          for (const part of e?.message?.content ?? []) {\n258\t            if (part?.type === \"text\" && typeof part.text === \"string\") {\n259\t              assistantText = part.text;\n260\t            }\n261\t          }\n262\t        }\n263\t      }\n264\t      if (runDir) {\n265\t        await mkdir(runDir, { recursive: true });\n266\t        await copyFile(executionFile, `${runDir}/execution.json`);\n267\t      }\n268\t    } catch (err) {\n269\t      console.warn(`Failed to parse execution_file: ${err.message}`);\n270\t    }\n271\t  }\n272\t\n273\t  if (runDir) {\n274\t    if (responseFile && (await pathExists(responseFile))) {\n275\t      await copyFile(responseFile, `${runDir}/response.md`);\n276\t    }\n277\t    if (promptFile && (await pathExists(promptFile))) {\n278\t      await copyFile(promptFile, `${runDir}/prompt.md`);\n279\t    }\n280\t  }\n281\t\n282\t  const now = nowIso();\n283\t  const rotated = lastSessionId && newSessionId && lastSessionId !== newSessionId;\n284\t\n285\t  const state = await readJsonOrEmpty(stateFile);\n286\t  state.ticket_id = state.ticket_id || env.ISSUE_KEY || \"\";\n287\t  state.last_session_id = newSessionId || \"\";\n288\t  state.prev_session_id = lastSessionId || null;\n289\t  state.last_run_at = now;\n290\t  state.last_conclusion = conclusion;\n291\t  state.last_kind = kind;\n292\t  state.run_count = (state.run_count || 0) + 1;\n293\t  if (env.BRANCH_NAME) state.branch = env.BRANCH_NAME;\n294\t  state.kind = kind;\n295\t  await writeFile(stateFile, JSON.stringify(state, null, 2) + \"\\n\", \"utf8\");\n296\t\n297\t  const summarySnippet = (assistantText || \"\").trim().split(\"\\n\").slice(0, 12).join(\"\\n  \");\n298\t  const block = [\n299\t    \"\",\n300\t    `## Run ${now}`,\n301\t    `- run_kind: ${isNew ? \"new\" : \"continuation\"}`,\n302\t    `- prev_session_id: ${lastSessionId || \"<none>\"}`,\n303\t    `- new_session_id: ${newSessionId || \"<none>\"}`,\n304\t    `- session_id_rotated: ${rotated ? \"true\" : \"false\"}`,\n305\t    `- conclusion: ${conclusion}`,\n306\t    `- run_dir: ${runDir || \"<none>\"}`,\n307\t    `- assistant_summary:\\n  ${summarySnippet || \"<empty>\"}`,\n308\t    \"\",\n309\t  ].join(\"\\n\");\n310\t  await writeFile(transcriptFile, block, { flag: \"a\" });\n311\t\n312\t  await appendGithubEnv({ NEW_SESSION_ID: newSessionId });\n313\t  console.log(`Recorded run for ${env.ISSUE_KEY}: session=${newSessionId || \"<none>\"}`);\n314\t}\n315\t\n316\tfunction parseExecutionFile(raw) {\n317\t  const trimmed = raw.trim();\n318\t  if (!trimmed) return [];\n319\t  if (trimmed.startsWith(\"[\")) {\n320\t    try {\n321\t      const arr = JSON.parse(trimmed);\n322\t      return Array.isArray(arr) ? arr : [];\n323\t    } catch {\n324\t      // fall through to NDJSON\n325\t    }\n326\t  }\n327\t  return trimmed\n328\t    .split(\"\\n\")\n329\t    .filter(Boolean)\n330\t    .map((line) => {\n331\t      try {\n332\t        return JSON.parse(line);\n333\t      } catch {\n334\t        return null;\n335\t      }\n336\t    })\n337\t    .filter(Boolean);\n338\t}\n339\t\n340\tfunction commitChanges() {\n341\t  const kind = env.KIND || \"pr\";\n342\t  const branchName = requireEnv(\"BRANCH_NAME\");\n343\t  const issueKey = requireEnv(\"ISSUE_KEY\");\n344\t  const ticketFolder = requireEnv(\"TICKET_FOLDER\");\n345\t  const runId = env.GITHUB_RUN_ID || \"\";\n346\t\n347\t  sh(\"rm -f output.txt\");\n348\t  sh('git config user.name \"github-actions[bot]\"');\n349\t  sh('git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\"');\n350\t\n351\t  if (kind === \"pr\") {\n352\t    sh(`git checkout -B \"${branchName}\"`);\n353\t    sh(\"git add -A\");\n354\t    if (gitNothingStaged()) {\n355\t      console.log(\"No changes to commit on PR branch\");\n356\t      return appendGithubEnv({ COMMITTED: \"false\" });\n357\t    }\n358\t    sh(`git commit -m \"${issueKey}: claude-code update (run ${runId})\"`);\n359\t    sh(`git push origin \"HEAD:${branchName}\"`);\n360\t    return appendGithubEnv({ COMMITTED: \"true\" });\n361\t  }\n362\t\n363\t  sh(`git add -A \"${ticketFolder}\"`);\n364\t  if (gitNothingStaged()) {\n365\t    console.log(\"No artefact changes to commit on main\");\n366\t    return appendGithubEnv({ COMMITTED: \"false\" });\n367\t  }\n368\t  sh(`git commit -m \"${issueKey}: update ticket artefacts (run ${runId})\"`);\n369\t  sh(\"git push origin HEAD:main\");\n370\t  return appendGithubEnv({ COMMITTED: \"true\" });\n371\t}\n372\t\n373\tfunction gitNothingStaged() {\n374\t  try {\n375\t    execSync(\"git diff --cached --quiet\", { stdio: \"ignore\" });\n376\t    return true;\n377\t  } catch {\n378\t    return false;\n379\t  }\n380\t}\n381\t\n382\tfunction sh(cmd) {\n383\t  execSync(cmd, { stdio: [\"ignore\", \"inherit\", \"inherit\"] });\n384\t}\n385\t\n386\tasync function ensurePr() {\n387\t  if ((env.KIND || \"pr\") !== \"pr\") {\n388\t    console.log(\"Not PR mode, skipping ensure-pr\");\n389\t    return;\n390\t  }\n391\t  if (env.COMMITTED !== \"true\") {\n392\t    console.log(\"No commit happened on this run; skipping PR.\");\n393\t    return;\n394\t  }\n395\t\n396\t  const issueKey = requireEnv(\"ISSUE_KEY\");\n397\t  const issueTitle = env.ISSUE_TITLE || issueKey;\n398\t  const branchName = requireEnv(\"BRANCH_NAME\");\n399\t  const repo = requireEnv(\"GITHUB_REPOSITORY\");\n400\t  const repoOwner = repo.split(\"/\")[0];\n401\t  const ghToken = requireEnv(\"GH_TOKEN\");\n402\t\n403\t  const headers = {\n404\t    Accept: \"application/vnd.github+json\",\n405\t    Authorization: `Bearer ${ghToken}`,\n406\t    \"X-GitHub-Api-Version\": \"2022-11-28\",\n407\t    \"User-Agent\": \"tdf-dispatch\",\n408\t  };\n409\t\n410\t  const listUrl = `https://api.github.com/repos/${repo}/pulls?state=open&base=main&head=${repoOwner}:${branchName}`;\n411\t  const existing = await fetchJson(listUrl, { headers });\n412\t  let prUrl = (Array.isArray(existing) && existing[0] && existing[0].html_url) || \"\";\n413\t\n414\t  if (!prUrl) {\n415\t    const body = [\n416\t      `Automated Claude Code update for ${issueKey}.`,\n417\t      \"\",\n418\t      `Jira: ${env.JIRA_ISSUE_URL || \"\"}`,\n419\t      `Ticket folder: \\`${env.TICKET_FOLDER || \"\"}\\``,\n420\t      \"\",\n421\t      \"Review and merge when ready.\",\n422\t    ].join(\"\\n\");\n423\t\n424\t    const created = await fetchJson(`https://api.github.com/repos/${repo}/pulls`, {\n425\t      method: \"POST\",\n426\t      headers: { ...headers, \"Content-Type\": \"application/json\" },\n427\t      body: JSON.stringify({\n428\t        title: `${issueKey}: ${issueTitle}`,\n429\t        head: branchName,\n430\t        base: \"main\",\n431\t        body,\n432\t      }),\n433\t    });\n434\t    prUrl = created.html_url;\n435\t  }\n436\t\n437\t  await appendGithubEnv({ PR_URL: prUrl });\n438\t  console.log(`Pull request: ${prUrl}`);\n439\t}\n440\t\n441\tasync function commentResult() {\n442\t  initJira();\n443\t  const issueKey = requireEnv(\"ISSUE_KEY\");\n444\t  const kind = env.KIND || \"pr\";\n445\t  const branchName = env.BRANCH_NAME || \"\";\n446\t  const responseFile = env.RESPONSE_FILE || \"\";\n447\t  const stateFile = env.STATE_FILE || \"\";\n448\t  const repo = env.GITHUB_REPOSITORY || \"\";\n449\t  const prUrl = env.PR_URL || \"\";\n450\t  let conclusion = env.CONCLUSION || \"\";\n451\t  if (!conclusion && stateFile) {\n452\t    const state = await readJsonOrEmpty(stateFile);\n453\t    conclusion = state.last_conclusion || \"unknown\";\n454\t  }\n455\t  if (!conclusion) conclusion = \"unknown\";\n456\t\n457\t  const content = [];\n458\t\n459\t  if (kind === \"pr\") {\n460\t    content.push(paragraph(`[TDF-bot] Claude Code processed ${issueKey} (conclusion: ${conclusion}).`));\n461\t    if (branchName && repo) {\n462\t      content.push(linkParagraph(\"Branch\", `https://github.com/${repo}/tree/${encodeURIComponent(branchName)}`));\n463\t    }\n464\t    if (prUrl) content.push(linkParagraph(\"Pull request\", prUrl));\n465\t    if (env.COMMITTED === \"false\") {\n466\t      content.push(paragraph(\"No repository changes were committed on this run.\"));\n467\t    }\n468\t    if (responseFile && (await pathExists(responseFile))) {\n469\t      const text = (await readFile(responseFile, \"utf8\")).trim();\n470\t      if (text) content.push(...markdownToAdfBlocks(text));\n471\t    }\n472\t  } else {\n473\t    content.push(paragraph(`[TDF-bot] Claude Code answer for ${issueKey} (conclusion: ${conclusion}):`));\n474\t    if (responseFile && (await pathExists(responseFile))) {\n475\t      const text = (await readFile(responseFile, \"utf8\")).trim();\n476\t      if (text) content.push(...markdownToAdfBlocks(text));\n477\t      else content.push(paragraph(\"_Empty response._\"));\n478\t    } else {\n479\t      content.push(paragraph(\"_No response file produced._\"));\n480\t    }\n481\t  }\n482\t\n483\t  await fetchJson(`${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(issueKey)}/comment`, {\n484\t    method: \"POST\",\n485\t    headers: jiraHeaders,\n486\t    body: JSON.stringify({ body: { type: \"doc\", version: 1, content } }),\n487\t  });\n488\t  console.log(`Posted comment to ${issueKey}`);\n489\t}\n490\t\n491\tfunction paragraph(text) {\n492\t  return { type: \"paragraph\", content: [{ type: \"text\", text }] };\n493\t}\n494\t\n495\tfunction linkParagraph(label, href) {\n496\t  return {\n497\t    type: \"paragraph\",\n498\t    content: [\n499\t      { type: \"text\", text: `${label}: ` },\n500\t      { type: \"text\", text: href, marks: [{ type: \"link\", attrs: { href } }] },\n501\t    ],\n502\t  };\n503\t}\n504\t\n505\tfunction markdownToAdfBlocks(text) {\n506\t  const blocks = String(text)\n507\t    .slice(0, 30000)\n508\t    .split(/\\n{2,}/)\n509\t    .map((s) => s.trim())\n510\t    .filter(Boolean);\n511\t  return blocks.map((block) => {\n512\t    const lines = block.split(\"\\n\");\n513\t    return {\n514\t      type: \"paragraph\",\n515\t      content: lines.flatMap((line, i) => [\n516\t        ...(i === 0 ? [] : [{ type: \"hardBreak\" }]),\n517\t        { type: \"text\", text: line },\n518\t      ]),\n519\t    };\n520\t  });\n521\t}\n522\t\n523\tfunction buildSpec({ issue, comments, key }) {\n524\t  const fields = issue.fields ?? {};\n525\t  const description = adfToMarkdown(fields.description).trim() || \"_No description provided._\";\n526\t  const renderedComments = (comments ?? []).map((c) => {\n527\t    const author = c.author?.displayName || \"<unknown>\";\n528\t    const created = c.created || \"\";\n529\t    const body = adfToMarkdown(c.body).trim() || \"_<empty>_\";\n530\t    return `### ${author} on ${created}\\n\\n${body}`;\n531\t  });\n532\t  return [\n533\t    `# ${key}: ${fields.summary ?? \"Untitled Jira issue\"}`,\n534\t    \"\",\n535\t    `Generated from Jira on ${nowIso()}.`,\n536\t    \"\",\n537\t    \"## Issue Details\",\n538\t    \"\",\n539\t    \"| Field | Value |\",\n540\t    \"|---|---|\",\n541\t    `| Key | ${tableRow(key)} |`,\n542\t    `| Title | ${tableRow(fields.summary)} |`,\n543\t    `| Type | ${tableRow(fields.issuetype?.name)} |`,\n544\t    `| Status | ${tableRow(fields.status?.name)} |`,\n545\t    `| Priority | ${tableRow(fields.priority?.name)} |`,\n546\t    `| Assignee | ${tableRow(fields.assignee?.displayName)} |`,\n547\t    `| Reporter | ${tableRow(fields.reporter?.displayName)} |`,\n548\t    `| Labels | ${tableRow((fields.labels ?? []).join(\", \"))} |`,\n549\t    `| Components | ${tableRow((fields.components ?? []).map((c) => c.name).join(\", \"))} |`,\n550\t    `| Created | ${tableRow(fields.created)} |`,\n551\t    `| Updated | ${tableRow(fields.updated)} |`,\n552\t    \"\",\n553\t    \"## Description\",\n554\t    \"\",\n555\t    description,\n556\t    \"\",\n557\t    `## Comments (${(comments ?? []).length})`,\n558\t    \"\",\n559\t    renderedComments.length ? renderedComments.join(\"\\n\\n\") : \"_No comments._\",\n560\t    \"\",\n561\t  ].join(\"\\n\");\n562\t}\n563\t\n564\tfunction buildPrompt({ key, summary, ticketFolder, kind, isNew, specFile, planFile, responseFile, transcriptFile }) {\n565\t  const goal =\n566\t    kind === \"pr\"\n567\t      ? [\n568\t          \"- Make the smallest correct repository changes to satisfy the ticket.\",\n569\t          `- Update \\`${planFile}\\` with the implementation plan.`,\n570\t          `- Write a concise Jira-facing summary to \\`${responseFile}\\` (what changed, why, risks). Do not include logs or secrets.`,\n571\t          \"- Do not create or merge pull requests; the workflow does that.\",\n572\t        ].join(\"\\n\")\n573\t      : [\n574\t          `- Do not edit any file outside \\`${ticketFolder}\\`.`,\n575\t          `- Update \\`${planFile}\\` with reasoning if it helps.`,\n576\t          `- Write the complete answer to \\`${responseFile}\\` in markdown that renders correctly in Jira.`,\n577\t        ].join(\"\\n\");\n578\t\n579\t  const continuationNote = isNew\n580\t    ? \"\"\n581\t    : `- This is a continuation. If your in-memory session is missing, rebuild context from \\`${transcriptFile}\\`, \\`${planFile}\\`, and the \\`runs/\\` folder under the ticket.\\n`;\n582\t\n583\t  return [\n584\t    `You are running inside \\`${env.GITHUB_REPOSITORY}\\` for Jira ticket \\`${key}: ${summary}\\`.`,\n585\t    \"\",\n586\t    \"Read `CLAUDE.md` for repository conventions before touching files.\",\n587\t    \"\",\n588\t    `Ticket folder: \\`${ticketFolder}\\`.`,\n589\t    `- \\`${specFile}\\`: a fresh snapshot of the Jira ticket and its comments. Read it. Do not edit it.`,\n590\t    `- \\`${planFile}\\`: implementation plan. You own this file. Update it as you go.`,\n591\t    `- \\`${transcriptFile}\\`: rolling history of prior runs. Read it for context if needed.`,\n592\t    `- \\`${responseFile}\\`: the message that will be posted back to Jira. You own this file.`,\n593\t    \"\",\n594\t    `Run kind: \\`${kind}\\` (${kind === \"pr\" ? \"expects code/config changes plus a PR\" : \"answer-only, no code changes outside the ticket folder\"}).`,\n595\t    `Run mode: \\`${isNew ? \"NEW\" : \"CONTINUATION\"}\\`.`,\n596\t    \"\",\n597\t    \"Goal:\",\n598\t    goal,\n599\t    \"\",\n600\t    \"Constraints:\",\n601\t    \"- Never expose, print, or commit secrets.\",\n602\t    \"- Do not switch branches.\",\n603\t    \"- Keep tool usage minimal.\",\n604\t    continuationNote,\n605\t  ].join(\"\\n\");\n606\t}\n607\t\n608\tfunction adfToMarkdown(node) {\n609\t  if (!node) return \"\";\n610\t  if (Array.isArray(node)) return node.map(adfToMarkdown).join(\"\");\n611\t\n612\t  switch (node.type) {\n613\t    case \"doc\":\n614\t      return blockContent(node).join(\"\\n\\n\");\n615\t    case \"paragraph\":\n616\t      return inlineContent(node);\n617\t    case \"heading\":\n618\t      return `${\"#\".repeat(node.attrs?.level ?? 2)} ${inlineContent(node)}`;\n619\t    case \"bulletList\":\n620\t      return listContent(node, \"-\");\n621\t    case \"orderedList\":\n622\t      return orderedListContent(node);\n623\t    case \"listItem\":\n624\t      return blockContent(node).join(\"\\n\");\n625\t    case \"blockquote\":\n626\t      return blockContent(node)\n627\t        .join(\"\\n\")\n628\t        .split(\"\\n\")\n629\t        .map((line) => `> ${line}`)\n630\t        .join(\"\\n\");\n631\t    case \"codeBlock\":\n632\t      return `\\`\\`\\`\\n${textContent(node)}\\n\\`\\`\\``;\n633\t    case \"rule\":\n634\t      return \"---\";\n635\t    case \"hardBreak\":\n636\t      return \"\\n\";\n637\t    case \"text\":\n638\t      return applyMarks(node.text ?? \"\", node.marks ?? []);\n639\t    default:\n640\t      return blockContent(node).join(\"\\n\");\n641\t  }\n642\t}\n643\t\n644\tfunction blockContent(node) {\n645\t  return (node.content ?? []).map(adfToMarkdown).filter(Boolean);\n646\t}\n647\t\n648\tfunction inlineContent(node) {\n649\t  return (node.content ?? []).map(adfToMarkdown).join(\"\");\n650\t}\n651\t\n652\tfunction listContent(node, marker) {\n653\t  return (node.content ?? [])\n654\t    .map((item) =>\n655\t      adfToMarkdown(item)\n656\t        .split(\"\\n\")\n657\t        .map((line, idx) => (idx === 0 ? `${marker} ${line}` : `  ${line}`))\n658\t        .join(\"\\n\"),\n659\t    )\n660\t    .join(\"\\n\");\n661\t}\n662\t\n663\tfunction orderedListContent(node) {\n664\t  const start = node.attrs?.order ?? 1;\n665\t  return (node.content ?? [])\n666\t    .map((item, idx) =>\n667\t      adfToMarkdown(item)\n668\t        .split(\"\\n\")\n669\t        .map((line, lineIdx) => (lineIdx === 0 ? `${start + idx}. ${line}` : `   ${line}`))\n670\t        .join(\"\\n\"),\n671\t    )\n672\t    .join(\"\\n\");\n673\t}\n674\t\n675\tfunction textContent(node) {\n676\t  if (node.type === \"text\") return node.text ?? \"\";\n677\t  return (node.content ?? []).map(textContent).join(\"\");\n678\t}\n679\t\n680\tfunction applyMarks(text, marks) {\n681\t  return marks.reduce((value, mark) => {\n682\t    switch (mark.type) {\n683\t      case \"strong\":\n684\t        return `**${value}**`;\n685\t      case \"em\":\n686\t        return `_${value}_`;\n687\t      case \"code\":\n688\t        return `\\`${value}\\``;\n689\t      case \"link\":\n690\t        return `[${value}](${mark.attrs?.href ?? value})`;\n691\t      default:\n692\t        return value;\n693\t    }\n694\t  }, text);\n695\t}\n696\t"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "0514b236-5546-42d9-bab2-9288822f8096",
+    "timestamp": "2026-05-07T23:37:32.893Z",
+    "tool_use_result": {
+      "type": "text",
+      "file": {
+        "filePath": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs",
+        "content": "import { mkdir, readFile, writeFile, access, copyFile } from \"node:fs/promises\";\nimport { execSync } from \"node:child_process\";\n\n// JSON.stringify is used as a safe shell-arg quoter for known-shape strings\n// like Jira branch names; treat any string passed to execSync that way.\n\nconst mode = process.argv[2];\nif (!mode) {\n  throw new Error(\"Usage: jira-dispatch.mjs <prepare-dispatch|record-run|commit-changes|ensure-pr|comment-result>\");\n}\n\nconst env = process.env;\n\nlet jiraBaseUrl;\nlet jiraHeaders;\n\nrun().catch((err) => {\n  console.error(err);\n  process.exit(1);\n});\n\nasync function run() {\n  if (mode === \"prepare-dispatch\") return prepareDispatch();\n  if (mode === \"record-run\") return recordRun();\n  if (mode === \"commit-changes\") return commitChanges();\n  if (mode === \"ensure-pr\") return ensurePr();\n  if (mode === \"comment-result\") return commentResult();\n  throw new Error(`Unknown mode: ${mode}`);\n}\n\nfunction requireEnv(name) {\n  const v = env[name];\n  if (!v) throw new Error(`Missing required environment variable: ${name}`);\n  return v;\n}\n\nfunction initJira() {\n  const baseUrl = requireEnv(\"JIRA_BASE_URL\").replace(/\\/+$/, \"\");\n  const email = requireEnv(\"JIRA_EMAIL\");\n  const token = requireEnv(\"JIRA_API_TOKEN\");\n  jiraBaseUrl = baseUrl;\n  jiraHeaders = {\n    Authorization: `Basic ${Buffer.from(`${email}:${token}`).toString(\"base64\")}`,\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n  };\n}\n\nasync function fetchJson(url, options) {\n  const response = await fetch(url, options);\n  if (!response.ok) {\n    const body = await response.text();\n    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n  }\n  return response.json();\n}\n\nasync function appendGithubEnv(values) {\n  const file = env.GITHUB_ENV;\n  if (!file) return;\n  const body = Object.entries(values)\n    .map(([k, v]) => {\n      const s = String(v ?? \"\");\n      if (s.includes(\"\\n\")) return `${k}<<EOF_${k}\\n${s}\\nEOF_${k}`;\n      return `${k}=${s}`;\n    })\n    .join(\"\\n\");\n  await writeFile(file, body + \"\\n\", { flag: \"a\" });\n}\n\nasync function pathExists(p) {\n  try {\n    await access(p);\n    return true;\n  } catch {\n    return false;\n  }\n}\n\nasync function readJsonOrEmpty(p) {\n  try {\n    const raw = await readFile(p, \"utf8\");\n    return raw.trim() ? JSON.parse(raw) : {};\n  } catch {\n    return {};\n  }\n}\n\nfunction nowIso() {\n  return new Date().toISOString();\n}\n\nfunction compactStamp() {\n  return new Date().toISOString().replace(/[-:]/g, \"\").replace(/\\..+$/, \"Z\");\n}\n\nfunction lower(s) {\n  return String(s ?? \"\").toLowerCase();\n}\n\nfunction tableRow(value) {\n  return String(value || \"-\").replace(/\\|/g, \"\\\\|\").replace(/\\n/g, \"<br>\");\n}\n\nfunction normalizeIssueKey(key) {\n  const normalized = String(key || \"\").trim().toUpperCase();\n  if (!/^[A-Z][A-Z0-9]+-\\d+$/.test(normalized)) {\n    throw new Error(`Invalid Jira issue key: ${key}`);\n  }\n  return normalized;\n}\n\nfunction determineKind(issue) {\n  const labels = (issue.fields?.labels ?? []).map(lower);\n  if (labels.includes(\"claude:answer\")) return \"answer\";\n  if (labels.includes(\"claude:pr\")) return \"pr\";\n  const type = lower(issue.fields?.issuetype?.name);\n  if (type === \"question\") return \"answer\";\n  return \"pr\";\n}\n\nasync function prepareDispatch() {\n  initJira();\n  const key = normalizeIssueKey(requireEnv(\"ISSUE_KEY\"));\n\n  const issue = await fetchJson(\n    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n    { headers: jiraHeaders },\n  );\n\n  const fields = issue.fields ?? {};\n  const summary = fields.summary || key;\n  const kind = determineKind(issue);\n  const branchName = `tdf/${key.toLowerCase()}`;\n\n  // For PR mode, switch to the existing PR branch if one exists on origin so\n  // that prior state.json, plan.md, transcript.md, and any code changes are\n  // visible to this run. Done before any file writes to avoid untracked-file\n  // collisions with `git checkout`.\n  if (kind === \"pr\") {\n    let branchExists = false;\n    try {\n      execSync(`git ls-remote --exit-code --heads origin ${JSON.stringify(branchName)}`, { stdio: \"ignore\" });\n      branchExists = true;\n    } catch {\n      branchExists = false;\n    }\n    if (branchExists) {\n      console.log(`Existing branch ${branchName} found on origin; checking out.`);\n      execSync(`git fetch origin ${JSON.stringify(branchName)}`, { stdio: \"inherit\" });\n      execSync(`git checkout -B ${JSON.stringify(branchName)} origin/${branchName}`, { stdio: \"inherit\" });\n    } else {\n      console.log(`No existing branch ${branchName}; will create from main on commit.`);\n    }\n  }\n\n  const ticketFolder = `spec/${key}`;\n  const stateFile = `${ticketFolder}/state.json`;\n  const transcriptFile = `${ticketFolder}/transcript.md`;\n  const specFile = `${ticketFolder}/spec.md`;\n  const planFile = `${ticketFolder}/plan.md`;\n  const responseFile = `${ticketFolder}/response.md`;\n  const runDir = `${ticketFolder}/runs/${compactStamp()}-${env.GITHUB_RUN_ID || \"local\"}`;\n  const promptFile = `${runDir}/prompt.md`;\n\n  await mkdir(runDir, { recursive: true });\n\n  let isNew = true;\n  let lastSessionId = \"\";\n  if (await pathExists(stateFile)) {\n    isNew = false;\n    const state = await readJsonOrEmpty(stateFile);\n    lastSessionId = state.last_session_id || \"\";\n  } else {\n    await writeFile(\n      stateFile,\n      JSON.stringify({ ticket_id: key, run_count: 0, kind, branch: branchName }, null, 2) + \"\\n\",\n      \"utf8\",\n    );\n  }\n\n  if (!(await pathExists(transcriptFile))) {\n    await writeFile(transcriptFile, `# ${key} Transcript\\n`, \"utf8\");\n  }\n\n  const comments = issue.fields?.comment?.comments ?? [];\n  await writeFile(specFile, buildSpec({ issue, comments, key }), \"utf8\");\n\n  const prompt = buildPrompt({\n    key,\n    summary,\n    ticketFolder,\n    kind,\n    isNew,\n    specFile,\n    planFile,\n    responseFile,\n    transcriptFile,\n  });\n  await writeFile(promptFile, prompt, \"utf8\");\n\n  let claudeArgs = \"--max-turns 60 --permission-mode bypassPermissions\";\n  if (lastSessionId) claudeArgs += ` --resume ${lastSessionId}`;\n\n  await mkdir(`${requireEnv(\"HOME\")}/.claude/projects`, { recursive: true });\n\n  await appendGithubEnv({\n    SHOULD_RUN: \"true\",\n    ISSUE_KEY: key,\n    ISSUE_TITLE: summary,\n    JIRA_ISSUE_URL: `${jiraBaseUrl}/browse/${key}`,\n    KIND: kind,\n    BRANCH_NAME: branchName,\n    IS_NEW: isNew ? \"true\" : \"false\",\n    LAST_SESSION_ID: lastSessionId,\n    TICKET_FOLDER: ticketFolder,\n    STATE_FILE: stateFile,\n    TRANSCRIPT_FILE: transcriptFile,\n    SPEC_FILE: specFile,\n    PLAN_FILE: planFile,\n    RESPONSE_FILE: responseFile,\n    RUN_DIR: runDir,\n    PROMPT_FILE: promptFile,\n    CLAUDE_ARGS: claudeArgs,\n  });\n\n  console.log(`Prepared dispatch for ${key} (kind=${kind} new=${isNew} last_session=${lastSessionId || \"<none>\"})`);\n}\n\nasync function recordRun() {\n  const stateFile = requireEnv(\"STATE_FILE\");\n  const transcriptFile = requireEnv(\"TRANSCRIPT_FILE\");\n  const responseFile = env.RESPONSE_FILE || \"\";\n  const promptFile = env.PROMPT_FILE || \"\";\n  const runDir = env.RUN_DIR || \"\";\n  const isNew = env.IS_NEW === \"true\";\n  const kind = env.KIND || \"pr\";\n  const conclusion = env.CONCLUSION || \"unknown\";\n  const lastSessionId = env.LAST_SESSION_ID || \"\";\n  const actionSessionId = env.ACTION_SESSION_ID || \"\";\n  const executionFile = env.EXECUTION_FILE || \"\";\n\n  let newSessionId = actionSessionId;\n  let assistantText = \"\";\n\n  if (executionFile && (await pathExists(executionFile))) {\n    try {\n      const raw = await readFile(executionFile, \"utf8\");\n      const entries = parseExecutionFile(raw);\n      if (!newSessionId) {\n        for (const e of entries) {\n          if (e?.session_id) newSessionId = e.session_id;\n        }\n      }\n      for (const e of entries) {\n        if (e?.type === \"assistant\") {\n          for (const part of e?.message?.content ?? []) {\n            if (part?.type === \"text\" && typeof part.text === \"string\") {\n              assistantText = part.text;\n            }\n          }\n        }\n      }\n      if (runDir) {\n        await mkdir(runDir, { recursive: true });\n        await copyFile(executionFile, `${runDir}/execution.json`);\n      }\n    } catch (err) {\n      console.warn(`Failed to parse execution_file: ${err.message}`);\n    }\n  }\n\n  if (runDir) {\n    if (responseFile && (await pathExists(responseFile))) {\n      await copyFile(responseFile, `${runDir}/response.md`);\n    }\n    if (promptFile && (await pathExists(promptFile))) {\n      await copyFile(promptFile, `${runDir}/prompt.md`);\n    }\n  }\n\n  const now = nowIso();\n  const rotated = lastSessionId && newSessionId && lastSessionId !== newSessionId;\n\n  const state = await readJsonOrEmpty(stateFile);\n  state.ticket_id = state.ticket_id || env.ISSUE_KEY || \"\";\n  state.last_session_id = newSessionId || \"\";\n  state.prev_session_id = lastSessionId || null;\n  state.last_run_at = now;\n  state.last_conclusion = conclusion;\n  state.last_kind = kind;\n  state.run_count = (state.run_count || 0) + 1;\n  if (env.BRANCH_NAME) state.branch = env.BRANCH_NAME;\n  state.kind = kind;\n  await writeFile(stateFile, JSON.stringify(state, null, 2) + \"\\n\", \"utf8\");\n\n  const summarySnippet = (assistantText || \"\").trim().split(\"\\n\").slice(0, 12).join(\"\\n  \");\n  const block = [\n    \"\",\n    `## Run ${now}`,\n    `- run_kind: ${isNew ? \"new\" : \"continuation\"}`,\n    `- prev_session_id: ${lastSessionId || \"<none>\"}`,\n    `- new_session_id: ${newSessionId || \"<none>\"}`,\n    `- session_id_rotated: ${rotated ? \"true\" : \"false\"}`,\n    `- conclusion: ${conclusion}`,\n    `- run_dir: ${runDir || \"<none>\"}`,\n    `- assistant_summary:\\n  ${summarySnippet || \"<empty>\"}`,\n    \"\",\n  ].join(\"\\n\");\n  await writeFile(transcriptFile, block, { flag: \"a\" });\n\n  await appendGithubEnv({ NEW_SESSION_ID: newSessionId });\n  console.log(`Recorded run for ${env.ISSUE_KEY}: session=${newSessionId || \"<none>\"}`);\n}\n\nfunction parseExecutionFile(raw) {\n  const trimmed = raw.trim();\n  if (!trimmed) return [];\n  if (trimmed.startsWith(\"[\")) {\n    try {\n      const arr = JSON.parse(trimmed);\n      return Array.isArray(arr) ? arr : [];\n    } catch {\n      // fall through to NDJSON\n    }\n  }\n  return trimmed\n    .split(\"\\n\")\n    .filter(Boolean)\n    .map((line) => {\n      try {\n        return JSON.parse(line);\n      } catch {\n        return null;\n      }\n    })\n    .filter(Boolean);\n}\n\nfunction commitChanges() {\n  const kind = env.KIND || \"pr\";\n  const branchName = requireEnv(\"BRANCH_NAME\");\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const ticketFolder = requireEnv(\"TICKET_FOLDER\");\n  const runId = env.GITHUB_RUN_ID || \"\";\n\n  sh(\"rm -f output.txt\");\n  sh('git config user.name \"github-actions[bot]\"');\n  sh('git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\"');\n\n  if (kind === \"pr\") {\n    sh(`git checkout -B \"${branchName}\"`);\n    sh(\"git add -A\");\n    if (gitNothingStaged()) {\n      console.log(\"No changes to commit on PR branch\");\n      return appendGithubEnv({ COMMITTED: \"false\" });\n    }\n    sh(`git commit -m \"${issueKey}: claude-code update (run ${runId})\"`);\n    sh(`git push origin \"HEAD:${branchName}\"`);\n    return appendGithubEnv({ COMMITTED: \"true\" });\n  }\n\n  sh(`git add -A \"${ticketFolder}\"`);\n  if (gitNothingStaged()) {\n    console.log(\"No artefact changes to commit on main\");\n    return appendGithubEnv({ COMMITTED: \"false\" });\n  }\n  sh(`git commit -m \"${issueKey}: update ticket artefacts (run ${runId})\"`);\n  sh(\"git push origin HEAD:main\");\n  return appendGithubEnv({ COMMITTED: \"true\" });\n}\n\nfunction gitNothingStaged() {\n  try {\n    execSync(\"git diff --cached --quiet\", { stdio: \"ignore\" });\n    return true;\n  } catch {\n    return false;\n  }\n}\n\nfunction sh(cmd) {\n  execSync(cmd, { stdio: [\"ignore\", \"inherit\", \"inherit\"] });\n}\n\nasync function ensurePr() {\n  if ((env.KIND || \"pr\") !== \"pr\") {\n    console.log(\"Not PR mode, skipping ensure-pr\");\n    return;\n  }\n  if (env.COMMITTED !== \"true\") {\n    console.log(\"No commit happened on this run; skipping PR.\");\n    return;\n  }\n\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const issueTitle = env.ISSUE_TITLE || issueKey;\n  const branchName = requireEnv(\"BRANCH_NAME\");\n  const repo = requireEnv(\"GITHUB_REPOSITORY\");\n  const repoOwner = repo.split(\"/\")[0];\n  const ghToken = requireEnv(\"GH_TOKEN\");\n\n  const headers = {\n    Accept: \"application/vnd.github+json\",\n    Authorization: `Bearer ${ghToken}`,\n    \"X-GitHub-Api-Version\": \"2022-11-28\",\n    \"User-Agent\": \"tdf-dispatch\",\n  };\n\n  const listUrl = `https://api.github.com/repos/${repo}/pulls?state=open&base=main&head=${repoOwner}:${branchName}`;\n  const existing = await fetchJson(listUrl, { headers });\n  let prUrl = (Array.isArray(existing) && existing[0] && existing[0].html_url) || \"\";\n\n  if (!prUrl) {\n    const body = [\n      `Automated Claude Code update for ${issueKey}.`,\n      \"\",\n      `Jira: ${env.JIRA_ISSUE_URL || \"\"}`,\n      `Ticket folder: \\`${env.TICKET_FOLDER || \"\"}\\``,\n      \"\",\n      \"Review and merge when ready.\",\n    ].join(\"\\n\");\n\n    const created = await fetchJson(`https://api.github.com/repos/${repo}/pulls`, {\n      method: \"POST\",\n      headers: { ...headers, \"Content-Type\": \"application/json\" },\n      body: JSON.stringify({\n        title: `${issueKey}: ${issueTitle}`,\n        head: branchName,\n        base: \"main\",\n        body,\n      }),\n    });\n    prUrl = created.html_url;\n  }\n\n  await appendGithubEnv({ PR_URL: prUrl });\n  console.log(`Pull request: ${prUrl}`);\n}\n\nasync function commentResult() {\n  initJira();\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const kind = env.KIND || \"pr\";\n  const branchName = env.BRANCH_NAME || \"\";\n  const responseFile = env.RESPONSE_FILE || \"\";\n  const stateFile = env.STATE_FILE || \"\";\n  const repo = env.GITHUB_REPOSITORY || \"\";\n  const prUrl = env.PR_URL || \"\";\n  let conclusion = env.CONCLUSION || \"\";\n  if (!conclusion && stateFile) {\n    const state = await readJsonOrEmpty(stateFile);\n    conclusion = state.last_conclusion || \"unknown\";\n  }\n  if (!conclusion) conclusion = \"unknown\";\n\n  const content = [];\n\n  if (kind === \"pr\") {\n    content.push(paragraph(`[TDF-bot] Claude Code processed ${issueKey} (conclusion: ${conclusion}).`));\n    if (branchName && repo) {\n      content.push(linkParagraph(\"Branch\", `https://github.com/${repo}/tree/${encodeURIComponent(branchName)}`));\n    }\n    if (prUrl) content.push(linkParagraph(\"Pull request\", prUrl));\n    if (env.COMMITTED === \"false\") {\n      content.push(paragraph(\"No repository changes were committed on this run.\"));\n    }\n    if (responseFile && (await pathExists(responseFile))) {\n      const text = (await readFile(responseFile, \"utf8\")).trim();\n      if (text) content.push(...markdownToAdfBlocks(text));\n    }\n  } else {\n    content.push(paragraph(`[TDF-bot] Claude Code answer for ${issueKey} (conclusion: ${conclusion}):`));\n    if (responseFile && (await pathExists(responseFile))) {\n      const text = (await readFile(responseFile, \"utf8\")).trim();\n      if (text) content.push(...markdownToAdfBlocks(text));\n      else content.push(paragraph(\"_Empty response._\"));\n    } else {\n      content.push(paragraph(\"_No response file produced._\"));\n    }\n  }\n\n  await fetchJson(`${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(issueKey)}/comment`, {\n    method: \"POST\",\n    headers: jiraHeaders,\n    body: JSON.stringify({ body: { type: \"doc\", version: 1, content } }),\n  });\n  console.log(`Posted comment to ${issueKey}`);\n}\n\nfunction paragraph(text) {\n  return { type: \"paragraph\", content: [{ type: \"text\", text }] };\n}\n\nfunction linkParagraph(label, href) {\n  return {\n    type: \"paragraph\",\n    content: [\n      { type: \"text\", text: `${label}: ` },\n      { type: \"text\", text: href, marks: [{ type: \"link\", attrs: { href } }] },\n    ],\n  };\n}\n\nfunction markdownToAdfBlocks(text) {\n  const blocks = String(text)\n    .slice(0, 30000)\n    .split(/\\n{2,}/)\n    .map((s) => s.trim())\n    .filter(Boolean);\n  return blocks.map((block) => {\n    const lines = block.split(\"\\n\");\n    return {\n      type: \"paragraph\",\n      content: lines.flatMap((line, i) => [\n        ...(i === 0 ? [] : [{ type: \"hardBreak\" }]),\n        { type: \"text\", text: line },\n      ]),\n    };\n  });\n}\n\nfunction buildSpec({ issue, comments, key }) {\n  const fields = issue.fields ?? {};\n  const description = adfToMarkdown(fields.description).trim() || \"_No description provided._\";\n  const renderedComments = (comments ?? []).map((c) => {\n    const author = c.author?.displayName || \"<unknown>\";\n    const created = c.created || \"\";\n    const body = adfToMarkdown(c.body).trim() || \"_<empty>_\";\n    return `### ${author} on ${created}\\n\\n${body}`;\n  });\n  return [\n    `# ${key}: ${fields.summary ?? \"Untitled Jira issue\"}`,\n    \"\",\n    `Generated from Jira on ${nowIso()}.`,\n    \"\",\n    \"## Issue Details\",\n    \"\",\n    \"| Field | Value |\",\n    \"|---|---|\",\n    `| Key | ${tableRow(key)} |`,\n    `| Title | ${tableRow(fields.summary)} |`,\n    `| Type | ${tableRow(fields.issuetype?.name)} |`,\n    `| Status | ${tableRow(fields.status?.name)} |`,\n    `| Priority | ${tableRow(fields.priority?.name)} |`,\n    `| Assignee | ${tableRow(fields.assignee?.displayName)} |`,\n    `| Reporter | ${tableRow(fields.reporter?.displayName)} |`,\n    `| Labels | ${tableRow((fields.labels ?? []).join(\", \"))} |`,\n    `| Components | ${tableRow((fields.components ?? []).map((c) => c.name).join(\", \"))} |`,\n    `| Created | ${tableRow(fields.created)} |`,\n    `| Updated | ${tableRow(fields.updated)} |`,\n    \"\",\n    \"## Description\",\n    \"\",\n    description,\n    \"\",\n    `## Comments (${(comments ?? []).length})`,\n    \"\",\n    renderedComments.length ? renderedComments.join(\"\\n\\n\") : \"_No comments._\",\n    \"\",\n  ].join(\"\\n\");\n}\n\nfunction buildPrompt({ key, summary, ticketFolder, kind, isNew, specFile, planFile, responseFile, transcriptFile }) {\n  const goal =\n    kind === \"pr\"\n      ? [\n          \"- Make the smallest correct repository changes to satisfy the ticket.\",\n          `- Update \\`${planFile}\\` with the implementation plan.`,\n          `- Write a concise Jira-facing summary to \\`${responseFile}\\` (what changed, why, risks). Do not include logs or secrets.`,\n          \"- Do not create or merge pull requests; the workflow does that.\",\n        ].join(\"\\n\")\n      : [\n          `- Do not edit any file outside \\`${ticketFolder}\\`.`,\n          `- Update \\`${planFile}\\` with reasoning if it helps.`,\n          `- Write the complete answer to \\`${responseFile}\\` in markdown that renders correctly in Jira.`,\n        ].join(\"\\n\");\n\n  const continuationNote = isNew\n    ? \"\"\n    : `- This is a continuation. If your in-memory session is missing, rebuild context from \\`${transcriptFile}\\`, \\`${planFile}\\`, and the \\`runs/\\` folder under the ticket.\\n`;\n\n  return [\n    `You are running inside \\`${env.GITHUB_REPOSITORY}\\` for Jira ticket \\`${key}: ${summary}\\`.`,\n    \"\",\n    \"Read `CLAUDE.md` for repository conventions before touching files.\",\n    \"\",\n    `Ticket folder: \\`${ticketFolder}\\`.`,\n    `- \\`${specFile}\\`: a fresh snapshot of the Jira ticket and its comments. Read it. Do not edit it.`,\n    `- \\`${planFile}\\`: implementation plan. You own this file. Update it as you go.`,\n    `- \\`${transcriptFile}\\`: rolling history of prior runs. Read it for context if needed.`,\n    `- \\`${responseFile}\\`: the message that will be posted back to Jira. You own this file.`,\n    \"\",\n    `Run kind: \\`${kind}\\` (${kind === \"pr\" ? \"expects code/config changes plus a PR\" : \"answer-only, no code changes outside the ticket folder\"}).`,\n    `Run mode: \\`${isNew ? \"NEW\" : \"CONTINUATION\"}\\`.`,\n    \"\",\n    \"Goal:\",\n    goal,\n    \"\",\n    \"Constraints:\",\n    \"- Never expose, print, or commit secrets.\",\n    \"- Do not switch branches.\",\n    \"- Keep tool usage minimal.\",\n    continuationNote,\n  ].join(\"\\n\");\n}\n\nfunction adfToMarkdown(node) {\n  if (!node) return \"\";\n  if (Array.isArray(node)) return node.map(adfToMarkdown).join(\"\");\n\n  switch (node.type) {\n    case \"doc\":\n      return blockContent(node).join(\"\\n\\n\");\n    case \"paragraph\":\n      return inlineContent(node);\n    case \"heading\":\n      return `${\"#\".repeat(node.attrs?.level ?? 2)} ${inlineContent(node)}`;\n    case \"bulletList\":\n      return listContent(node, \"-\");\n    case \"orderedList\":\n      return orderedListContent(node);\n    case \"listItem\":\n      return blockContent(node).join(\"\\n\");\n    case \"blockquote\":\n      return blockContent(node)\n        .join(\"\\n\")\n        .split(\"\\n\")\n        .map((line) => `> ${line}`)\n        .join(\"\\n\");\n    case \"codeBlock\":\n      return `\\`\\`\\`\\n${textContent(node)}\\n\\`\\`\\``;\n    case \"rule\":\n      return \"---\";\n    case \"hardBreak\":\n      return \"\\n\";\n    case \"text\":\n      return applyMarks(node.text ?? \"\", node.marks ?? []);\n    default:\n      return blockContent(node).join(\"\\n\");\n  }\n}\n\nfunction blockContent(node) {\n  return (node.content ?? []).map(adfToMarkdown).filter(Boolean);\n}\n\nfunction inlineContent(node) {\n  return (node.content ?? []).map(adfToMarkdown).join(\"\");\n}\n\nfunction listContent(node, marker) {\n  return (node.content ?? [])\n    .map((item) =>\n      adfToMarkdown(item)\n        .split(\"\\n\")\n        .map((line, idx) => (idx === 0 ? `${marker} ${line}` : `  ${line}`))\n        .join(\"\\n\"),\n    )\n    .join(\"\\n\");\n}\n\nfunction orderedListContent(node) {\n  const start = node.attrs?.order ?? 1;\n  return (node.content ?? [])\n    .map((item, idx) =>\n      adfToMarkdown(item)\n        .split(\"\\n\")\n        .map((line, lineIdx) => (lineIdx === 0 ? `${start + idx}. ${line}` : `   ${line}`))\n        .join(\"\\n\"),\n    )\n    .join(\"\\n\");\n}\n\nfunction textContent(node) {\n  if (node.type === \"text\") return node.text ?? \"\";\n  return (node.content ?? []).map(textContent).join(\"\");\n}\n\nfunction applyMarks(text, marks) {\n  return marks.reduce((value, mark) => {\n    switch (mark.type) {\n      case \"strong\":\n        return `**${value}**`;\n      case \"em\":\n        return `_${value}_`;\n      case \"code\":\n        return `\\`${value}\\``;\n      case \"link\":\n        return `[${value}](${mark.attrs?.href ?? value})`;\n      default:\n        return value;\n    }\n  }, text);\n}\n",
+        "numLines": 696,
+        "startLine": 1,
+        "totalLines": 696
+      }
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01HYh4kwAG3VeBNSU96nphzF",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "EukiClkIDRgCKkCTfC2fgHkN9fNNIBPJ3NlrQnnN79+AX6mgLAzxjmaYnLiMBXJLpnnU5wnE6THnJbMbHRSZ9Zu28qlDNjXUb/E4Mg9jbGF1ZGUtb3B1cy00LTc4ABIMn0vckgPCzlRxAzPfGgwZL6Di2w0Dg+h1vvAiMG3km9Uyklet7coq6ADbiiuCoImIz0knu9IStFiYmTb5kCvm0MhaBOrQkvOhhPyNSiq9ITb9Iz8N28nckR5oJA66d8XTWDJ0i3ugdQTHC5ZnSw0qRjKdUsnze/SsLUWVBzdPbPqtDm2SAeTCYoIBQGeJhfnPA8CYi4rztlVVy+PYC7RFMVUrzCLHx+hwNWkdY53RPvTpFmTHrN0IgKHAE2bEysOnkFK2wH5OSIg6BheHsrxb4AATGhWB0y3r/SyGFREDofPKqrdRiC7CnxTwB8gReL8ie59i39k3b7+0IP4xnA1wDnaOzouUeN1Zbr7vVDEqCOlZJipY4E0d40wypEaGSdkTiIetkLhImk4ghutHFdp9AOxHMs1Ko7Yh0IxzSpac3+04EOjipxgyJ93lWUxdvRG9l1fRuVAJSx5HltBKyMQhibJpfVIiSRyGsULZmnOMtwQybIR53u5H5MXa+FCS1NCf9CZipn038pqcOWASYanXuELs+KKxpWDlUA3dnry4VNLKd0yVngHOnmC6nUAjFdTutBiK/OEIU1VJqMBMm8XWO++6V0sJsHI1vpj7qiB2R2Qb7X2ZJ2n6bJ+B5SjoDauvIhiFP4be65dMlo8bJo7+FfxGAy6GEqr5x7isP949r+PEnNmYTSJ1jn58Q+c5FNyjGv+di/6N0I30krdgVKXDqb+ccngl7agTXbbeZ5xtFoNdvxjjdai3RSYXMEg3SMTYddtmrx+6nSoxNGBs8yJfG0Q9QbEsFJeV+lLGHaiDvlwtBG2s3sXBnKWjnBInedb6lfzsSzEBvyx3b6xuE7uiFNwKpjpOLJ33IoQNFZZ+x/8szUIE+hU3xEBEU0tNyU1Fh2CQCS9/i6qZXleimkIPQuklFWYNmTdi1b3ohkwNPCuY2oN34LMoTU5Ez+ZXDs8YzcHcbJp8Rtp6mBqistt996ujx5YiuY2K8r0NG6e+1t0mgr9z+ugTftqeUUvb1cBCpRnjDz2tNPyD/TDpQUBaFiVUVC5pIW8aW+eRuBVSr4AQ1/tgu48CdyYV0XfzHL7TmkPHCu78obYiBzMmRNXvCY1mqY8O9GjzFbBYltOgGrJFPb+fBjQH12CRTaUBelgphfR2QgfNs6mWM3ZvBi1LP057FVWSvMmc4tsXbmpLxVg1wGGLr852n7dcXIAd+mP09UeUdengxXBids4gPH5oTFY89rEchNObjRkaIYzoazE7zkP1qHTXoM3cM8CPVFyMEp6jGwvFOTpaA4all+fSwbOCoSbM5tnKBIejBISdKWo5yqpRXoqYE9DgSV5KdglW/4Nfeqy0t2RJMSk3DxZQ/XcctSkPNiLvDA0ADdinFnEmyf6THvZL0sJv/Olv4fLInY5P5Xpau68QOhEwrXovfNBMsh6hOgdek/+a0QDbH4KYBrqiIXmJUx43G0+uYVVaVRKKfQDrVHjBiqMJMbh0RDeW4Qpp6oB4pr3Y+zeCfTggBkVojjQCTsq8jClZ5Z2DDjVnqWHrbjPaO2FrHH9ju2I4oS0iDojIA8RHZBoMOcji8cCuKLQWH7w1eRv0UKIu064n/pP04f4+bOicWlt1rh6xBB1uptfNs4wn41itR+QAWIakuArHsFbs/n+GPuXp5i6T1RznBt2Tv588eMsIf2oppXZmlxPNzR79Ak8a+eV/gl9sw+1kfhq9yP1Qp2aKwBEc6+JZAUTmNQ/w0fNwOrpJNTCugSoFGK5FWESD7KTTstPCaSU2TZvZQOtNWTNvzSzhaxBP4e4/BpcBHdQTRsXm16uISiZhgGxgwiqpIU4mc59cIouBfhf8z7/ImrXwpO4ZHpRN2B1zIgNxK/fxurUm1uah0V+68e13ybR+sXHyP3IrfzO1sk8935L8npBS9MdPFq8NzZrCbaRZFsGHOzuucE8AJv8IVWBh7eAC8dQd2M1mpa3WeXkWCtQl299cWYdgA/pDuScdecktKZKv8L5vycXUCPj5EvgFpON8u52yFH3nIBZsZk5mi494vCqQ2Ki90sZjDp+xYxBcvjj5eaTokzfO6Mkuefwnc3/acWCZ6MLccyX8Eysvx8U9eYSgTjWDNGUvcmJ+lJHVD6SLznz4fut57cFIq9cMgrlUx392/NLLHS+6R04+7efXgPqMQ5dzVxQTLWdtjaxH/JhIryH7hPA15o5U7dmo31fB47B7N9N1Fa+Bs7BYnvjvmcDV7kSkvUts115fTVHcKalJjun2ESmGeLaQ0bUu9/4VT5CqTdyIgQ5AnREjp0bscOJeaq4QzNz4+6asd4DxCAQXSevtqQqRnTLudVGGS3EjiTzUj4GpeCmIaHybV14YVxEdJ8xJ6+X47RZeXnAocTEg7PQBLQcc5MZ69g+HDNsJjTsJplvk9xAaXZw4Rb579aOUrXMrIOGbm9TPEZdf26IQbG1+aSRWXqsllKRExE348APuRnCSqI2CmHEHSj5YyB8R+zHi/oYyOUMBTf8g3chJZV7EejF21SbPTKOmvtwJlZftvpanYJjD9BghPyIuxCz2S784gf8LQv3z2Wklw9ddsBxlv0LAgoaIokUrAlsCdnkGefpSqmae6YY3nhjjf1gxjgSI92UO0j0bEt+QhzWDtQOKTSVM9Ff5INn1CJA56ZcedRitKin6ot9TwPzmRKFH3Fjf4D4YD5gUYgCdfLauKKpukFgauuY0cJpGF1okvlcFmqqvsgnb79Gkk9hdzumXvFXn8d8II/O5ryhPaQRmsewVYjE7bixBEgfkOTvsvXpTY/O3WMwc5JqqyT+Q9OIVW5EgSGZohkVhmOG+VdWoUc1AgEpxKyjC144QkXHDGmVHskEpbJmRlvToDQ5ZkktTAPSu2yric7MYARO/qyWpebw95ubB9QsH3+jTS97ZCHFTd2pBP4gdfStvPOkt86gTXIIdbNoXgJ71aRjXM6L1uMPLOX1l048RAK75SUJZ26JIq5y1ymOLJByzs+MPxdoO87mfaMWviwgaPOMvKK8GzGMZmnHabikMSfVTU5TaBMXHGbZsZXv/NG+XFgd0GFw1IuGsIE7+ie/N77DIcn9vczIeNmW78aINEzdgTC80U9P6jATChsQc7RGqzfVTUbrvTseGyFGKx0PysD3DeTNWgf3k+VDMAgKW34JAJCPR7oCzfAIkVEcSqkmE23ONOgQY9LeeLTI1caPeZvc/vUXLHq+FWfVTdqS2QiEoLw8x090iHZYpoQgvkx0bPmMsAepOt71LZdNHbQfl/9inZoOJLV+Mtl2PgKerhLASTe+pfBNHlBbM1fb1tm76dxCKzn7fgigz/nmHF9lHD/IUxcsZyvu9qD6qKpsQYVmKEqsa7MZvX94ArBOPDmgmR28rkNLjRf91lJPiwDzCTV08FCvIXxC6umQnplaN/GBwfiDJU76UHTBJ61Kz/5uWqq/C73Uy+GGQpTUyLm2icHh1uY4JdNYe3Iq1j/e0dA5KYPEqh7CZQmhNB4jHZWuH0h74xxvxulG0TxFic0LIYabXLRnIDjNjXrm1qRLgNW3aXPkH0DMA2kt0ii4EAEY/4Ltq7roTFe1GqfVEex66Cx7yXOBG8lI5vNrOTq63teen/btvXzUVpFLPoAr8X2mWq1xw8AAN3LJrRirwbGucxO4OpI90J5/xhvK/zayNPYo+zhZo/UjwfWKElla9G6Pkp7Hp0s6qpUtkHVB5msY8brL7xs2aq8mQSzZruZYSuQ4OuR+iDWoDm5ef/aupQDL3fbGWCBF2NLmkj8P5Qh5QikMIIkDr1OTP3URiWC73Ql9Cr+MT5UcVfN1GBD1cN1zA5U9khubF8HD1fgiBi41Ny7RhdOsLyOpCWKOBTMHeGiJlMtUzbK4IvYKxIvB+O7WflBeCc35F+XDlISZ+jpXtN5Aelum+V43C1SGZxfQ84Bzd2r9Tcp2uFb/seN5+EIOl+FKquwzID86b+F67696A0z1Cq7wD7MVsVWoi8EhHnQINk4Ev2s4w3Jgpmn2wUz/wveyGMceV9abcQD8ZmY/qriYv4VMgjdosQNguE92xWPJzh46xnnht5TnxSuh149M5/e7sLNTBWH7zDLR/w6B3nAf0827FR8l6W9FlAnAOZe3eAUN//hjRrmXNFVSrcKAtDHKtjCRBz03M8jJpfxfIRi6ig7vSoEsqUSScTa5utsilnWr92+R+A2btT6x6SCHFXLQYYJ/nhK7pOlcIjuJw44hSMOg3dqEjpbZxVuDWep5TtmcxsVZ/B/+afkhPNx1wf4ibConC0hu8fG4NitAWzsYDmgtuZqq7538LNPZqkoVPmYwMj0wqaiD0a1mh6gh7ye5Y2X7rLbPfy4F/4dGT6b6c6tJkXXPFOWLqnb9/mWU1t+meRH5sZcgSUWcO7c3SLmDNmEwlSvA1KAdVShT3KhdXb8d7w/Qo+D2hsq5u9yIdCyH+z9O7KvtWTkFgrgiy3+Z0s+gw9aCpYy9Aj2GRD6wXh1+k+3wg6C7GZNfxbe4wLb9vRFup6Lj1WYnp6uqKVlfF4iaeCKzpa2LGGGzGI4vb/1i6FWgusQB7DN2qlb4/IQBci8w0lFWQCwH9JO3ZDpzJ6Mg13ekU46dayTdCP68E3RoE0DUIRft66n7GC8Vwir2IPw6hmp7CU/Qi1YmzR0xHUZE02x27iCj8oSYXNQDre39qtM4ioKbIFaSG9ciwMSw4xf6FcGcqupaT3C8u6rSi3Mt/dVZZ0J0jRQtpgS5k08QKjdy0cwPDQZ8S/tOs3eSVLXP/CzrHF7IBtZ1jQ6FMT9cJ/p5Q/2dpasNPYrlAGGQU4KnkTBx5Fqhhd5x/M5/W2rGe5XNpZBkJSHN0GQ0WFMm8S89hqngugA3e7tq3w9deMWIscYZgmyXqmWZwWImo+4jC6lWpNECLP9fP3tomvHuFn44gB+1QMP95kIhpymY1/fvWm/Fl0/6W1+T9+kw/c1q4CXuZV16kaoST+Qf5xf1ZakpjLxgPUwBUs5E670wLVThAp/PgEjtAx8LQzGRYHWZSxOo1KFhGC5hfd4hl+eRXPiuTIAzrSAafORReQfWYECszOdL8d7skRoDLmXIkk/9e2OdTvOtuKkqqG1jOPu14Ypw7XeHuex2aHVrmjaaj3lhEiGTO0mYt9oH3pURdpj13idNMRt4OQDlwF270ni5cvKLiZ+9l1d4jmpmfBdDGhL7J1pmOcOJAnPX9OiNWcAyJj6jnfxwhJzVM0fh0lsLeQ1JiDNBCxUd148pQHO914P93owF+BnLgVamoA3JMe2jpMw4BRpCsMWTxxG3qpaDeEYK21tcJRxr1KmL2kUUomgJW53yf7jcJwDPf6U8s/euZr96JxI7j0p5/ex/XMOw5IVR4nrj6mfiTmt6lYGj6PIn4O3wNB8av3VKAnvM0NLm3tOH/tGAzZfa2eYtWqJ6lkHZds92D4DQKo3TcMSDVjMAaSZl6gMn6ln4wvtk2lF/1U6trJFwgNha8WNHv5cuB6bp1kOlQ31pprLvMNcmvnq2sadycOda+5qNVtPJXS8BqTjR2Y1IBxICT50NCvWYwfLqv04qeHgkmjPq4a3HefGhd9zlu9kNw8/EHr6y9eEds4PepQQdQTrZRiLdDDvCFxhvo6+asBRfbeve1W+KCGra8utMqsJBoc0kiEa/U6OEWxqJ5EyA7rFCMiUa6bUW+wXHUE3lmwlohPD99n2oPzPYfnADoxcfhyd2DhtUdXTekcrYJycSPKa+A6xJlJglBOyrJ3Nj1BTE1yydEXU1CyxyUn7yl4A5Gr+ZIpbduHiNonEGo+r98TXp6QPYYAQ=="
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 13197,
+        "cache_read_input_tokens": 27966,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 13197
+        },
+        "output_tokens": 44,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "5b5a79fe-8c74-4f02-8dde-740626f77a62"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01HYh4kwAG3VeBNSU96nphzF",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Now I have a clear picture. Let me write the plan, make the script change, and write the response."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 13197,
+        "cache_read_input_tokens": 27966,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 13197
+        },
+        "output_tokens": 44,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "7ae56efe-ca81-4d88-92a7-7675ea8d7d93"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01HYh4kwAG3VeBNSU96nphzF",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01BLtAN8QJMc9oPT4JNJ43wQ",
+          "name": "Write",
+          "input": {
+            "file_path": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/plan.md",
+            "content": "# TDS-12 Plan: Move Ticket to In Progress as soon as work starts\n\n## Summary\nAdd a Jira transition step inside `prepareDispatch` (in `.github/scripts/jira-dispatch.mjs`) that flips the ticket to \"In Progress\" right after the issue fetch and before any branch/file work. Transition lookup uses Jira's transitions API and is best-effort: any failure logs a warning and lets the run continue.\n\n## Approach\n\n1. Add a new helper `transitionToInProgress(key, issue)` in `jira-dispatch.mjs`:\n   - Read `issue.fields.status.statusCategory.key` (already present because the existing fetch requests `fields=...,status,...`).\n   - Skip if the category is `indeterminate` (already In Progress) or `done` (already finished). Log the skip reason.\n   - `GET /rest/api/3/issue/{key}/transitions` to list available transitions.\n   - Pick a transition where `to.statusCategory.key === \"indeterminate\"`. If none, fall back to the first transition whose `name` matches `\"in progress\"` (case-insensitive).\n   - If no match, log a warning and return — do not fail the run.\n   - `POST /rest/api/3/issue/{key}/transitions` with body `{\"transition\": {\"id\": <id>}}`. The endpoint returns 204 No Content on success, so use raw `fetch` (not `fetchJson`, which expects JSON).\n   - Wrap network calls in try/catch so any HTTP/network error becomes a warning, not a thrown error.\n\n2. Call `transitionToInProgress(key, issue)` inside `prepareDispatch` immediately after the issue fetch (line 126-129) and before the PR-branch checkout block (line 140). This guarantees the status flip happens for both `pr` and `answer` modes, and before any code or filesystem mutations.\n\n3. No new env vars or secrets — reuse `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN` via the existing `initJira()` already called at the top of `prepareDispatch`.\n\n## Files changed\n- `.github/scripts/jira-dispatch.mjs` — add helper + one call site.\n\n## Validation\n- `node --check .github/scripts/jira-dispatch.mjs` for syntax.\n- Acceptance criteria mapped:\n  1. New \"To Do\" ticket → transition fires before PR work. ✅ (call placed before checkout/file writes)\n  2. Re-run on \"In Progress\" ticket → skipped via `indeterminate` guard. ✅\n  3. Re-run on \"Done\" ticket → skipped via `done` guard. ✅\n  4. No matching transition → warn + continue. ✅ (returns silently on no match; try/catch on fetches)\n  5. Reuses existing Jira creds. ✅\n\n## Risks\n- Some Jira workflows expose multiple `indeterminate` transitions (e.g., \"Start Work\" vs \"Reopen In Progress\"). The helper picks the first match, which is the documented behaviour for `Array.prototype.find`. This matches the spec (\"category match … or fall back to name match\") and is acceptable for the listed acceptance criteria.\n- The transitions API could respond slowly. The dispatch flow has no tight time budget here, so an extra round trip is fine.\n- Cannot exercise live Jira from this run; relying on Jira REST v3 contract that `status.statusCategory.key` is returned with the standard `status` field. This is documented and stable.\n"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 13197,
+        "cache_read_input_tokens": 27966,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 13197
+        },
+        "output_tokens": 44,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "d2433a22-70a4-4739-82da-3899d9b8eed7"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01BLtAN8QJMc9oPT4JNJ43wQ",
+          "type": "tool_result",
+          "content": "File created successfully at: /home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/plan.md (file state is current in your context — no need to Read it back)"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "13155cb7-abdd-4cc6-8e0a-023722b6c5b7",
+    "timestamp": "2026-05-07T23:38:11.891Z",
+    "tool_use_result": {
+      "type": "create",
+      "filePath": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/plan.md",
+      "content": "# TDS-12 Plan: Move Ticket to In Progress as soon as work starts\n\n## Summary\nAdd a Jira transition step inside `prepareDispatch` (in `.github/scripts/jira-dispatch.mjs`) that flips the ticket to \"In Progress\" right after the issue fetch and before any branch/file work. Transition lookup uses Jira's transitions API and is best-effort: any failure logs a warning and lets the run continue.\n\n## Approach\n\n1. Add a new helper `transitionToInProgress(key, issue)` in `jira-dispatch.mjs`:\n   - Read `issue.fields.status.statusCategory.key` (already present because the existing fetch requests `fields=...,status,...`).\n   - Skip if the category is `indeterminate` (already In Progress) or `done` (already finished). Log the skip reason.\n   - `GET /rest/api/3/issue/{key}/transitions` to list available transitions.\n   - Pick a transition where `to.statusCategory.key === \"indeterminate\"`. If none, fall back to the first transition whose `name` matches `\"in progress\"` (case-insensitive).\n   - If no match, log a warning and return — do not fail the run.\n   - `POST /rest/api/3/issue/{key}/transitions` with body `{\"transition\": {\"id\": <id>}}`. The endpoint returns 204 No Content on success, so use raw `fetch` (not `fetchJson`, which expects JSON).\n   - Wrap network calls in try/catch so any HTTP/network error becomes a warning, not a thrown error.\n\n2. Call `transitionToInProgress(key, issue)` inside `prepareDispatch` immediately after the issue fetch (line 126-129) and before the PR-branch checkout block (line 140). This guarantees the status flip happens for both `pr` and `answer` modes, and before any code or filesystem mutations.\n\n3. No new env vars or secrets — reuse `JIRA_BASE_URL`, `JIRA_EMAIL`, `JIRA_API_TOKEN` via the existing `initJira()` already called at the top of `prepareDispatch`.\n\n## Files changed\n- `.github/scripts/jira-dispatch.mjs` — add helper + one call site.\n\n## Validation\n- `node --check .github/scripts/jira-dispatch.mjs` for syntax.\n- Acceptance criteria mapped:\n  1. New \"To Do\" ticket → transition fires before PR work. ✅ (call placed before checkout/file writes)\n  2. Re-run on \"In Progress\" ticket → skipped via `indeterminate` guard. ✅\n  3. Re-run on \"Done\" ticket → skipped via `done` guard. ✅\n  4. No matching transition → warn + continue. ✅ (returns silently on no match; try/catch on fetches)\n  5. Reuses existing Jira creds. ✅\n\n## Risks\n- Some Jira workflows expose multiple `indeterminate` transitions (e.g., \"Start Work\" vs \"Reopen In Progress\"). The helper picks the first match, which is the documented behaviour for `Array.prototype.find`. This matches the spec (\"category match … or fall back to name match\") and is acceptable for the listed acceptance criteria.\n- The transitions API could respond slowly. The dispatch flow has no tight time budget here, so an extra round trip is fine.\n- Cannot exercise live Jira from this run; relying on Jira REST v3 contract that `status.statusCategory.key` is returned with the standard `status` field. This is documented and stable.\n",
+      "structuredPatch": [],
+      "originalFile": null,
+      "userModified": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01BMvF9y1NpHXvnG9XJVVumo",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Now the script edit. I'll add the helper and the call site."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 3035,
+        "cache_read_input_tokens": 41163,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3035
+        },
+        "output_tokens": 3,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "a50aa514-b20e-41bf-ab6a-6ac9addc24f3"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01BMvF9y1NpHXvnG9XJVVumo",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01TjGoJkQkE7udL6ziUaAgRx",
+          "name": "Edit",
+          "input": {
+            "replace_all": false,
+            "file_path": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs",
+            "old_string": "  const issue = await fetchJson(\n    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n    { headers: jiraHeaders },\n  );\n\n  const fields = issue.fields ?? {};\n  const summary = fields.summary || key;\n  const kind = determineKind(issue);\n  const branchName = `tdf/${key.toLowerCase()}`;",
+            "new_string": "  const issue = await fetchJson(\n    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n    { headers: jiraHeaders },\n  );\n\n  await transitionToInProgress(key, issue);\n\n  const fields = issue.fields ?? {};\n  const summary = fields.summary || key;\n  const kind = determineKind(issue);\n  const branchName = `tdf/${key.toLowerCase()}`;"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 3035,
+        "cache_read_input_tokens": 41163,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3035
+        },
+        "output_tokens": 3,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "928a5c3e-aa67-470b-ba6a-c7cbdf27cc5b"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01TjGoJkQkE7udL6ziUaAgRx",
+          "type": "tool_result",
+          "content": "The file /home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs has been updated successfully. (file state is current in your context — no need to Read it back)"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "c4296072-f94a-43f0-8d54-8133f99d32fb",
+    "timestamp": "2026-05-07T23:38:18.703Z",
+    "tool_use_result": {
+      "filePath": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs",
+      "oldString": "  const issue = await fetchJson(\n    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n    { headers: jiraHeaders },\n  );\n\n  const fields = issue.fields ?? {};\n  const summary = fields.summary || key;\n  const kind = determineKind(issue);\n  const branchName = `tdf/${key.toLowerCase()}`;",
+      "newString": "  const issue = await fetchJson(\n    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n    { headers: jiraHeaders },\n  );\n\n  await transitionToInProgress(key, issue);\n\n  const fields = issue.fields ?? {};\n  const summary = fields.summary || key;\n  const kind = determineKind(issue);\n  const branchName = `tdf/${key.toLowerCase()}`;",
+      "originalFile": "import { mkdir, readFile, writeFile, access, copyFile } from \"node:fs/promises\";\nimport { execSync } from \"node:child_process\";\n\n// JSON.stringify is used as a safe shell-arg quoter for known-shape strings\n// like Jira branch names; treat any string passed to execSync that way.\n\nconst mode = process.argv[2];\nif (!mode) {\n  throw new Error(\"Usage: jira-dispatch.mjs <prepare-dispatch|record-run|commit-changes|ensure-pr|comment-result>\");\n}\n\nconst env = process.env;\n\nlet jiraBaseUrl;\nlet jiraHeaders;\n\nrun().catch((err) => {\n  console.error(err);\n  process.exit(1);\n});\n\nasync function run() {\n  if (mode === \"prepare-dispatch\") return prepareDispatch();\n  if (mode === \"record-run\") return recordRun();\n  if (mode === \"commit-changes\") return commitChanges();\n  if (mode === \"ensure-pr\") return ensurePr();\n  if (mode === \"comment-result\") return commentResult();\n  throw new Error(`Unknown mode: ${mode}`);\n}\n\nfunction requireEnv(name) {\n  const v = env[name];\n  if (!v) throw new Error(`Missing required environment variable: ${name}`);\n  return v;\n}\n\nfunction initJira() {\n  const baseUrl = requireEnv(\"JIRA_BASE_URL\").replace(/\\/+$/, \"\");\n  const email = requireEnv(\"JIRA_EMAIL\");\n  const token = requireEnv(\"JIRA_API_TOKEN\");\n  jiraBaseUrl = baseUrl;\n  jiraHeaders = {\n    Authorization: `Basic ${Buffer.from(`${email}:${token}`).toString(\"base64\")}`,\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n  };\n}\n\nasync function fetchJson(url, options) {\n  const response = await fetch(url, options);\n  if (!response.ok) {\n    const body = await response.text();\n    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n  }\n  return response.json();\n}\n\nasync function appendGithubEnv(values) {\n  const file = env.GITHUB_ENV;\n  if (!file) return;\n  const body = Object.entries(values)\n    .map(([k, v]) => {\n      const s = String(v ?? \"\");\n      if (s.includes(\"\\n\")) return `${k}<<EOF_${k}\\n${s}\\nEOF_${k}`;\n      return `${k}=${s}`;\n    })\n    .join(\"\\n\");\n  await writeFile(file, body + \"\\n\", { flag: \"a\" });\n}\n\nasync function pathExists(p) {\n  try {\n    await access(p);\n    return true;\n  } catch {\n    return false;\n  }\n}\n\nasync function readJsonOrEmpty(p) {\n  try {\n    const raw = await readFile(p, \"utf8\");\n    return raw.trim() ? JSON.parse(raw) : {};\n  } catch {\n    return {};\n  }\n}\n\nfunction nowIso() {\n  return new Date().toISOString();\n}\n\nfunction compactStamp() {\n  return new Date().toISOString().replace(/[-:]/g, \"\").replace(/\\..+$/, \"Z\");\n}\n\nfunction lower(s) {\n  return String(s ?? \"\").toLowerCase();\n}\n\nfunction tableRow(value) {\n  return String(value || \"-\").replace(/\\|/g, \"\\\\|\").replace(/\\n/g, \"<br>\");\n}\n\nfunction normalizeIssueKey(key) {\n  const normalized = String(key || \"\").trim().toUpperCase();\n  if (!/^[A-Z][A-Z0-9]+-\\d+$/.test(normalized)) {\n    throw new Error(`Invalid Jira issue key: ${key}`);\n  }\n  return normalized;\n}\n\nfunction determineKind(issue) {\n  const labels = (issue.fields?.labels ?? []).map(lower);\n  if (labels.includes(\"claude:answer\")) return \"answer\";\n  if (labels.includes(\"claude:pr\")) return \"pr\";\n  const type = lower(issue.fields?.issuetype?.name);\n  if (type === \"question\") return \"answer\";\n  return \"pr\";\n}\n\nasync function prepareDispatch() {\n  initJira();\n  const key = normalizeIssueKey(requireEnv(\"ISSUE_KEY\"));\n\n  const issue = await fetchJson(\n    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n    { headers: jiraHeaders },\n  );\n\n  const fields = issue.fields ?? {};\n  const summary = fields.summary || key;\n  const kind = determineKind(issue);\n  const branchName = `tdf/${key.toLowerCase()}`;\n\n  // For PR mode, switch to the existing PR branch if one exists on origin so\n  // that prior state.json, plan.md, transcript.md, and any code changes are\n  // visible to this run. Done before any file writes to avoid untracked-file\n  // collisions with `git checkout`.\n  if (kind === \"pr\") {\n    let branchExists = false;\n    try {\n      execSync(`git ls-remote --exit-code --heads origin ${JSON.stringify(branchName)}`, { stdio: \"ignore\" });\n      branchExists = true;\n    } catch {\n      branchExists = false;\n    }\n    if (branchExists) {\n      console.log(`Existing branch ${branchName} found on origin; checking out.`);\n      execSync(`git fetch origin ${JSON.stringify(branchName)}`, { stdio: \"inherit\" });\n      execSync(`git checkout -B ${JSON.stringify(branchName)} origin/${branchName}`, { stdio: \"inherit\" });\n    } else {\n      console.log(`No existing branch ${branchName}; will create from main on commit.`);\n    }\n  }\n\n  const ticketFolder = `spec/${key}`;\n  const stateFile = `${ticketFolder}/state.json`;\n  const transcriptFile = `${ticketFolder}/transcript.md`;\n  const specFile = `${ticketFolder}/spec.md`;\n  const planFile = `${ticketFolder}/plan.md`;\n  const responseFile = `${ticketFolder}/response.md`;\n  const runDir = `${ticketFolder}/runs/${compactStamp()}-${env.GITHUB_RUN_ID || \"local\"}`;\n  const promptFile = `${runDir}/prompt.md`;\n\n  await mkdir(runDir, { recursive: true });\n\n  let isNew = true;\n  let lastSessionId = \"\";\n  if (await pathExists(stateFile)) {\n    isNew = false;\n    const state = await readJsonOrEmpty(stateFile);\n    lastSessionId = state.last_session_id || \"\";\n  } else {\n    await writeFile(\n      stateFile,\n      JSON.stringify({ ticket_id: key, run_count: 0, kind, branch: branchName }, null, 2) + \"\\n\",\n      \"utf8\",\n    );\n  }\n\n  if (!(await pathExists(transcriptFile))) {\n    await writeFile(transcriptFile, `# ${key} Transcript\\n`, \"utf8\");\n  }\n\n  const comments = issue.fields?.comment?.comments ?? [];\n  await writeFile(specFile, buildSpec({ issue, comments, key }), \"utf8\");\n\n  const prompt = buildPrompt({\n    key,\n    summary,\n    ticketFolder,\n    kind,\n    isNew,\n    specFile,\n    planFile,\n    responseFile,\n    transcriptFile,\n  });\n  await writeFile(promptFile, prompt, \"utf8\");\n\n  let claudeArgs = \"--max-turns 60 --permission-mode bypassPermissions\";\n  if (lastSessionId) claudeArgs += ` --resume ${lastSessionId}`;\n\n  await mkdir(`${requireEnv(\"HOME\")}/.claude/projects`, { recursive: true });\n\n  await appendGithubEnv({\n    SHOULD_RUN: \"true\",\n    ISSUE_KEY: key,\n    ISSUE_TITLE: summary,\n    JIRA_ISSUE_URL: `${jiraBaseUrl}/browse/${key}`,\n    KIND: kind,\n    BRANCH_NAME: branchName,\n    IS_NEW: isNew ? \"true\" : \"false\",\n    LAST_SESSION_ID: lastSessionId,\n    TICKET_FOLDER: ticketFolder,\n    STATE_FILE: stateFile,\n    TRANSCRIPT_FILE: transcriptFile,\n    SPEC_FILE: specFile,\n    PLAN_FILE: planFile,\n    RESPONSE_FILE: responseFile,\n    RUN_DIR: runDir,\n    PROMPT_FILE: promptFile,\n    CLAUDE_ARGS: claudeArgs,\n  });\n\n  console.log(`Prepared dispatch for ${key} (kind=${kind} new=${isNew} last_session=${lastSessionId || \"<none>\"})`);\n}\n\nasync function recordRun() {\n  const stateFile = requireEnv(\"STATE_FILE\");\n  const transcriptFile = requireEnv(\"TRANSCRIPT_FILE\");\n  const responseFile = env.RESPONSE_FILE || \"\";\n  const promptFile = env.PROMPT_FILE || \"\";\n  const runDir = env.RUN_DIR || \"\";\n  const isNew = env.IS_NEW === \"true\";\n  const kind = env.KIND || \"pr\";\n  const conclusion = env.CONCLUSION || \"unknown\";\n  const lastSessionId = env.LAST_SESSION_ID || \"\";\n  const actionSessionId = env.ACTION_SESSION_ID || \"\";\n  const executionFile = env.EXECUTION_FILE || \"\";\n\n  let newSessionId = actionSessionId;\n  let assistantText = \"\";\n\n  if (executionFile && (await pathExists(executionFile))) {\n    try {\n      const raw = await readFile(executionFile, \"utf8\");\n      const entries = parseExecutionFile(raw);\n      if (!newSessionId) {\n        for (const e of entries) {\n          if (e?.session_id) newSessionId = e.session_id;\n        }\n      }\n      for (const e of entries) {\n        if (e?.type === \"assistant\") {\n          for (const part of e?.message?.content ?? []) {\n            if (part?.type === \"text\" && typeof part.text === \"string\") {\n              assistantText = part.text;\n            }\n          }\n        }\n      }\n      if (runDir) {\n        await mkdir(runDir, { recursive: true });\n        await copyFile(executionFile, `${runDir}/execution.json`);\n      }\n    } catch (err) {\n      console.warn(`Failed to parse execution_file: ${err.message}`);\n    }\n  }\n\n  if (runDir) {\n    if (responseFile && (await pathExists(responseFile))) {\n      await copyFile(responseFile, `${runDir}/response.md`);\n    }\n    if (promptFile && (await pathExists(promptFile))) {\n      await copyFile(promptFile, `${runDir}/prompt.md`);\n    }\n  }\n\n  const now = nowIso();\n  const rotated = lastSessionId && newSessionId && lastSessionId !== newSessionId;\n\n  const state = await readJsonOrEmpty(stateFile);\n  state.ticket_id = state.ticket_id || env.ISSUE_KEY || \"\";\n  state.last_session_id = newSessionId || \"\";\n  state.prev_session_id = lastSessionId || null;\n  state.last_run_at = now;\n  state.last_conclusion = conclusion;\n  state.last_kind = kind;\n  state.run_count = (state.run_count || 0) + 1;\n  if (env.BRANCH_NAME) state.branch = env.BRANCH_NAME;\n  state.kind = kind;\n  await writeFile(stateFile, JSON.stringify(state, null, 2) + \"\\n\", \"utf8\");\n\n  const summarySnippet = (assistantText || \"\").trim().split(\"\\n\").slice(0, 12).join(\"\\n  \");\n  const block = [\n    \"\",\n    `## Run ${now}`,\n    `- run_kind: ${isNew ? \"new\" : \"continuation\"}`,\n    `- prev_session_id: ${lastSessionId || \"<none>\"}`,\n    `- new_session_id: ${newSessionId || \"<none>\"}`,\n    `- session_id_rotated: ${rotated ? \"true\" : \"false\"}`,\n    `- conclusion: ${conclusion}`,\n    `- run_dir: ${runDir || \"<none>\"}`,\n    `- assistant_summary:\\n  ${summarySnippet || \"<empty>\"}`,\n    \"\",\n  ].join(\"\\n\");\n  await writeFile(transcriptFile, block, { flag: \"a\" });\n\n  await appendGithubEnv({ NEW_SESSION_ID: newSessionId });\n  console.log(`Recorded run for ${env.ISSUE_KEY}: session=${newSessionId || \"<none>\"}`);\n}\n\nfunction parseExecutionFile(raw) {\n  const trimmed = raw.trim();\n  if (!trimmed) return [];\n  if (trimmed.startsWith(\"[\")) {\n    try {\n      const arr = JSON.parse(trimmed);\n      return Array.isArray(arr) ? arr : [];\n    } catch {\n      // fall through to NDJSON\n    }\n  }\n  return trimmed\n    .split(\"\\n\")\n    .filter(Boolean)\n    .map((line) => {\n      try {\n        return JSON.parse(line);\n      } catch {\n        return null;\n      }\n    })\n    .filter(Boolean);\n}\n\nfunction commitChanges() {\n  const kind = env.KIND || \"pr\";\n  const branchName = requireEnv(\"BRANCH_NAME\");\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const ticketFolder = requireEnv(\"TICKET_FOLDER\");\n  const runId = env.GITHUB_RUN_ID || \"\";\n\n  sh(\"rm -f output.txt\");\n  sh('git config user.name \"github-actions[bot]\"');\n  sh('git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\"');\n\n  if (kind === \"pr\") {\n    sh(`git checkout -B \"${branchName}\"`);\n    sh(\"git add -A\");\n    if (gitNothingStaged()) {\n      console.log(\"No changes to commit on PR branch\");\n      return appendGithubEnv({ COMMITTED: \"false\" });\n    }\n    sh(`git commit -m \"${issueKey}: claude-code update (run ${runId})\"`);\n    sh(`git push origin \"HEAD:${branchName}\"`);\n    return appendGithubEnv({ COMMITTED: \"true\" });\n  }\n\n  sh(`git add -A \"${ticketFolder}\"`);\n  if (gitNothingStaged()) {\n    console.log(\"No artefact changes to commit on main\");\n    return appendGithubEnv({ COMMITTED: \"false\" });\n  }\n  sh(`git commit -m \"${issueKey}: update ticket artefacts (run ${runId})\"`);\n  sh(\"git push origin HEAD:main\");\n  return appendGithubEnv({ COMMITTED: \"true\" });\n}\n\nfunction gitNothingStaged() {\n  try {\n    execSync(\"git diff --cached --quiet\", { stdio: \"ignore\" });\n    return true;\n  } catch {\n    return false;\n  }\n}\n\nfunction sh(cmd) {\n  execSync(cmd, { stdio: [\"ignore\", \"inherit\", \"inherit\"] });\n}\n\nasync function ensurePr() {\n  if ((env.KIND || \"pr\") !== \"pr\") {\n    console.log(\"Not PR mode, skipping ensure-pr\");\n    return;\n  }\n  if (env.COMMITTED !== \"true\") {\n    console.log(\"No commit happened on this run; skipping PR.\");\n    return;\n  }\n\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const issueTitle = env.ISSUE_TITLE || issueKey;\n  const branchName = requireEnv(\"BRANCH_NAME\");\n  const repo = requireEnv(\"GITHUB_REPOSITORY\");\n  const repoOwner = repo.split(\"/\")[0];\n  const ghToken = requireEnv(\"GH_TOKEN\");\n\n  const headers = {\n    Accept: \"application/vnd.github+json\",\n    Authorization: `Bearer ${ghToken}`,\n    \"X-GitHub-Api-Version\": \"2022-11-28\",\n    \"User-Agent\": \"tdf-dispatch\",\n  };\n\n  const listUrl = `https://api.github.com/repos/${repo}/pulls?state=open&base=main&head=${repoOwner}:${branchName}`;\n  const existing = await fetchJson(listUrl, { headers });\n  let prUrl = (Array.isArray(existing) && existing[0] && existing[0].html_url) || \"\";\n\n  if (!prUrl) {\n    const body = [\n      `Automated Claude Code update for ${issueKey}.`,\n      \"\",\n      `Jira: ${env.JIRA_ISSUE_URL || \"\"}`,\n      `Ticket folder: \\`${env.TICKET_FOLDER || \"\"}\\``,\n      \"\",\n      \"Review and merge when ready.\",\n    ].join(\"\\n\");\n\n    const created = await fetchJson(`https://api.github.com/repos/${repo}/pulls`, {\n      method: \"POST\",\n      headers: { ...headers, \"Content-Type\": \"application/json\" },\n      body: JSON.stringify({\n        title: `${issueKey}: ${issueTitle}`,\n        head: branchName,\n        base: \"main\",\n        body,\n      }),\n    });\n    prUrl = created.html_url;\n  }\n\n  await appendGithubEnv({ PR_URL: prUrl });\n  console.log(`Pull request: ${prUrl}`);\n}\n\nasync function commentResult() {\n  initJira();\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const kind = env.KIND || \"pr\";\n  const branchName = env.BRANCH_NAME || \"\";\n  const responseFile = env.RESPONSE_FILE || \"\";\n  const stateFile = env.STATE_FILE || \"\";\n  const repo = env.GITHUB_REPOSITORY || \"\";\n  const prUrl = env.PR_URL || \"\";\n  let conclusion = env.CONCLUSION || \"\";\n  if (!conclusion && stateFile) {\n    const state = await readJsonOrEmpty(stateFile);\n    conclusion = state.last_conclusion || \"unknown\";\n  }\n  if (!conclusion) conclusion = \"unknown\";\n\n  const content = [];\n\n  if (kind === \"pr\") {\n    content.push(paragraph(`[TDF-bot] Claude Code processed ${issueKey} (conclusion: ${conclusion}).`));\n    if (branchName && repo) {\n      content.push(linkParagraph(\"Branch\", `https://github.com/${repo}/tree/${encodeURIComponent(branchName)}`));\n    }\n    if (prUrl) content.push(linkParagraph(\"Pull request\", prUrl));\n    if (env.COMMITTED === \"false\") {\n      content.push(paragraph(\"No repository changes were committed on this run.\"));\n    }\n    if (responseFile && (await pathExists(responseFile))) {\n      const text = (await readFile(responseFile, \"utf8\")).trim();\n      if (text) content.push(...markdownToAdfBlocks(text));\n    }\n  } else {\n    content.push(paragraph(`[TDF-bot] Claude Code answer for ${issueKey} (conclusion: ${conclusion}):`));\n    if (responseFile && (await pathExists(responseFile))) {\n      const text = (await readFile(responseFile, \"utf8\")).trim();\n      if (text) content.push(...markdownToAdfBlocks(text));\n      else content.push(paragraph(\"_Empty response._\"));\n    } else {\n      content.push(paragraph(\"_No response file produced._\"));\n    }\n  }\n\n  await fetchJson(`${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(issueKey)}/comment`, {\n    method: \"POST\",\n    headers: jiraHeaders,\n    body: JSON.stringify({ body: { type: \"doc\", version: 1, content } }),\n  });\n  console.log(`Posted comment to ${issueKey}`);\n}\n\nfunction paragraph(text) {\n  return { type: \"paragraph\", content: [{ type: \"text\", text }] };\n}\n\nfunction linkParagraph(label, href) {\n  return {\n    type: \"paragraph\",\n    content: [\n      { type: \"text\", text: `${label}: ` },\n      { type: \"text\", text: href, marks: [{ type: \"link\", attrs: { href } }] },\n    ],\n  };\n}\n\nfunction markdownToAdfBlocks(text) {\n  const blocks = String(text)\n    .slice(0, 30000)\n    .split(/\\n{2,}/)\n    .map((s) => s.trim())\n    .filter(Boolean);\n  return blocks.map((block) => {\n    const lines = block.split(\"\\n\");\n    return {\n      type: \"paragraph\",\n      content: lines.flatMap((line, i) => [\n        ...(i === 0 ? [] : [{ type: \"hardBreak\" }]),\n        { type: \"text\", text: line },\n      ]),\n    };\n  });\n}\n\nfunction buildSpec({ issue, comments, key }) {\n  const fields = issue.fields ?? {};\n  const description = adfToMarkdown(fields.description).trim() || \"_No description provided._\";\n  const renderedComments = (comments ?? []).map((c) => {\n    const author = c.author?.displayName || \"<unknown>\";\n    const created = c.created || \"\";\n    const body = adfToMarkdown(c.body).trim() || \"_<empty>_\";\n    return `### ${author} on ${created}\\n\\n${body}`;\n  });\n  return [\n    `# ${key}: ${fields.summary ?? \"Untitled Jira issue\"}`,\n    \"\",\n    `Generated from Jira on ${nowIso()}.`,\n    \"\",\n    \"## Issue Details\",\n    \"\",\n    \"| Field | Value |\",\n    \"|---|---|\",\n    `| Key | ${tableRow(key)} |`,\n    `| Title | ${tableRow(fields.summary)} |`,\n    `| Type | ${tableRow(fields.issuetype?.name)} |`,\n    `| Status | ${tableRow(fields.status?.name)} |`,\n    `| Priority | ${tableRow(fields.priority?.name)} |`,\n    `| Assignee | ${tableRow(fields.assignee?.displayName)} |`,\n    `| Reporter | ${tableRow(fields.reporter?.displayName)} |`,\n    `| Labels | ${tableRow((fields.labels ?? []).join(\", \"))} |`,\n    `| Components | ${tableRow((fields.components ?? []).map((c) => c.name).join(\", \"))} |`,\n    `| Created | ${tableRow(fields.created)} |`,\n    `| Updated | ${tableRow(fields.updated)} |`,\n    \"\",\n    \"## Description\",\n    \"\",\n    description,\n    \"\",\n    `## Comments (${(comments ?? []).length})`,\n    \"\",\n    renderedComments.length ? renderedComments.join(\"\\n\\n\") : \"_No comments._\",\n    \"\",\n  ].join(\"\\n\");\n}\n\nfunction buildPrompt({ key, summary, ticketFolder, kind, isNew, specFile, planFile, responseFile, transcriptFile }) {\n  const goal =\n    kind === \"pr\"\n      ? [\n          \"- Make the smallest correct repository changes to satisfy the ticket.\",\n          `- Update \\`${planFile}\\` with the implementation plan.`,\n          `- Write a concise Jira-facing summary to \\`${responseFile}\\` (what changed, why, risks). Do not include logs or secrets.`,\n          \"- Do not create or merge pull requests; the workflow does that.\",\n        ].join(\"\\n\")\n      : [\n          `- Do not edit any file outside \\`${ticketFolder}\\`.`,\n          `- Update \\`${planFile}\\` with reasoning if it helps.`,\n          `- Write the complete answer to \\`${responseFile}\\` in markdown that renders correctly in Jira.`,\n        ].join(\"\\n\");\n\n  const continuationNote = isNew\n    ? \"\"\n    : `- This is a continuation. If your in-memory session is missing, rebuild context from \\`${transcriptFile}\\`, \\`${planFile}\\`, and the \\`runs/\\` folder under the ticket.\\n`;\n\n  return [\n    `You are running inside \\`${env.GITHUB_REPOSITORY}\\` for Jira ticket \\`${key}: ${summary}\\`.`,\n    \"\",\n    \"Read `CLAUDE.md` for repository conventions before touching files.\",\n    \"\",\n    `Ticket folder: \\`${ticketFolder}\\`.`,\n    `- \\`${specFile}\\`: a fresh snapshot of the Jira ticket and its comments. Read it. Do not edit it.`,\n    `- \\`${planFile}\\`: implementation plan. You own this file. Update it as you go.`,\n    `- \\`${transcriptFile}\\`: rolling history of prior runs. Read it for context if needed.`,\n    `- \\`${responseFile}\\`: the message that will be posted back to Jira. You own this file.`,\n    \"\",\n    `Run kind: \\`${kind}\\` (${kind === \"pr\" ? \"expects code/config changes plus a PR\" : \"answer-only, no code changes outside the ticket folder\"}).`,\n    `Run mode: \\`${isNew ? \"NEW\" : \"CONTINUATION\"}\\`.`,\n    \"\",\n    \"Goal:\",\n    goal,\n    \"\",\n    \"Constraints:\",\n    \"- Never expose, print, or commit secrets.\",\n    \"- Do not switch branches.\",\n    \"- Keep tool usage minimal.\",\n    continuationNote,\n  ].join(\"\\n\");\n}\n\nfunction adfToMarkdown(node) {\n  if (!node) return \"\";\n  if (Array.isArray(node)) return node.map(adfToMarkdown).join(\"\");\n\n  switch (node.type) {\n    case \"doc\":\n      return blockContent(node).join(\"\\n\\n\");\n    case \"paragraph\":\n      return inlineContent(node);\n    case \"heading\":\n      return `${\"#\".repeat(node.attrs?.level ?? 2)} ${inlineContent(node)}`;\n    case \"bulletList\":\n      return listContent(node, \"-\");\n    case \"orderedList\":\n      return orderedListContent(node);\n    case \"listItem\":\n      return blockContent(node).join(\"\\n\");\n    case \"blockquote\":\n      return blockContent(node)\n        .join(\"\\n\")\n        .split(\"\\n\")\n        .map((line) => `> ${line}`)\n        .join(\"\\n\");\n    case \"codeBlock\":\n      return `\\`\\`\\`\\n${textContent(node)}\\n\\`\\`\\``;\n    case \"rule\":\n      return \"---\";\n    case \"hardBreak\":\n      return \"\\n\";\n    case \"text\":\n      return applyMarks(node.text ?? \"\", node.marks ?? []);\n    default:\n      return blockContent(node).join(\"\\n\");\n  }\n}\n\nfunction blockContent(node) {\n  return (node.content ?? []).map(adfToMarkdown).filter(Boolean);\n}\n\nfunction inlineContent(node) {\n  return (node.content ?? []).map(adfToMarkdown).join(\"\");\n}\n\nfunction listContent(node, marker) {\n  return (node.content ?? [])\n    .map((item) =>\n      adfToMarkdown(item)\n        .split(\"\\n\")\n        .map((line, idx) => (idx === 0 ? `${marker} ${line}` : `  ${line}`))\n        .join(\"\\n\"),\n    )\n    .join(\"\\n\");\n}\n\nfunction orderedListContent(node) {\n  const start = node.attrs?.order ?? 1;\n  return (node.content ?? [])\n    .map((item, idx) =>\n      adfToMarkdown(item)\n        .split(\"\\n\")\n        .map((line, lineIdx) => (lineIdx === 0 ? `${start + idx}. ${line}` : `   ${line}`))\n        .join(\"\\n\"),\n    )\n    .join(\"\\n\");\n}\n\nfunction textContent(node) {\n  if (node.type === \"text\") return node.text ?? \"\";\n  return (node.content ?? []).map(textContent).join(\"\");\n}\n\nfunction applyMarks(text, marks) {\n  return marks.reduce((value, mark) => {\n    switch (mark.type) {\n      case \"strong\":\n        return `**${value}**`;\n      case \"em\":\n        return `_${value}_`;\n      case \"code\":\n        return `\\`${value}\\``;\n      case \"link\":\n        return `[${value}](${mark.attrs?.href ?? value})`;\n      default:\n        return value;\n    }\n  }, text);\n}\n",
+      "structuredPatch": [
+        {
+          "oldStart": 128,
+          "oldLines": 6,
+          "newStart": 128,
+          "newLines": 8,
+          "lines": [
+            "     { headers: jiraHeaders },",
+            "   );",
+            " ",
+            "+  await transitionToInProgress(key, issue);",
+            "+",
+            "   const fields = issue.fields ?? {};",
+            "   const summary = fields.summary || key;",
+            "   const kind = determineKind(issue);"
+          ]
+        }
+      ],
+      "userModified": false,
+      "replaceAll": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01PFa2hFvZ8Z8i7PZyJvj9VQ",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Now add the `transitionToInProgress` helper. I'll place it near the other Jira helpers, right after `fetchJson`."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 672,
+        "cache_read_input_tokens": 44198,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 672
+        },
+        "output_tokens": 9,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "4712a193-9faf-4a99-90f7-4cd8b4e89d79"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01PFa2hFvZ8Z8i7PZyJvj9VQ",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01QxsbzvrfjacQVAyfTrfBno",
+          "name": "Edit",
+          "input": {
+            "replace_all": false,
+            "file_path": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs",
+            "old_string": "async function fetchJson(url, options) {\n  const response = await fetch(url, options);\n  if (!response.ok) {\n    const body = await response.text();\n    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n  }\n  return response.json();\n}",
+            "new_string": "async function fetchJson(url, options) {\n  const response = await fetch(url, options);\n  if (!response.ok) {\n    const body = await response.text();\n    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n  }\n  return response.json();\n}\n\nasync function transitionToInProgress(key, issue) {\n  const category = lower(issue?.fields?.status?.statusCategory?.key);\n  if (category === \"indeterminate\" || category === \"done\") {\n    console.log(`Skipping In Progress transition for ${key}: status category is \"${category}\".`);\n    return;\n  }\n\n  let transitions;\n  try {\n    const data = await fetchJson(\n      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,\n      { headers: jiraHeaders },\n    );\n    transitions = Array.isArray(data?.transitions) ? data.transitions : [];\n  } catch (err) {\n    console.warn(`Failed to fetch transitions for ${key}: ${err.message}`);\n    return;\n  }\n\n  const target =\n    transitions.find((t) => lower(t?.to?.statusCategory?.key) === \"indeterminate\") ||\n    transitions.find((t) => lower(t?.name) === \"in progress\");\n\n  if (!target) {\n    console.warn(`No \"In Progress\" transition available for ${key}; continuing without status change.`);\n    return;\n  }\n\n  try {\n    const response = await fetch(\n      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,\n      {\n        method: \"POST\",\n        headers: jiraHeaders,\n        body: JSON.stringify({ transition: { id: target.id } }),\n      },\n    );\n    if (!response.ok) {\n      const body = await response.text().catch(() => \"\");\n      console.warn(`Failed to transition ${key} via \"${target.name}\" (id=${target.id}): HTTP ${response.status} ${response.statusText}${body ? ` ${body}` : \"\"}`);\n      return;\n    }\n    console.log(`Transitioned ${key} to In Progress via \"${target.name}\" (id=${target.id}).`);\n  } catch (err) {\n    console.warn(`Failed to transition ${key} via \"${target.name}\" (id=${target.id}): ${err.message}`);\n  }\n}"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 672,
+        "cache_read_input_tokens": 44198,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 672
+        },
+        "output_tokens": 9,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "79e0f3a2-acdb-499c-bc58-9faad0b607fe"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01QxsbzvrfjacQVAyfTrfBno",
+          "type": "tool_result",
+          "content": "The file /home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs has been updated successfully. (file state is current in your context — no need to Read it back)"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "36a9827f-c21c-4aa4-b84a-74503cd00e8d",
+    "timestamp": "2026-05-07T23:38:28.821Z",
+    "tool_use_result": {
+      "filePath": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs",
+      "oldString": "async function fetchJson(url, options) {\n  const response = await fetch(url, options);\n  if (!response.ok) {\n    const body = await response.text();\n    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n  }\n  return response.json();\n}",
+      "newString": "async function fetchJson(url, options) {\n  const response = await fetch(url, options);\n  if (!response.ok) {\n    const body = await response.text();\n    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n  }\n  return response.json();\n}\n\nasync function transitionToInProgress(key, issue) {\n  const category = lower(issue?.fields?.status?.statusCategory?.key);\n  if (category === \"indeterminate\" || category === \"done\") {\n    console.log(`Skipping In Progress transition for ${key}: status category is \"${category}\".`);\n    return;\n  }\n\n  let transitions;\n  try {\n    const data = await fetchJson(\n      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,\n      { headers: jiraHeaders },\n    );\n    transitions = Array.isArray(data?.transitions) ? data.transitions : [];\n  } catch (err) {\n    console.warn(`Failed to fetch transitions for ${key}: ${err.message}`);\n    return;\n  }\n\n  const target =\n    transitions.find((t) => lower(t?.to?.statusCategory?.key) === \"indeterminate\") ||\n    transitions.find((t) => lower(t?.name) === \"in progress\");\n\n  if (!target) {\n    console.warn(`No \"In Progress\" transition available for ${key}; continuing without status change.`);\n    return;\n  }\n\n  try {\n    const response = await fetch(\n      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,\n      {\n        method: \"POST\",\n        headers: jiraHeaders,\n        body: JSON.stringify({ transition: { id: target.id } }),\n      },\n    );\n    if (!response.ok) {\n      const body = await response.text().catch(() => \"\");\n      console.warn(`Failed to transition ${key} via \"${target.name}\" (id=${target.id}): HTTP ${response.status} ${response.statusText}${body ? ` ${body}` : \"\"}`);\n      return;\n    }\n    console.log(`Transitioned ${key} to In Progress via \"${target.name}\" (id=${target.id}).`);\n  } catch (err) {\n    console.warn(`Failed to transition ${key} via \"${target.name}\" (id=${target.id}): ${err.message}`);\n  }\n}",
+      "originalFile": "import { mkdir, readFile, writeFile, access, copyFile } from \"node:fs/promises\";\nimport { execSync } from \"node:child_process\";\n\n// JSON.stringify is used as a safe shell-arg quoter for known-shape strings\n// like Jira branch names; treat any string passed to execSync that way.\n\nconst mode = process.argv[2];\nif (!mode) {\n  throw new Error(\"Usage: jira-dispatch.mjs <prepare-dispatch|record-run|commit-changes|ensure-pr|comment-result>\");\n}\n\nconst env = process.env;\n\nlet jiraBaseUrl;\nlet jiraHeaders;\n\nrun().catch((err) => {\n  console.error(err);\n  process.exit(1);\n});\n\nasync function run() {\n  if (mode === \"prepare-dispatch\") return prepareDispatch();\n  if (mode === \"record-run\") return recordRun();\n  if (mode === \"commit-changes\") return commitChanges();\n  if (mode === \"ensure-pr\") return ensurePr();\n  if (mode === \"comment-result\") return commentResult();\n  throw new Error(`Unknown mode: ${mode}`);\n}\n\nfunction requireEnv(name) {\n  const v = env[name];\n  if (!v) throw new Error(`Missing required environment variable: ${name}`);\n  return v;\n}\n\nfunction initJira() {\n  const baseUrl = requireEnv(\"JIRA_BASE_URL\").replace(/\\/+$/, \"\");\n  const email = requireEnv(\"JIRA_EMAIL\");\n  const token = requireEnv(\"JIRA_API_TOKEN\");\n  jiraBaseUrl = baseUrl;\n  jiraHeaders = {\n    Authorization: `Basic ${Buffer.from(`${email}:${token}`).toString(\"base64\")}`,\n    Accept: \"application/json\",\n    \"Content-Type\": \"application/json\",\n  };\n}\n\nasync function fetchJson(url, options) {\n  const response = await fetch(url, options);\n  if (!response.ok) {\n    const body = await response.text();\n    throw new Error(`HTTP ${response.status} ${response.statusText} for ${url}: ${body}`);\n  }\n  return response.json();\n}\n\nasync function appendGithubEnv(values) {\n  const file = env.GITHUB_ENV;\n  if (!file) return;\n  const body = Object.entries(values)\n    .map(([k, v]) => {\n      const s = String(v ?? \"\");\n      if (s.includes(\"\\n\")) return `${k}<<EOF_${k}\\n${s}\\nEOF_${k}`;\n      return `${k}=${s}`;\n    })\n    .join(\"\\n\");\n  await writeFile(file, body + \"\\n\", { flag: \"a\" });\n}\n\nasync function pathExists(p) {\n  try {\n    await access(p);\n    return true;\n  } catch {\n    return false;\n  }\n}\n\nasync function readJsonOrEmpty(p) {\n  try {\n    const raw = await readFile(p, \"utf8\");\n    return raw.trim() ? JSON.parse(raw) : {};\n  } catch {\n    return {};\n  }\n}\n\nfunction nowIso() {\n  return new Date().toISOString();\n}\n\nfunction compactStamp() {\n  return new Date().toISOString().replace(/[-:]/g, \"\").replace(/\\..+$/, \"Z\");\n}\n\nfunction lower(s) {\n  return String(s ?? \"\").toLowerCase();\n}\n\nfunction tableRow(value) {\n  return String(value || \"-\").replace(/\\|/g, \"\\\\|\").replace(/\\n/g, \"<br>\");\n}\n\nfunction normalizeIssueKey(key) {\n  const normalized = String(key || \"\").trim().toUpperCase();\n  if (!/^[A-Z][A-Z0-9]+-\\d+$/.test(normalized)) {\n    throw new Error(`Invalid Jira issue key: ${key}`);\n  }\n  return normalized;\n}\n\nfunction determineKind(issue) {\n  const labels = (issue.fields?.labels ?? []).map(lower);\n  if (labels.includes(\"claude:answer\")) return \"answer\";\n  if (labels.includes(\"claude:pr\")) return \"pr\";\n  const type = lower(issue.fields?.issuetype?.name);\n  if (type === \"question\") return \"answer\";\n  return \"pr\";\n}\n\nasync function prepareDispatch() {\n  initJira();\n  const key = normalizeIssueKey(requireEnv(\"ISSUE_KEY\"));\n\n  const issue = await fetchJson(\n    `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,\n    { headers: jiraHeaders },\n  );\n\n  await transitionToInProgress(key, issue);\n\n  const fields = issue.fields ?? {};\n  const summary = fields.summary || key;\n  const kind = determineKind(issue);\n  const branchName = `tdf/${key.toLowerCase()}`;\n\n  // For PR mode, switch to the existing PR branch if one exists on origin so\n  // that prior state.json, plan.md, transcript.md, and any code changes are\n  // visible to this run. Done before any file writes to avoid untracked-file\n  // collisions with `git checkout`.\n  if (kind === \"pr\") {\n    let branchExists = false;\n    try {\n      execSync(`git ls-remote --exit-code --heads origin ${JSON.stringify(branchName)}`, { stdio: \"ignore\" });\n      branchExists = true;\n    } catch {\n      branchExists = false;\n    }\n    if (branchExists) {\n      console.log(`Existing branch ${branchName} found on origin; checking out.`);\n      execSync(`git fetch origin ${JSON.stringify(branchName)}`, { stdio: \"inherit\" });\n      execSync(`git checkout -B ${JSON.stringify(branchName)} origin/${branchName}`, { stdio: \"inherit\" });\n    } else {\n      console.log(`No existing branch ${branchName}; will create from main on commit.`);\n    }\n  }\n\n  const ticketFolder = `spec/${key}`;\n  const stateFile = `${ticketFolder}/state.json`;\n  const transcriptFile = `${ticketFolder}/transcript.md`;\n  const specFile = `${ticketFolder}/spec.md`;\n  const planFile = `${ticketFolder}/plan.md`;\n  const responseFile = `${ticketFolder}/response.md`;\n  const runDir = `${ticketFolder}/runs/${compactStamp()}-${env.GITHUB_RUN_ID || \"local\"}`;\n  const promptFile = `${runDir}/prompt.md`;\n\n  await mkdir(runDir, { recursive: true });\n\n  let isNew = true;\n  let lastSessionId = \"\";\n  if (await pathExists(stateFile)) {\n    isNew = false;\n    const state = await readJsonOrEmpty(stateFile);\n    lastSessionId = state.last_session_id || \"\";\n  } else {\n    await writeFile(\n      stateFile,\n      JSON.stringify({ ticket_id: key, run_count: 0, kind, branch: branchName }, null, 2) + \"\\n\",\n      \"utf8\",\n    );\n  }\n\n  if (!(await pathExists(transcriptFile))) {\n    await writeFile(transcriptFile, `# ${key} Transcript\\n`, \"utf8\");\n  }\n\n  const comments = issue.fields?.comment?.comments ?? [];\n  await writeFile(specFile, buildSpec({ issue, comments, key }), \"utf8\");\n\n  const prompt = buildPrompt({\n    key,\n    summary,\n    ticketFolder,\n    kind,\n    isNew,\n    specFile,\n    planFile,\n    responseFile,\n    transcriptFile,\n  });\n  await writeFile(promptFile, prompt, \"utf8\");\n\n  let claudeArgs = \"--max-turns 60 --permission-mode bypassPermissions\";\n  if (lastSessionId) claudeArgs += ` --resume ${lastSessionId}`;\n\n  await mkdir(`${requireEnv(\"HOME\")}/.claude/projects`, { recursive: true });\n\n  await appendGithubEnv({\n    SHOULD_RUN: \"true\",\n    ISSUE_KEY: key,\n    ISSUE_TITLE: summary,\n    JIRA_ISSUE_URL: `${jiraBaseUrl}/browse/${key}`,\n    KIND: kind,\n    BRANCH_NAME: branchName,\n    IS_NEW: isNew ? \"true\" : \"false\",\n    LAST_SESSION_ID: lastSessionId,\n    TICKET_FOLDER: ticketFolder,\n    STATE_FILE: stateFile,\n    TRANSCRIPT_FILE: transcriptFile,\n    SPEC_FILE: specFile,\n    PLAN_FILE: planFile,\n    RESPONSE_FILE: responseFile,\n    RUN_DIR: runDir,\n    PROMPT_FILE: promptFile,\n    CLAUDE_ARGS: claudeArgs,\n  });\n\n  console.log(`Prepared dispatch for ${key} (kind=${kind} new=${isNew} last_session=${lastSessionId || \"<none>\"})`);\n}\n\nasync function recordRun() {\n  const stateFile = requireEnv(\"STATE_FILE\");\n  const transcriptFile = requireEnv(\"TRANSCRIPT_FILE\");\n  const responseFile = env.RESPONSE_FILE || \"\";\n  const promptFile = env.PROMPT_FILE || \"\";\n  const runDir = env.RUN_DIR || \"\";\n  const isNew = env.IS_NEW === \"true\";\n  const kind = env.KIND || \"pr\";\n  const conclusion = env.CONCLUSION || \"unknown\";\n  const lastSessionId = env.LAST_SESSION_ID || \"\";\n  const actionSessionId = env.ACTION_SESSION_ID || \"\";\n  const executionFile = env.EXECUTION_FILE || \"\";\n\n  let newSessionId = actionSessionId;\n  let assistantText = \"\";\n\n  if (executionFile && (await pathExists(executionFile))) {\n    try {\n      const raw = await readFile(executionFile, \"utf8\");\n      const entries = parseExecutionFile(raw);\n      if (!newSessionId) {\n        for (const e of entries) {\n          if (e?.session_id) newSessionId = e.session_id;\n        }\n      }\n      for (const e of entries) {\n        if (e?.type === \"assistant\") {\n          for (const part of e?.message?.content ?? []) {\n            if (part?.type === \"text\" && typeof part.text === \"string\") {\n              assistantText = part.text;\n            }\n          }\n        }\n      }\n      if (runDir) {\n        await mkdir(runDir, { recursive: true });\n        await copyFile(executionFile, `${runDir}/execution.json`);\n      }\n    } catch (err) {\n      console.warn(`Failed to parse execution_file: ${err.message}`);\n    }\n  }\n\n  if (runDir) {\n    if (responseFile && (await pathExists(responseFile))) {\n      await copyFile(responseFile, `${runDir}/response.md`);\n    }\n    if (promptFile && (await pathExists(promptFile))) {\n      await copyFile(promptFile, `${runDir}/prompt.md`);\n    }\n  }\n\n  const now = nowIso();\n  const rotated = lastSessionId && newSessionId && lastSessionId !== newSessionId;\n\n  const state = await readJsonOrEmpty(stateFile);\n  state.ticket_id = state.ticket_id || env.ISSUE_KEY || \"\";\n  state.last_session_id = newSessionId || \"\";\n  state.prev_session_id = lastSessionId || null;\n  state.last_run_at = now;\n  state.last_conclusion = conclusion;\n  state.last_kind = kind;\n  state.run_count = (state.run_count || 0) + 1;\n  if (env.BRANCH_NAME) state.branch = env.BRANCH_NAME;\n  state.kind = kind;\n  await writeFile(stateFile, JSON.stringify(state, null, 2) + \"\\n\", \"utf8\");\n\n  const summarySnippet = (assistantText || \"\").trim().split(\"\\n\").slice(0, 12).join(\"\\n  \");\n  const block = [\n    \"\",\n    `## Run ${now}`,\n    `- run_kind: ${isNew ? \"new\" : \"continuation\"}`,\n    `- prev_session_id: ${lastSessionId || \"<none>\"}`,\n    `- new_session_id: ${newSessionId || \"<none>\"}`,\n    `- session_id_rotated: ${rotated ? \"true\" : \"false\"}`,\n    `- conclusion: ${conclusion}`,\n    `- run_dir: ${runDir || \"<none>\"}`,\n    `- assistant_summary:\\n  ${summarySnippet || \"<empty>\"}`,\n    \"\",\n  ].join(\"\\n\");\n  await writeFile(transcriptFile, block, { flag: \"a\" });\n\n  await appendGithubEnv({ NEW_SESSION_ID: newSessionId });\n  console.log(`Recorded run for ${env.ISSUE_KEY}: session=${newSessionId || \"<none>\"}`);\n}\n\nfunction parseExecutionFile(raw) {\n  const trimmed = raw.trim();\n  if (!trimmed) return [];\n  if (trimmed.startsWith(\"[\")) {\n    try {\n      const arr = JSON.parse(trimmed);\n      return Array.isArray(arr) ? arr : [];\n    } catch {\n      // fall through to NDJSON\n    }\n  }\n  return trimmed\n    .split(\"\\n\")\n    .filter(Boolean)\n    .map((line) => {\n      try {\n        return JSON.parse(line);\n      } catch {\n        return null;\n      }\n    })\n    .filter(Boolean);\n}\n\nfunction commitChanges() {\n  const kind = env.KIND || \"pr\";\n  const branchName = requireEnv(\"BRANCH_NAME\");\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const ticketFolder = requireEnv(\"TICKET_FOLDER\");\n  const runId = env.GITHUB_RUN_ID || \"\";\n\n  sh(\"rm -f output.txt\");\n  sh('git config user.name \"github-actions[bot]\"');\n  sh('git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\"');\n\n  if (kind === \"pr\") {\n    sh(`git checkout -B \"${branchName}\"`);\n    sh(\"git add -A\");\n    if (gitNothingStaged()) {\n      console.log(\"No changes to commit on PR branch\");\n      return appendGithubEnv({ COMMITTED: \"false\" });\n    }\n    sh(`git commit -m \"${issueKey}: claude-code update (run ${runId})\"`);\n    sh(`git push origin \"HEAD:${branchName}\"`);\n    return appendGithubEnv({ COMMITTED: \"true\" });\n  }\n\n  sh(`git add -A \"${ticketFolder}\"`);\n  if (gitNothingStaged()) {\n    console.log(\"No artefact changes to commit on main\");\n    return appendGithubEnv({ COMMITTED: \"false\" });\n  }\n  sh(`git commit -m \"${issueKey}: update ticket artefacts (run ${runId})\"`);\n  sh(\"git push origin HEAD:main\");\n  return appendGithubEnv({ COMMITTED: \"true\" });\n}\n\nfunction gitNothingStaged() {\n  try {\n    execSync(\"git diff --cached --quiet\", { stdio: \"ignore\" });\n    return true;\n  } catch {\n    return false;\n  }\n}\n\nfunction sh(cmd) {\n  execSync(cmd, { stdio: [\"ignore\", \"inherit\", \"inherit\"] });\n}\n\nasync function ensurePr() {\n  if ((env.KIND || \"pr\") !== \"pr\") {\n    console.log(\"Not PR mode, skipping ensure-pr\");\n    return;\n  }\n  if (env.COMMITTED !== \"true\") {\n    console.log(\"No commit happened on this run; skipping PR.\");\n    return;\n  }\n\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const issueTitle = env.ISSUE_TITLE || issueKey;\n  const branchName = requireEnv(\"BRANCH_NAME\");\n  const repo = requireEnv(\"GITHUB_REPOSITORY\");\n  const repoOwner = repo.split(\"/\")[0];\n  const ghToken = requireEnv(\"GH_TOKEN\");\n\n  const headers = {\n    Accept: \"application/vnd.github+json\",\n    Authorization: `Bearer ${ghToken}`,\n    \"X-GitHub-Api-Version\": \"2022-11-28\",\n    \"User-Agent\": \"tdf-dispatch\",\n  };\n\n  const listUrl = `https://api.github.com/repos/${repo}/pulls?state=open&base=main&head=${repoOwner}:${branchName}`;\n  const existing = await fetchJson(listUrl, { headers });\n  let prUrl = (Array.isArray(existing) && existing[0] && existing[0].html_url) || \"\";\n\n  if (!prUrl) {\n    const body = [\n      `Automated Claude Code update for ${issueKey}.`,\n      \"\",\n      `Jira: ${env.JIRA_ISSUE_URL || \"\"}`,\n      `Ticket folder: \\`${env.TICKET_FOLDER || \"\"}\\``,\n      \"\",\n      \"Review and merge when ready.\",\n    ].join(\"\\n\");\n\n    const created = await fetchJson(`https://api.github.com/repos/${repo}/pulls`, {\n      method: \"POST\",\n      headers: { ...headers, \"Content-Type\": \"application/json\" },\n      body: JSON.stringify({\n        title: `${issueKey}: ${issueTitle}`,\n        head: branchName,\n        base: \"main\",\n        body,\n      }),\n    });\n    prUrl = created.html_url;\n  }\n\n  await appendGithubEnv({ PR_URL: prUrl });\n  console.log(`Pull request: ${prUrl}`);\n}\n\nasync function commentResult() {\n  initJira();\n  const issueKey = requireEnv(\"ISSUE_KEY\");\n  const kind = env.KIND || \"pr\";\n  const branchName = env.BRANCH_NAME || \"\";\n  const responseFile = env.RESPONSE_FILE || \"\";\n  const stateFile = env.STATE_FILE || \"\";\n  const repo = env.GITHUB_REPOSITORY || \"\";\n  const prUrl = env.PR_URL || \"\";\n  let conclusion = env.CONCLUSION || \"\";\n  if (!conclusion && stateFile) {\n    const state = await readJsonOrEmpty(stateFile);\n    conclusion = state.last_conclusion || \"unknown\";\n  }\n  if (!conclusion) conclusion = \"unknown\";\n\n  const content = [];\n\n  if (kind === \"pr\") {\n    content.push(paragraph(`[TDF-bot] Claude Code processed ${issueKey} (conclusion: ${conclusion}).`));\n    if (branchName && repo) {\n      content.push(linkParagraph(\"Branch\", `https://github.com/${repo}/tree/${encodeURIComponent(branchName)}`));\n    }\n    if (prUrl) content.push(linkParagraph(\"Pull request\", prUrl));\n    if (env.COMMITTED === \"false\") {\n      content.push(paragraph(\"No repository changes were committed on this run.\"));\n    }\n    if (responseFile && (await pathExists(responseFile))) {\n      const text = (await readFile(responseFile, \"utf8\")).trim();\n      if (text) content.push(...markdownToAdfBlocks(text));\n    }\n  } else {\n    content.push(paragraph(`[TDF-bot] Claude Code answer for ${issueKey} (conclusion: ${conclusion}):`));\n    if (responseFile && (await pathExists(responseFile))) {\n      const text = (await readFile(responseFile, \"utf8\")).trim();\n      if (text) content.push(...markdownToAdfBlocks(text));\n      else content.push(paragraph(\"_Empty response._\"));\n    } else {\n      content.push(paragraph(\"_No response file produced._\"));\n    }\n  }\n\n  await fetchJson(`${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(issueKey)}/comment`, {\n    method: \"POST\",\n    headers: jiraHeaders,\n    body: JSON.stringify({ body: { type: \"doc\", version: 1, content } }),\n  });\n  console.log(`Posted comment to ${issueKey}`);\n}\n\nfunction paragraph(text) {\n  return { type: \"paragraph\", content: [{ type: \"text\", text }] };\n}\n\nfunction linkParagraph(label, href) {\n  return {\n    type: \"paragraph\",\n    content: [\n      { type: \"text\", text: `${label}: ` },\n      { type: \"text\", text: href, marks: [{ type: \"link\", attrs: { href } }] },\n    ],\n  };\n}\n\nfunction markdownToAdfBlocks(text) {\n  const blocks = String(text)\n    .slice(0, 30000)\n    .split(/\\n{2,}/)\n    .map((s) => s.trim())\n    .filter(Boolean);\n  return blocks.map((block) => {\n    const lines = block.split(\"\\n\");\n    return {\n      type: \"paragraph\",\n      content: lines.flatMap((line, i) => [\n        ...(i === 0 ? [] : [{ type: \"hardBreak\" }]),\n        { type: \"text\", text: line },\n      ]),\n    };\n  });\n}\n\nfunction buildSpec({ issue, comments, key }) {\n  const fields = issue.fields ?? {};\n  const description = adfToMarkdown(fields.description).trim() || \"_No description provided._\";\n  const renderedComments = (comments ?? []).map((c) => {\n    const author = c.author?.displayName || \"<unknown>\";\n    const created = c.created || \"\";\n    const body = adfToMarkdown(c.body).trim() || \"_<empty>_\";\n    return `### ${author} on ${created}\\n\\n${body}`;\n  });\n  return [\n    `# ${key}: ${fields.summary ?? \"Untitled Jira issue\"}`,\n    \"\",\n    `Generated from Jira on ${nowIso()}.`,\n    \"\",\n    \"## Issue Details\",\n    \"\",\n    \"| Field | Value |\",\n    \"|---|---|\",\n    `| Key | ${tableRow(key)} |`,\n    `| Title | ${tableRow(fields.summary)} |`,\n    `| Type | ${tableRow(fields.issuetype?.name)} |`,\n    `| Status | ${tableRow(fields.status?.name)} |`,\n    `| Priority | ${tableRow(fields.priority?.name)} |`,\n    `| Assignee | ${tableRow(fields.assignee?.displayName)} |`,\n    `| Reporter | ${tableRow(fields.reporter?.displayName)} |`,\n    `| Labels | ${tableRow((fields.labels ?? []).join(\", \"))} |`,\n    `| Components | ${tableRow((fields.components ?? []).map((c) => c.name).join(\", \"))} |`,\n    `| Created | ${tableRow(fields.created)} |`,\n    `| Updated | ${tableRow(fields.updated)} |`,\n    \"\",\n    \"## Description\",\n    \"\",\n    description,\n    \"\",\n    `## Comments (${(comments ?? []).length})`,\n    \"\",\n    renderedComments.length ? renderedComments.join(\"\\n\\n\") : \"_No comments._\",\n    \"\",\n  ].join(\"\\n\");\n}\n\nfunction buildPrompt({ key, summary, ticketFolder, kind, isNew, specFile, planFile, responseFile, transcriptFile }) {\n  const goal =\n    kind === \"pr\"\n      ? [\n          \"- Make the smallest correct repository changes to satisfy the ticket.\",\n          `- Update \\`${planFile}\\` with the implementation plan.`,\n          `- Write a concise Jira-facing summary to \\`${responseFile}\\` (what changed, why, risks). Do not include logs or secrets.`,\n          \"- Do not create or merge pull requests; the workflow does that.\",\n        ].join(\"\\n\")\n      : [\n          `- Do not edit any file outside \\`${ticketFolder}\\`.`,\n          `- Update \\`${planFile}\\` with reasoning if it helps.`,\n          `- Write the complete answer to \\`${responseFile}\\` in markdown that renders correctly in Jira.`,\n        ].join(\"\\n\");\n\n  const continuationNote = isNew\n    ? \"\"\n    : `- This is a continuation. If your in-memory session is missing, rebuild context from \\`${transcriptFile}\\`, \\`${planFile}\\`, and the \\`runs/\\` folder under the ticket.\\n`;\n\n  return [\n    `You are running inside \\`${env.GITHUB_REPOSITORY}\\` for Jira ticket \\`${key}: ${summary}\\`.`,\n    \"\",\n    \"Read `CLAUDE.md` for repository conventions before touching files.\",\n    \"\",\n    `Ticket folder: \\`${ticketFolder}\\`.`,\n    `- \\`${specFile}\\`: a fresh snapshot of the Jira ticket and its comments. Read it. Do not edit it.`,\n    `- \\`${planFile}\\`: implementation plan. You own this file. Update it as you go.`,\n    `- \\`${transcriptFile}\\`: rolling history of prior runs. Read it for context if needed.`,\n    `- \\`${responseFile}\\`: the message that will be posted back to Jira. You own this file.`,\n    \"\",\n    `Run kind: \\`${kind}\\` (${kind === \"pr\" ? \"expects code/config changes plus a PR\" : \"answer-only, no code changes outside the ticket folder\"}).`,\n    `Run mode: \\`${isNew ? \"NEW\" : \"CONTINUATION\"}\\`.`,\n    \"\",\n    \"Goal:\",\n    goal,\n    \"\",\n    \"Constraints:\",\n    \"- Never expose, print, or commit secrets.\",\n    \"- Do not switch branches.\",\n    \"- Keep tool usage minimal.\",\n    continuationNote,\n  ].join(\"\\n\");\n}\n\nfunction adfToMarkdown(node) {\n  if (!node) return \"\";\n  if (Array.isArray(node)) return node.map(adfToMarkdown).join(\"\");\n\n  switch (node.type) {\n    case \"doc\":\n      return blockContent(node).join(\"\\n\\n\");\n    case \"paragraph\":\n      return inlineContent(node);\n    case \"heading\":\n      return `${\"#\".repeat(node.attrs?.level ?? 2)} ${inlineContent(node)}`;\n    case \"bulletList\":\n      return listContent(node, \"-\");\n    case \"orderedList\":\n      return orderedListContent(node);\n    case \"listItem\":\n      return blockContent(node).join(\"\\n\");\n    case \"blockquote\":\n      return blockContent(node)\n        .join(\"\\n\")\n        .split(\"\\n\")\n        .map((line) => `> ${line}`)\n        .join(\"\\n\");\n    case \"codeBlock\":\n      return `\\`\\`\\`\\n${textContent(node)}\\n\\`\\`\\``;\n    case \"rule\":\n      return \"---\";\n    case \"hardBreak\":\n      return \"\\n\";\n    case \"text\":\n      return applyMarks(node.text ?? \"\", node.marks ?? []);\n    default:\n      return blockContent(node).join(\"\\n\");\n  }\n}\n\nfunction blockContent(node) {\n  return (node.content ?? []).map(adfToMarkdown).filter(Boolean);\n}\n\nfunction inlineContent(node) {\n  return (node.content ?? []).map(adfToMarkdown).join(\"\");\n}\n\nfunction listContent(node, marker) {\n  return (node.content ?? [])\n    .map((item) =>\n      adfToMarkdown(item)\n        .split(\"\\n\")\n        .map((line, idx) => (idx === 0 ? `${marker} ${line}` : `  ${line}`))\n        .join(\"\\n\"),\n    )\n    .join(\"\\n\");\n}\n\nfunction orderedListContent(node) {\n  const start = node.attrs?.order ?? 1;\n  return (node.content ?? [])\n    .map((item, idx) =>\n      adfToMarkdown(item)\n        .split(\"\\n\")\n        .map((line, lineIdx) => (lineIdx === 0 ? `${start + idx}. ${line}` : `   ${line}`))\n        .join(\"\\n\"),\n    )\n    .join(\"\\n\");\n}\n\nfunction textContent(node) {\n  if (node.type === \"text\") return node.text ?? \"\";\n  return (node.content ?? []).map(textContent).join(\"\");\n}\n\nfunction applyMarks(text, marks) {\n  return marks.reduce((value, mark) => {\n    switch (mark.type) {\n      case \"strong\":\n        return `**${value}**`;\n      case \"em\":\n        return `_${value}_`;\n      case \"code\":\n        return `\\`${value}\\``;\n      case \"link\":\n        return `[${value}](${mark.attrs?.href ?? value})`;\n      default:\n        return value;\n    }\n  }, text);\n}\n",
+      "structuredPatch": [
+        {
+          "oldStart": 55,
+          "oldLines": 6,
+          "newStart": 55,
+          "newLines": 54,
+          "lines": [
+            "   return response.json();",
+            " }",
+            " ",
+            "+async function transitionToInProgress(key, issue) {",
+            "+  const category = lower(issue?.fields?.status?.statusCategory?.key);",
+            "+  if (category === \"indeterminate\" || category === \"done\") {",
+            "+    console.log(`Skipping In Progress transition for ${key}: status category is \"${category}\".`);",
+            "+    return;",
+            "+  }",
+            "+",
+            "+  let transitions;",
+            "+  try {",
+            "+    const data = await fetchJson(",
+            "+      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,",
+            "+      { headers: jiraHeaders },",
+            "+    );",
+            "+    transitions = Array.isArray(data?.transitions) ? data.transitions : [];",
+            "+  } catch (err) {",
+            "+    console.warn(`Failed to fetch transitions for ${key}: ${err.message}`);",
+            "+    return;",
+            "+  }",
+            "+",
+            "+  const target =",
+            "+    transitions.find((t) => lower(t?.to?.statusCategory?.key) === \"indeterminate\") ||",
+            "+    transitions.find((t) => lower(t?.name) === \"in progress\");",
+            "+",
+            "+  if (!target) {",
+            "+    console.warn(`No \"In Progress\" transition available for ${key}; continuing without status change.`);",
+            "+    return;",
+            "+  }",
+            "+",
+            "+  try {",
+            "+    const response = await fetch(",
+            "+      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,",
+            "+      {",
+            "+        method: \"POST\",",
+            "+        headers: jiraHeaders,",
+            "+        body: JSON.stringify({ transition: { id: target.id } }),",
+            "+      },",
+            "+    );",
+            "+    if (!response.ok) {",
+            "+      const body = await response.text().catch(() => \"\");",
+            "+      console.warn(`Failed to transition ${key} via \"${target.name}\" (id=${target.id}): HTTP ${response.status} ${response.statusText}${body ? ` ${body}` : \"\"}`);",
+            "+      return;",
+            "+    }",
+            "+    console.log(`Transitioned ${key} to In Progress via \"${target.name}\" (id=${target.id}).`);",
+            "+  } catch (err) {",
+            "+    console.warn(`Failed to transition ${key} via \"${target.name}\" (id=${target.id}): ${err.message}`);",
+            "+  }",
+            "+}",
+            "+",
+            " async function appendGithubEnv(values) {",
+            "   const file = env.GITHUB_ENV;",
+            "   if (!file) return;"
+          ]
+        }
+      ],
+      "userModified": false,
+      "replaceAll": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01StTnwraVVmmc5BVBXFzqQZ",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01XdwZ8ZM37MQa2qdCndcqvk",
+          "name": "Bash",
+          "input": {
+            "command": "node --check /home/runner/work/The_Dark_Factory/The_Dark_Factory/.github/scripts/jira-dispatch.mjs && echo \"OK\"",
+            "description": "Validate JS syntax of the modified script"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 1359,
+        "cache_read_input_tokens": 44870,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1359
+        },
+        "output_tokens": 61,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "92cd2fda-ac48-47f7-ab6d-f34a1335f2f6"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01XdwZ8ZM37MQa2qdCndcqvk",
+          "type": "tool_result",
+          "content": "OK",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "1fc675b4-8df7-43d5-aa4d-c02318099ad1",
+    "timestamp": "2026-05-07T23:38:31.560Z",
+    "tool_use_result": {
+      "stdout": "OK",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01LNBTuZosG5XWPdb96BseUF",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Syntax check passes. Now the response file."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 165,
+        "cache_read_input_tokens": 46229,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 165
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "c322d176-e772-40f8-ac06-b0a6115f3e07"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01LNBTuZosG5XWPdb96BseUF",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01KBVrGkTDJTtB7BPnt8c6FH",
+          "name": "Write",
+          "input": {
+            "file_path": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/response.md",
+            "content": "## TDS-12 — Move ticket to In Progress when work starts\n\n**What changed**\n\n`.github/scripts/jira-dispatch.mjs` (only) now transitions the Jira ticket to \"In Progress\" inside `prepareDispatch`, immediately after the issue fetch and before any branch checkout or file write. A new helper `transitionToInProgress(key, issue)` does the work; the existing `initJira()` / `fetchJson()` patterns are reused, so no new secrets are needed.\n\n**How status detection works**\n\n1. Read `status.statusCategory.key` from the already-fetched issue (the existing fetch already requests the `status` field).\n2. If the category is `indeterminate` (already In Progress) or `done`, log and skip — re-runs on those tickets are silent no-ops.\n3. Otherwise, `GET /rest/api/3/issue/{key}/transitions` and pick a transition whose `to.statusCategory.key === \"indeterminate\"`. If none, fall back to the first transition whose `name` matches `\"in progress\"` case-insensitively.\n4. `POST /rest/api/3/issue/{key}/transitions` with `{\"transition\": {\"id\": \"<id>\"}}`.\n\n**Fallback behaviour**\n\n- No matching transition for the current state → log a warning and continue. The dispatch run is never aborted.\n- Transitions API request fails or the POST returns non-2xx → log a warning and continue.\n- All failures are best-effort; the ticket workflow is never blocked by a status-flip problem.\n\n**Risks**\n\n- If a Jira workflow exposes more than one `indeterminate` transition for a state (unusual), the helper picks the first one returned by Jira. This matches the spec.\n- Could not exercise live Jira from this run; relying on the documented Jira REST v3 contract that `status.statusCategory.key` is returned with the standard `status` field, and that the transitions endpoint returns `{transitions: [...]}`.\n"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 165,
+        "cache_read_input_tokens": 46229,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 165
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "1e189bd9-3bad-4599-9986-a19286396257"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01KBVrGkTDJTtB7BPnt8c6FH",
+          "type": "tool_result",
+          "content": "File created successfully at: /home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/response.md (file state is current in your context — no need to Read it back)"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "0d0f3782-753a-4697-a392-42944d3f8190",
+    "timestamp": "2026-05-07T23:38:44.743Z",
+    "tool_use_result": {
+      "type": "create",
+      "filePath": "/home/runner/work/The_Dark_Factory/The_Dark_Factory/spec/TDS-12/response.md",
+      "content": "## TDS-12 — Move ticket to In Progress when work starts\n\n**What changed**\n\n`.github/scripts/jira-dispatch.mjs` (only) now transitions the Jira ticket to \"In Progress\" inside `prepareDispatch`, immediately after the issue fetch and before any branch checkout or file write. A new helper `transitionToInProgress(key, issue)` does the work; the existing `initJira()` / `fetchJson()` patterns are reused, so no new secrets are needed.\n\n**How status detection works**\n\n1. Read `status.statusCategory.key` from the already-fetched issue (the existing fetch already requests the `status` field).\n2. If the category is `indeterminate` (already In Progress) or `done`, log and skip — re-runs on those tickets are silent no-ops.\n3. Otherwise, `GET /rest/api/3/issue/{key}/transitions` and pick a transition whose `to.statusCategory.key === \"indeterminate\"`. If none, fall back to the first transition whose `name` matches `\"in progress\"` case-insensitively.\n4. `POST /rest/api/3/issue/{key}/transitions` with `{\"transition\": {\"id\": \"<id>\"}}`.\n\n**Fallback behaviour**\n\n- No matching transition for the current state → log a warning and continue. The dispatch run is never aborted.\n- Transitions API request fails or the POST returns non-2xx → log a warning and continue.\n- All failures are best-effort; the ticket workflow is never blocked by a status-flip problem.\n\n**Risks**\n\n- If a Jira workflow exposes more than one `indeterminate` transition for a state (unusual), the helper picks the first one returned by Jira. This matches the spec.\n- Could not exercise live Jira from this run; relying on the documented Jira REST v3 contract that `status.statusCategory.key` is returned with the standard `status` field, and that the transitions endpoint returns `{transitions: [...]}`.\n",
+      "structuredPatch": [],
+      "originalFile": null,
+      "userModified": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01ERpiL7TznFp8JiRimu5ZTU",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01CLkFnL7ZtXDWQVPyYRDXD5",
+          "name": "Bash",
+          "input": {
+            "command": "git status && echo \"---\" && git diff --stat",
+            "description": "Show the resulting diff summary"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 857,
+        "cache_read_input_tokens": 46394,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 857
+        },
+        "output_tokens": 67,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "e2821ea5-3c2a-41ae-9eea-7ba595809543"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01CLkFnL7ZtXDWQVPyYRDXD5",
+          "type": "tool_result",
+          "content": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   .github/scripts/jira-dispatch.mjs\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tspec/TDS-12/\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n---\n .github/scripts/jira-dispatch.mjs | 50 +++++++++++++++++++++++++++++++++++++++\n 1 file changed, 50 insertions(+)",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "165b78a2-ee29-4c92-b988-e748c79a5239",
+    "timestamp": "2026-05-07T23:38:47.997Z",
+    "tool_use_result": {
+      "stdout": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   .github/scripts/jira-dispatch.mjs\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tspec/TDS-12/\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n---\n .github/scripts/jira-dispatch.mjs | 50 +++++++++++++++++++++++++++++++++++++++\n 1 file changed, 50 insertions(+)",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-7",
+      "id": "msg_01NYFU3pFkYS9mTtcLvvLucx",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Changes are in place: `.github/scripts/jira-dispatch.mjs` gains a `transitionToInProgress` helper and one call site in `prepareDispatch`, plus the ticket folder artefacts in `spec/TDS-12/`. Syntax checks clean. The workflow will handle the branch/PR."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 1,
+        "cache_creation_input_tokens": 345,
+        "cache_read_input_tokens": 47251,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 345
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "not_available"
+      },
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "uuid": "0fcf208e-23a7-42a0-8bb6-23ff746a7f32"
+  },
+  {
+    "type": "result",
+    "subtype": "success",
+    "is_error": false,
+    "api_error_status": null,
+    "duration_ms": 86245,
+    "duration_api_ms": 86172,
+    "num_turns": 11,
+    "result": "Changes are in place: `.github/scripts/jira-dispatch.mjs` gains a `transitionToInProgress` helper and one call site in `prepareDispatch`, plus the ticket folder artefacts in `spec/TDS-12/`. Syntax checks clean. The workflow will handle the branch/PR.",
+    "stop_reason": "end_turn",
+    "session_id": "af6afba0-0b3a-4700-aa5c-35876ac1e83b",
+    "total_cost_usd": 0.530924,
+    "usage": {
+      "input_tokens": 1840,
+      "cache_creation_input_tokens": 31046,
+      "cache_read_input_tokens": 340609,
+      "output_tokens": 6265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 31046,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 47251,
+          "cache_creation_input_tokens": 345,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 345
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 672,
+        "outputTokens": 17,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.000757,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000
+      },
+      "claude-opus-4-7": {
+        "inputTokens": 1840,
+        "outputTokens": 6265,
+        "cacheReadInputTokens": 340609,
+        "cacheCreationInputTokens": 31046,
+        "webSearchRequests": 0,
+        "costUSD": 0.530167,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "uuid": "bed1caae-9663-4d69-8987-3657672fe17c"
+  }
+]

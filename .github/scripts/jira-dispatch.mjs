@@ -55,6 +55,54 @@ async function fetchJson(url, options) {
   return response.json();
 }
 
+async function transitionToInProgress(key, issue) {
+  const category = lower(issue?.fields?.status?.statusCategory?.key);
+  if (category === "indeterminate" || category === "done") {
+    console.log(`Skipping In Progress transition for ${key}: status category is "${category}".`);
+    return;
+  }
+
+  let transitions;
+  try {
+    const data = await fetchJson(
+      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,
+      { headers: jiraHeaders },
+    );
+    transitions = Array.isArray(data?.transitions) ? data.transitions : [];
+  } catch (err) {
+    console.warn(`Failed to fetch transitions for ${key}: ${err.message}`);
+    return;
+  }
+
+  const target =
+    transitions.find((t) => lower(t?.to?.statusCategory?.key) === "indeterminate") ||
+    transitions.find((t) => lower(t?.name) === "in progress");
+
+  if (!target) {
+    console.warn(`No "In Progress" transition available for ${key}; continuing without status change.`);
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}/transitions`,
+      {
+        method: "POST",
+        headers: jiraHeaders,
+        body: JSON.stringify({ transition: { id: target.id } }),
+      },
+    );
+    if (!response.ok) {
+      const body = await response.text().catch(() => "");
+      console.warn(`Failed to transition ${key} via "${target.name}" (id=${target.id}): HTTP ${response.status} ${response.statusText}${body ? ` ${body}` : ""}`);
+      return;
+    }
+    console.log(`Transitioned ${key} to In Progress via "${target.name}" (id=${target.id}).`);
+  } catch (err) {
+    console.warn(`Failed to transition ${key} via "${target.name}" (id=${target.id}): ${err.message}`);
+  }
+}
+
 async function appendGithubEnv(values) {
   const file = env.GITHUB_ENV;
   if (!file) return;
@@ -127,6 +175,8 @@ async function prepareDispatch() {
     `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=summary,description,status,assignee,reporter,priority,issuetype,labels,components,created,updated,comment&expand=renderedFields`,
     { headers: jiraHeaders },
   );
+
+  await transitionToInProgress(key, issue);
 
   const fields = issue.fields ?? {};
   const summary = fields.summary || key;
