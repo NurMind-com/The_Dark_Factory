@@ -15,7 +15,11 @@ flow and Claude session continuity, see
 | [`jira-branch-readme.yml`](../.github/workflows/jira-branch-readme.yml) | Branch creation (`on: create`) | One-shot: when Jira creates a branch, generate a spec, run Claude once, open a PR. No session continuity. | Legacy, kept for compatibility |
 | [`poc-session.yml`](../.github/workflows/poc-session.yml) | Manual `workflow_dispatch` | Proof-of-concept that Claude Code sessions can be resumed across runner invocations. | POC only |
 
-## High level system view
+## High level system view (V1)
+
+> Original diagram. Kept for reference. The label crowding in the middle
+> ("resume / persist session" stacked over "commit + push branch / open PR" and
+> "commit POC state to main") motivated the V2 redraw below.
 
 ```mermaid
 flowchart LR
@@ -42,6 +46,55 @@ flowchart LR
     WD --> Claude
     WB --> Claude
     WP --> Claude
+```
+
+## High level system view (V2)
+
+Same information re-laid as a three-lane swimlane: **Triggers → Workflows →
+Side effects**. Trigger metadata moves into the trigger nodes (so the
+arrows can stay unlabelled), and there are no bidirectional edges between
+the same node pair (those were the source of the stacked-label collisions in
+V1). The `actions/cache` is omitted here — it is an implementation detail of
+session continuity and is captured in the workflow comparison table above.
+
+```mermaid
+flowchart LR
+    subgraph TR["Triggers"]
+        direction TB
+        JM["Jira: manual button<br/>(repository_dispatch)"]
+        JB["Jira: branch created<br/>(on: create)"]
+        MD["Manual workflow_dispatch"]
+    end
+
+    subgraph WF["Workflows (.github/workflows)"]
+        direction TB
+        WD["jira-dispatch.yml<br/>(preferred)"]
+        WB["jira-branch-readme.yml<br/>(legacy)"]
+        WP["poc-session.yml<br/>(POC)"]
+    end
+
+    subgraph OUT["Side effects"]
+        direction TB
+        CC["Claude Code run"]
+        GH["Branch + PR"]
+        JC["Jira comment"]
+    end
+
+    JM --> WD
+    JB --> WB
+    MD --> WP
+    MD --> WD
+
+    WD --> CC
+    WB --> CC
+    WP --> CC
+
+    WD --> GH
+    WB --> GH
+    WP --> GH
+
+    WD --> JC
+    WB --> JC
 ```
 
 ## Common shape of a Jira-driven run
