@@ -15,47 +15,13 @@ flow and Claude session continuity, see
 | [`jira-branch-readme.yml`](../.github/workflows/jira-branch-readme.yml) | Branch creation (`on: create`) | One-shot: when Jira creates a branch, generate a spec, run Claude once, open a PR. No session continuity. | Legacy, kept for compatibility |
 | [`poc-session.yml`](../.github/workflows/poc-session.yml) | Manual `workflow_dispatch` | Proof-of-concept that Claude Code sessions can be resumed across runner invocations. | POC only |
 
-## High level system view (V1)
+## High level system view
 
-> Original diagram. Kept for reference. The label crowding in the middle
-> ("resume / persist session" stacked over "commit + push branch / open PR" and
-> "commit POC state to main") motivated the V2 redraw below.
-
-```mermaid
-flowchart LR
-    Jira["Jira (abouyounes.atlassian.net)"]
-    GH["GitHub repo<br/>NurMind-com/The_Dark_Factory"]
-    Claude["Claude Code<br/>(anthropics/claude-code-base-action)"]
-    Cache["actions/cache<br/>(~/.claude/projects)"]
-
-    Jira -- "manual button<br/>(repository_dispatch)" --> WD["jira-dispatch.yml"]
-    Jira -- "branch created<br/>(on: create)" --> WB["jira-branch-readme.yml"]
-    User["Engineer"] -- "workflow_dispatch" --> WP["poc-session.yml"]
-    User -- "workflow_dispatch" --> WD
-
-    WD -- "fetch ticket / post comment" --> Jira
-    WB -- "fetch ticket / post comment" --> Jira
-
-    WD -- "commit + push branch<br/>open / update PR" --> GH
-    WB -- "commit + push branch<br/>open PR" --> GH
-    WP -- "commit POC state<br/>to main" --> GH
-
-    WD <-- "resume / persist session" --> Cache
-    WP <-- "resume / persist session" --> Cache
-
-    WD --> Claude
-    WB --> Claude
-    WP --> Claude
-```
-
-## High level system view (V2)
-
-Same information re-laid as a three-lane swimlane: **Triggers → Workflows →
-Side effects**. Trigger metadata moves into the trigger nodes (so the
-arrows can stay unlabelled), and there are no bidirectional edges between
-the same node pair (those were the source of the stacked-label collisions in
-V1). The `actions/cache` is omitted here — it is an implementation detail of
-session continuity and is captured in the workflow comparison table above.
+Three-lane swimlane: **Triggers → Workflows → Side effects**. Trigger metadata
+(`repository_dispatch`, `on: create`, `workflow_dispatch`) is encoded in the
+trigger nodes so all arrows stay unlabelled. `actions/cache` is intentionally
+omitted from this view — it is an implementation detail of session continuity
+and is captured in the workflow comparison table above.
 
 ```mermaid
 flowchart LR
@@ -113,7 +79,7 @@ sequenceDiagram
 
     J->>W: trigger (button or branch create)
     W->>J: fetch ticket (REST)
-    W->>W: prepare spec/<TICKET-ID>/ artefacts
+    W->>W: prepare spec/&lt;TICKET-ID&gt;/ artefacts
     Note over W: dispatch flow only:<br/>restore ~/.claude/projects from cache
     W->>C: run with prompt + ticket context
     C->>W: edits, plan.md, response.md

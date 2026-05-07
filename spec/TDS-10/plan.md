@@ -28,6 +28,31 @@ V1 is kept above V2 in `docs/workflows.md` with a short note explaining the redr
 
 No code or workflow behaviour changes. Only `docs/workflows.md` is edited.
 
+## Run 3 (continuation) — consolidate to single diagram + full-page visual check
+
+Reporter's Jira feedback after run 2: "Update the diagram now and check the outcome in any way necessary to make sure the md file is visually checked and is visually pleasant and all legible."
+
+Interpretation: ship a single canonical diagram (drop V1, keep V2), then *actually* render the markdown end-to-end (not just individual mermaid blocks) and verify legibility.
+
+Done in this run:
+
+1. Removed the V1 section from `docs/workflows.md`. The V2 swimlane is now the sole "High level system view" — its preamble was simplified accordingly. Nothing else in the file changed.
+2. Built a self-contained HTML preview pipeline:
+   - `marked` converts the actual `docs/workflows.md` to HTML, with `mermaid` code blocks rewritten as `<div class="mermaid">…</div>`.
+   - GitHub-like CSS is applied (max-width 1012px, segoe-ui font stack, 1px borders on tables, light grey code blocks).
+   - The page loads `mermaid@10` from the jsDelivr CDN and calls `mermaid.run()` so the swimlane and the sequence diagram are rendered by the *real* mermaid library, not the CLI.
+   - Headless Chrome (`--headless=new --virtual-time-budget=10000`) screenshots the rendered page at 1280×2400.
+3. Read the resulting PNG as an image to verify the whole document. Then rendered each mermaid block individually at higher resolution (1600×900 for the swimlane, 1400×1100 for the sequence diagram) to verify legibility at zoom.
+
+Findings of the visual check:
+
+- "Workflows in this repo" table renders cleanly: borders, header background, all four columns visible.
+- High level system view (swimlane): three subgraph lanes laid out left-to-right, all 9 nodes legible, no box overlap, no label collisions. Edge crossings between WD/WB/WP and CC/GH/JC exist but the edges curve around each other without obscuring any node text.
+- Common shape of a Jira-driven run (sequence diagram): four participants visible at top and bottom, autonumbered arrows are clear, the two yellow "dispatch flow only" notes render without overlapping arrows, and the `&lt;TICKET-ID&gt;` HTML-escape correctly displays as `<TICKET-ID>`.
+- Artefacts code block: monospace, indented, no wrap issues at 1012px width.
+
+No further structural changes needed.
+
 ## Scope
 
 The repo has three GitHub Actions workflows under `.github/workflows/`:

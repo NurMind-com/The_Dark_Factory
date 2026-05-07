@@ -34,3 +34,24 @@
   - **Updated** `spec/TDS-10/plan.md` (Run 2 section documenting the validation findings and V2 design) and `spec/TDS-10/response.md` (Jira-facing summary of what changed and the visual-validation step).
   
   The workflow will commit, push, update the PR, and post the response back to Jira.
+
+## Run 2026-05-07T23:38:18.742Z
+- run_kind: continuation
+- prev_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- new_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- session_id_rotated: false
+- conclusion: success
+- run_dir: spec/TDS-10/runs/20260507T233403Z-25527878359
+- assistant_summary:
+  Final state:
+  
+  - **`docs/workflows.md`** — V1 removed; the V2 swimlane is now the sole "High level system view". Net: −41 / +7 lines.
+  - **`spec/TDS-10/plan.md`** — appended a "Run 3" section documenting the consolidation and the full-page visual-check pipeline.
+  - **`spec/TDS-10/response.md`** — rewritten as a Jira-facing summary of what changed, how it was visually checked, and the findings.
+  
+  Visual verification pipeline used:
+  
+  1. `marked` → `docs/workflows.md` rendered to HTML, with mermaid code blocks rewritten as `<div class="mermaid">`.
+  2. GitHub-like CSS, real `mermaid@10` from CDN, `mermaid.run()` to render diagrams in-browser.
+  3. Headless Chrome screenshot of the full page (1280 × 2400).
+  4. Plus higher-resolution per-diagram renders to confirm zoom legibility.
