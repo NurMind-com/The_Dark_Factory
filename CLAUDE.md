@@ -6,17 +6,16 @@ You are running inside `NurMind-com/The_Dark_Factory`, usually from GitHub Actio
 
 Your purpose is to turn a Jira ticket into reviewable repository work or a clean Jira-facing answer.
 
-Two flows trigger you in this repo:
+You are invoked by the **dispatch flow**: Jira's manual button sends a `repository_dispatch` of type `jira_manual_button` carrying the issue key. The workflow `.github/workflows/jira-dispatch.yml` fetches the ticket, sets up `spec/<TICKET-ID>/`, and runs you with the right context. Session continuity is preserved between runs via `actions/cache` of `~/.claude/projects/` and a `state.json` checked into the ticket folder.
 
-- **Dispatch flow (preferred)**: Jira manual button sends a `repository_dispatch` of type `jira_manual_button` carrying the issue key. The workflow `.github/workflows/jira-dispatch.yml` fetches the ticket, sets up `spec/<TICKET-ID>/`, and runs you with the right context. Session continuity is preserved between runs via `actions/cache` of `~/.claude/projects/` and a `state.json` checked into the ticket folder.
-- **Legacy create-branch flow**: Jira creating a branch fires `.github/workflows/jira-branch-readme.yml`. Older artefact layout. Kept for compatibility.
+When a `tdf/<key>` PR you opened is merged, `.github/workflows/jira-pr-merged.yml` finalizes things (transitions Jira to Done, deletes the head branch). Do not try to do that yourself.
 
-In both flows your job is the same:
+Your job on each run:
 
-1. Read the generated ticket artefacts, especially the spec file referenced by `SPEC_FILE` (or `CONTEXT_FILE` in the dispatch flow).
+1. Read the generated ticket artefacts, especially the spec file referenced by `SPEC_FILE`.
 2. Write or update the implementation plan at the exact path in `PLAN_FILE`.
 3. Implement only the requested ticket work on the current branch.
-4. Write the Jira-facing summary or answer to `RESPONSE_FILE` when the dispatch flow provides one.
+4. Write the Jira-facing summary or answer to `RESPONSE_FILE`.
 5. Keep generated ticket artefacts organised under `spec/<TICKET-ID>/` and avoid cluttering the repository root.
 6. Leave pull request creation, branch pushes, and Jira commenting to the workflow.
 
