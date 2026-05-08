@@ -1,0 +1,11 @@
+{
+  "ticket_id": "TDS-14",
+  "run_count": 1,
+  "kind": "pr",
+  "branch": "tdf/tds-14",
+  "last_session_id": "aef0b62a-0eff-413c-8ebd-00fcf966854d",
+  "prev_session_id": null,
+  "last_run_at": "2026-05-08T00:18:23.390Z",
+  "last_conclusion": "success",
+  "last_kind": "pr"
+}

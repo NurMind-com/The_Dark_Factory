@@ -366,5 +366,3 @@ Smoke-test results:
 - TDS-8 (label `claude:pr`): two runs. Run 1 created `tdf/tds-8`, committed the marker file `temp/dispatch_pr_smoke.md`, opened PR #9, posted the Jira comment with branch + PR links. Run 2 (continuation) checked out the existing PR branch, resumed Claude on the same session id, and reused the existing PR (no duplicates).
 
 Both modes survived a real session-continuity hop, both posted Jira comments, both committed to the right ref (main for answer, branch for pr).
-
-The legacy create-branch flow (`.github/workflows/jira-branch-readme.yml`) is left untouched for now. Retire after the dispatch flow has been stable for at least one week of real ticket use.
