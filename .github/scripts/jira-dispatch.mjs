@@ -6,7 +6,7 @@ import { execSync } from "node:child_process";
 
 const mode = process.argv[2];
 if (!mode) {
-  throw new Error("Usage: jira-dispatch.mjs <prepare-dispatch|record-run|commit-changes|ensure-pr|comment-result>");
+  throw new Error("Usage: jira-dispatch.mjs <prepare-dispatch|record-run|commit-changes|ensure-pr|comment-result|transition-done>");
 }
 
 const env = process.env;
@@ -25,6 +25,7 @@ async function run() {
   if (mode === "commit-changes") return commitChanges();
   if (mode === "ensure-pr") return ensurePr();
   if (mode === "comment-result") return commentResult();
+  if (mode === "transition-done") return transitionDone();
   throw new Error(`Unknown mode: ${mode}`);
 }
 
@@ -55,10 +56,10 @@ async function fetchJson(url, options) {
   return response.json();
 }
 
-async function transitionToInProgress(key, issue) {
+async function transitionToCategory(key, issue, { skipCategories, categoryKey, nameMatchers, label }) {
   const category = lower(issue?.fields?.status?.statusCategory?.key);
-  if (category === "indeterminate" || category === "done") {
-    console.log(`Skipping In Progress transition for ${key}: status category is "${category}".`);
+  if (skipCategories.includes(category)) {
+    console.log(`Skipping ${label} transition for ${key}: status category is "${category}".`);
     return;
   }
 
@@ -75,11 +76,11 @@ async function transitionToInProgress(key, issue) {
   }
 
   const target =
-    transitions.find((t) => lower(t?.to?.statusCategory?.key) === "indeterminate") ||
-    transitions.find((t) => lower(t?.name) === "in progress");
+    transitions.find((t) => lower(t?.to?.statusCategory?.key) === categoryKey) ||
+    transitions.find((t) => nameMatchers.includes(lower(t?.name)));
 
   if (!target) {
-    console.warn(`No "In Progress" transition available for ${key}; continuing without status change.`);
+    console.warn(`No "${label}" transition available for ${key}; continuing without status change.`);
     return;
   }
 
@@ -97,10 +98,44 @@ async function transitionToInProgress(key, issue) {
       console.warn(`Failed to transition ${key} via "${target.name}" (id=${target.id}): HTTP ${response.status} ${response.statusText}${body ? ` ${body}` : ""}`);
       return;
     }
-    console.log(`Transitioned ${key} to In Progress via "${target.name}" (id=${target.id}).`);
+    console.log(`Transitioned ${key} to ${label} via "${target.name}" (id=${target.id}).`);
   } catch (err) {
     console.warn(`Failed to transition ${key} via "${target.name}" (id=${target.id}): ${err.message}`);
   }
+}
+
+async function transitionToInProgress(key, issue) {
+  return transitionToCategory(key, issue, {
+    skipCategories: ["indeterminate", "done"],
+    categoryKey: "indeterminate",
+    nameMatchers: ["in progress"],
+    label: "In Progress",
+  });
+}
+
+async function transitionToDone(key, issue) {
+  return transitionToCategory(key, issue, {
+    skipCategories: ["done"],
+    categoryKey: "done",
+    nameMatchers: ["done", "resolved", "closed"],
+    label: "Done",
+  });
+}
+
+async function transitionDone() {
+  initJira();
+  const key = normalizeIssueKey(requireEnv("ISSUE_KEY"));
+  let issue;
+  try {
+    issue = await fetchJson(
+      `${jiraBaseUrl}/rest/api/3/issue/${encodeURIComponent(key)}?fields=status`,
+      { headers: jiraHeaders },
+    );
+  } catch (err) {
+    console.warn(`Failed to fetch issue ${key} for Done transition: ${err.message}`);
+    return;
+  }
+  await transitionToDone(key, issue);
 }
 
 async function appendGithubEnv(values) {
