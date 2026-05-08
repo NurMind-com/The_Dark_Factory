@@ -83,27 +83,27 @@ sequenceDiagram
 
     J->>W: trigger (button or branch create)
     W->>J: fetch ticket (REST)
-    W->>W: prepare spec/&lt;TICKET-ID&gt;/ artefacts
-    Note over W: dispatch flow only:<br/>restore ~/.claude/projects from cache
+    W->>W: prepare spec/[TICKET-ID]/ artefacts
+    Note over W: dispatch flow only<br>restore ~/.claude/projects from cache
     W->>C: run with prompt + ticket context
     C->>W: edits, plan.md, response.md
-    Note over W: dispatch flow only:<br/>save ~/.claude/projects to cache
-    W->>R: commit, push branch, open / update PR
+    Note over W: dispatch flow only<br>save ~/.claude/projects to cache
+    W->>R: commit, push branch, open or update PR
     W->>J: comment back with PR link or answer
 ```
 
 ## Artefacts each run produces
 
 ```
-spec/<TICKET-ID>/
+spec/[TICKET-ID]/
   spec.md          ticket snapshot (refreshed each run)
   plan.md          implementation plan owned by Claude
   response.md      Jira-facing summary or answer
   state.json       last_session_id, run_count, kind
   transcript.md    one section per run
-  runs/<ts>-<id>/  per-run prompt and response copies
+  runs/[ts]-[id]/  per-run prompt and response copies
 ```
 
-The legacy `jira-branch-readme.yml` flow uses the older flat layout
-(`spec/<KEY>-<slug>.md` and `<KEY>-<slug>-plan.md` at repo root) for backwards
-compatibility.
+The legacy `jira-branch-readme.yml` flow used the older flat layout
+(`spec/[KEY]-[slug].md` and `[KEY]-[slug]-plan.md` at repo root) for backwards
+compatibility — that flow has now been retired by TDS-11.

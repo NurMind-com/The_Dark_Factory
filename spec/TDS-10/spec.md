@@ -1,6 +1,6 @@
 # TDS-10: Workflow Diagram
 
-Generated from Jira on 2026-05-07T23:45:25.422Z.
+Generated from Jira on 2026-05-07T23:59:14.114Z.
 
 ## Issue Details
 
@@ -16,13 +16,13 @@ Generated from Jira on 2026-05-07T23:45:25.422Z.
 | Labels | - |
 | Components | - |
 | Created | 2026-05-08T02:04:24.145+0300 |
-| Updated | 2026-05-08T02:45:19.438+0300 |
+| Updated | 2026-05-08T02:57:14.241+0300 |
 
 ## Description
 
 Make a very high level diagram of the workflows we have in the solution
 
-## Comments (6)
+## Comments (8)
 
 ### Roland Abou Younes on 2026-05-08T02:08:16.781+0300
 
@@ -168,3 +168,90 @@ The rendered output is visually pleasant and fully legible.
 ### Roland Abou Younes on 2026-05-08T02:45:09.839+0300
 
 Find the right skill or tool that allows you to visually validate the md file during the claude run and keep iterating till it is visually appealing and in perfect shape, provide screen shots that prove you have validated visually
+
+### Roland Abou Younes on 2026-05-08T02:53:24.547+0300
+
+[TDF-bot] Claude Code processed TDS-10 (conclusion: success).
+
+Branch: [https://github.com/NurMind-com/The_Dark_Factory/tree/tdf%2Ftds-10](https://github.com/NurMind-com/The_Dark_Factory/tree/tdf%2Ftds-10)
+
+Pull request: [https://github.com/NurMind-com/The_Dark_Factory/pull/11](https://github.com/NurMind-com/The_Dark_Factory/pull/11)
+
+# TDS-10: Workflow Diagram — visual-check tool + screenshots committed
+
+## What changed
+
+1. **Reusable visual-check tool added** at [`.github/scripts/visual-check-md.mjs`](../../.github/scripts/visual-check-md.mjs).
+   - Renders any markdown file (with Mermaid blocks) to PNG via headless Chrome + `markdown-it` + `mermaid@10`.
+   - No `npm install` needed: both libraries are loaded from jsDelivr inside the page; the only external requirement is system Chrome, which the GitHub-hosted runner already has.
+   - Usage: `node .github/scripts/visual-check-md.mjs <md-path> <out-dir>`. Produces `full-page.png` plus one `diagram-N.png` per Mermaid block.
+   - Future doc tickets can reuse this in one line.
+2. **Diagram visual upgrade**: the workflow boxes in the swimlane now carry status colours via `classDef` — **green** for `(preferred)`, **amber** for `(legacy)`, **grey** for `(POC)` — so status reads at a glance without parsing suffix text.
+3. **Screenshots committed** as proof of visual validation, at [`spec/TDS-10/visual-checks/`](visual-checks):
+   - [`full-page.png`](visual-checks/full-page.png) — the whole `docs/workflows.md` rendered (1280 × 2400 viewport, GitHub-like styling).
+   - [`diagram-1.png`](visual-checks/diagram-1.png) — swimlane "High level system view" standalone.
+   - [`diagram-2.png`](visual-checks/diagram-2.png) — sequence diagram standalone.
+
+## Iteration log (this run)
+
+1. First run of the new tool surfaced a **bug in the tool itself**: the per-diagram renderer was overwriting the `<div>` content with `textContent`, which blocks HTML-entity decoding and stops Mermaid's `<br/>` markers from becoming real `<br>` nodes. Result: `diagram-2.png` showed "Syntax error in text".
+2. Fixed: inlined the diagram source directly into `innerHTML`, matching exactly what `markdown-it` does for the full-page render.
+3. Second run produced clean PNGs for both diagrams.
+4. Diagram-level improvement: added `classDef` colours (preferred / legacy / POC). Re-rendered, confirmed the colours apply and contrast is readable on a white background.
+5. Final inspection of all three screenshots: comparison table, swimlane (now colour-coded), sequence diagram, and code block all render clean — no overlaps, no truncation, no label collisions.
+
+## Risks
+
+- The local renderer is `mermaid@10` + `markdown-it@14` from jsDelivr. GitHub uses its own versions, so spacing may differ marginally — but the structural fixes (no bidirectional edges between same node pair, no in-edge labels in dense regions, colour via `classDef` which is widely supported) are layout-engine-agnostic.
+- The new script depends on system Chrome being on `$PATH`. The dispatch-flow runner already has Chrome installed, so this is a no-op for CI.
+- No code paths or workflow behaviour change. Documentation + tooling only.
+
+### Roland Abou Younes on 2026-05-08T02:57:14.241+0300
+
+### Recommended fix for the mermaid parse error
+
+The error `Expecting SOLID_ARROW... got NEWLINE` on line 10 is mermaid choking on the angle-bracket placeholder `<TICKET-ID>` (the source had `&lt;TICKET-ID&gt;` from HTML-entity escaping). In mermaid sequence diagrams, message text containing `<` and `>` (or their HTML entities) is interpreted as arrow syntax and breaks the parse.
+
+**Two changes fix it:**
+
+- Replace `<TICKET-ID>` with a non-angle-bracket placeholder, e.g. `[TICKET-ID]`.
+- Replace `<br/>` inside `Note over` with `<br>` for parser-version safety.
+
+### Common shape of a Jira-driven run
+
+Both `jira-dispatch.yml` and `jira-branch-readme.yml` follow the same overall shape, just with different trigger semantics and different artefact layouts. `jira-dispatch.yml` adds session-cache restore/save around the Claude step.
+
+### Corrected mermaid
+
+```
+sequenceDiagram
+    autonumber
+    participant J as Jira
+    participant W as GitHub Actions workflow
+    participant C as Claude Code
+    participant R as Repo / PR
+
+    J->>W: trigger (button or branch create)
+    W->>J: fetch ticket (REST)
+    W->>W: prepare spec/[TICKET-ID]/ artefacts
+    Note over W: dispatch flow only<br>restore ~/.claude/projects from cache
+    W->>C: run with prompt + ticket context
+    C->>W: edits, plan.md, response.md
+    Note over W: dispatch flow only<br>save ~/.claude/projects to cache
+    W->>R: commit, push branch, open or update PR
+    W->>J: comment back with PR link or answer
+```
+
+### Artefacts each run produces
+
+```
+spec/[TICKET-ID]/
+  spec.md          ticket snapshot (refreshed each run)
+  plan.md          implementation plan owned by Claude
+  response.md      Jira-facing summary or answer
+  state.json       last_session_id, run_count, kind
+  transcript.md    one section per run
+  runs/[ts]-[id]/  per-run prompt and response copies
+```
+
+The legacy `jira-branch-readme.yml` flow uses the older flat layout (`spec/[KEY]-[slug].md` and `[KEY]-[slug]-plan.md` at repo root) for backwards compatibility — note: that flow has now been retired by TDS-11.

@@ -80,6 +80,28 @@ Final state confirmed visually:
 - Sequence diagram: 4 participants, autonumbered arrows, two `dispatch flow only` notes legible, `<TICKET-ID>` placeholder displayed correctly.
 - Full-page composition: heading hierarchy, table, both diagrams, code block all flow naturally with GitHub-like styling.
 
+## Run 5 (continuation) — fix mermaid parse error on GitHub render
+
+Reporter's Jira feedback after run 4 reported that GitHub's mermaid renderer was failing on the sequence diagram with `Expecting SOLID_ARROW... got NEWLINE` on line 10. Root cause: the `&lt;TICKET-ID&gt;` HTML-entity placeholder. GitHub's mermaid pipeline does not always decode entities the same way the local browser+mermaid pipeline does, so mermaid sees `<` as an arrow character and the parse breaks. (My local visual-check rendered the file via headless Chrome where the browser entity decoder runs, so this defect was not visible to me — a useful gap to know about for next time.)
+
+Reporter provided the exact fix:
+
+- Sequence diagram: `&lt;TICKET-ID&gt;` → `[TICKET-ID]`; `<br/>` → `<br>` (parser-version safety); minor wording tweak `open / update PR` → `open or update PR`; trailing colons removed from `dispatch flow only:` notes.
+- Artefacts code block: `<TICKET-ID>`, `<ts>-<id>`, `<KEY>-<slug>` → `[TICKET-ID]`, `[ts]-[id]`, `[KEY]-[slug]` for consistency with the corrected diagram.
+- Trailing sentence about the legacy flow: tense changed to past (`uses` → `used`) plus appended `— that flow has now been retired by TDS-11.`
+
+Verified that TDS-11 (PR #12) has indeed merged to `main` and removed `.github/workflows/jira-branch-readme.yml`. On this branch the file is still present — the post-merge state on `main` will pick up the deletion. The workflow comparison table and the swimlane still reference the legacy workflow because they are accurate for *this* branch's state; once TDS-10 merges into post-TDS-11 main, those references can be cleaned up in a follow-up (out of scope for this ticket which is "make a diagram").
+
+Re-ran `node .github/scripts/visual-check-md.mjs docs/workflows.md spec/TDS-10/visual-checks` and inspected all three PNGs:
+
+- Sequence diagram now reads `prepare spec/[TICKET-ID]/ artefacts` cleanly with no syntax-error bomb.
+- Both `dispatch flow only` notes render with two-line content and no trailing colons.
+- Step 6 reads "commit, push branch, open or update PR".
+- Swimlane unchanged (no entity issue there) — colours and structure preserved.
+- Full-page composition still flows naturally.
+
+Re-committed `spec/TDS-10/visual-checks/full-page.png`, `diagram-1.png`, `diagram-2.png` (overwritten in place).
+
 ## Scope
 
 The repo has three GitHub Actions workflows under `.github/workflows/`:

@@ -76,3 +76,24 @@
   1. Built the tool, ran it.
   2. Caught a bug in the tool (per-diagram render produced "Syntax error in text" because `textContent` blocked HTML-entity decoding).
   3. Fixed the tool, re-ran — clean diagrams.
+
+## Run 2026-05-08T00:03:02.107Z
+- run_kind: continuation
+- prev_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- new_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- session_id_rotated: false
+- conclusion: success
+- run_dir: spec/TDS-10/runs/20260507T235914Z-25528703184
+- assistant_summary:
+  Summary of this run:
+  
+  **Fix applied** to `docs/workflows.md` per the reporter's recommendation:
+  - Sequence diagram: `&lt;TICKET-ID&gt;` → `[TICKET-ID]`, `<br/>` → `<br>`, removed trailing colons in `Note over` lines, `open / update PR` → `open or update PR`
+  - Artefacts code block: `<TICKET-ID>`, `<ts>-<id>`, `<KEY>-<slug>` → square-bracket equivalents
+  - Trailing line: past tense + appended TDS-11 retirement note
+  
+  **Verified** that TDS-11 (PR #12) has merged to main and removed `.github/workflows/jira-branch-readme.yml` from main, so the past-tense wording is accurate post-merge.
+  
+  **Re-rendered** via the visual-check tool and inspected the regenerated PNGs in `spec/TDS-10/visual-checks/` — sequence diagram now parses cleanly, swimlane unchanged. Updated PNGs are committed.
+  
+  **Lesson logged in plan.md**: the local browser-DOM pipeline decoded HTML entities before mermaid saw them, masking the GitHub-renderer parse failure. Going forward: avoid `<` / `>` in mermaid `sequenceDiagram` message text regardless of how it's escaped in the source.
