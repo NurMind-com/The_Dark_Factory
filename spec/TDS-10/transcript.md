@@ -97,3 +97,15 @@
   **Re-rendered** via the visual-check tool and inspected the regenerated PNGs in `spec/TDS-10/visual-checks/` — sequence diagram now parses cleanly, swimlane unchanged. Updated PNGs are committed.
   
   **Lesson logged in plan.md**: the local browser-DOM pipeline decoded HTML entities before mermaid saw them, masking the GitHub-renderer parse failure. Going forward: avoid `<` / `>` in mermaid `sequenceDiagram` message text regardless of how it's escaped in the source.
+
+## Run 2026-05-08T00:05:05.436Z
+- run_kind: continuation
+- prev_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- new_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- session_id_rotated: false
+- conclusion: success
+- run_dir: spec/TDS-10/runs/20260508T000322Z-25528736944
+- assistant_summary:
+  Minimal-diff state: only the ticket folder files (`plan.md`, `response.md`, refreshed `spec.md`, new `runs/` dir) have been touched. `docs/workflows.md` and `spec/TDS-10/visual-checks/` are unchanged from the previous run's committed state — no churn.
+  
+  Summary: this run had no new reporter feedback, so it's treated as a no-op confirmation pass. Plan and response updated to reflect that. Prior fix (mermaid `[TICKET-ID]` placeholders, `<br>` for parser safety, status-coloured workflow boxes, committed visual-check screenshots) stands.

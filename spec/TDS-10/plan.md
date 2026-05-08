@@ -102,6 +102,10 @@ Re-ran `node .github/scripts/visual-check-md.mjs docs/workflows.md spec/TDS-10/v
 
 Re-committed `spec/TDS-10/visual-checks/full-page.png`, `diagram-1.png`, `diagram-2.png` (overwritten in place).
 
+## Run 6 (continuation) — no new feedback, no-op
+
+Re-triggered with no new comment from the reporter; the most recent comment in `spec.md` is the bot's own success summary from Run 5. Nothing in `docs/workflows.md`, `.github/scripts/visual-check-md.mjs`, or `spec/TDS-10/visual-checks/` was changed in this run — re-running the renderer would only regenerate identical PNGs and create churn. Treating this as a confirmation pass: prior fix stands, awaiting reporter sign-off or further feedback.
+
 ## Scope
 
 The repo has three GitHub Actions workflows under `.github/workflows/`:
