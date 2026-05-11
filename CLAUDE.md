@@ -10,6 +10,17 @@ You are invoked by the **dispatch flow**: Jira's manual button sends a `reposito
 
 When a `tdf/<key>` PR you opened is merged, `.github/workflows/jira-pr-merged.yml` finalizes things (transitions Jira to Done, deletes the head branch). Do not try to do that yourself.
 
+## Product web deploy (separate from ticket coding)
+
+Shippable **websites / SPAs** for a client delivery should live under **`clients/<client>/<delivery>/web/`** with **`npm run build`** writing static files to **`dist/`**. A Jira automation rule can call GitHub `repository_dispatch` with **`event_type`: `jira_deploy_product`** and **`client_payload`**: `issue_key`, `client`, `delivery` (lowercase slugs matching the path). The workflow **always builds from `main`** and publishes **`dist/`** to **GitHub Pages** (one site per repo). Merge the product PR before asking someone to click Deploy. Details: [`docs/product-deploy.md`](docs/product-deploy.md). This is separate from **local Supabase + ngrok** for `clients/**/backend/**` (see `.github/workflows/deploy-on-merge.yml`).
+
+## Agent skills (product web and landing pages)
+
+When implementing or changing **`clients/**/web/`**, or building **landing / marketing** frontends for this repository, read and apply:
+
+- [`.claude/skills/dark-factory-product-web/SKILL.md`](.claude/skills/dark-factory-product-web/SKILL.md) — repo layout, `npm run build` → **`dist/`**, deploy expectations.
+- [`.claude/skills/landing-page-frontend/SKILL.md`](.claude/skills/landing-page-frontend/SKILL.md) — conversion-oriented structure, performance, accessibility, SEO/social, minimal JS for static pages.
+
 Your job on each run:
 
 1. Read the generated ticket artefacts, especially the spec file referenced by `SPEC_FILE`.

@@ -1,0 +1,149 @@
+name: Jira product deploy
+
+on:
+  repository_dispatch:
+    types: [jira_deploy_product]
+  workflow_dispatch:
+    inputs:
+      issue_key:
+        description: "Jira issue key (e.g. TDS-1)"
+        required: true
+      client:
+        description: "Client slug (folder under clients/, e.g. example)"
+        required: true
+      delivery:
+        description: "Delivery slug (e.g. demo)"
+        required: true
+
+permissions:
+  contents: read
+
+# One Pages site per repo: serialise deploys so artifacts do not race.
+concurrency:
+  group: jira-product-deploy-pages
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      issue_key: ${{ steps.meta.outputs.issue_key }}
+      client_slug: ${{ steps.meta.outputs.client_slug }}
+      delivery_slug: ${{ steps.meta.outputs.delivery_slug }}
+      env_name: ${{ steps.meta.outputs.env_name }}
+      web_root: ${{ steps.meta.outputs.web_root }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - id: meta
+        env:
+          ISSUE_KEY_IN: ${{ github.event.client_payload.issue_key || github.event.inputs.issue_key }}
+          CLIENT_IN: ${{ github.event.client_payload.client || github.event.inputs.client }}
+          DELIVERY_IN: ${{ github.event.client_payload.delivery || github.event.inputs.delivery }}
+        run: node .github/scripts/jira-product-deploy.mjs prepare-outputs
+
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      ISSUE_KEY: ${{ needs.prepare.outputs.issue_key }}
+      PRODUCT_CLIENT: ${{ needs.prepare.outputs.client_slug }}
+      PRODUCT_DELIVERY: ${{ needs.prepare.outputs.delivery_slug }}
+      WEB_ROOT: ${{ needs.prepare.outputs.web_root }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: ${{ needs.prepare.outputs.web_root }}/package-lock.json
+
+      - name: Install and build web app
+        id: bd
+        continue-on-error: true
+        env:
+          COMMENT_FILE: "${{ runner.temp }}/product-deploy-comment.md"
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: node .github/scripts/product-deploy-run.mjs
+
+      - name: Configure GitHub Pages
+        id: pages_configure
+        if: steps.bd.outcome == 'success'
+        continue-on-error: true
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        id: pages_upload
+        if: steps.bd.outcome == 'success'
+        continue-on-error: true
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ needs.prepare.outputs.web_root }}/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: steps.bd.outcome == 'success' && steps.pages_upload.outcome == 'success'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Append Pages URL to Jira comment
+        if: always()
+        env:
+          COMMENT_PATH: "${{ runner.temp }}/product-deploy-comment.md"
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.bd.outcome }}" != "success" ]; then
+            exit 0
+          fi
+          if [ "${{ steps.deployment.outcome }}" = "success" ] && [ -n "${{ steps.deployment.outputs.page_url }}" ]; then
+            printf '\n\n## Live site (GitHub Pages)\n%s\n' '${{ steps.deployment.outputs.page_url }}' >> "$COMMENT_PATH"
+          else
+            printf '\n\n## Publish (GitHub Pages)\nPages deploy did not complete (configure/upload/deploy). See the workflow run log.\n' >> "$COMMENT_PATH"
+          fi
+
+      - name: Comment on Jira
+        if: always()
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          ISSUE_KEY: ${{ env.ISSUE_KEY }}
+          PRODUCT_CLIENT: ${{ env.PRODUCT_CLIENT }}
+          PRODUCT_DELIVERY: ${{ env.PRODUCT_DELIVERY }}
+          PRODUCT_DEPLOY_COMMENT_FILE: "${{ runner.temp }}/product-deploy-comment.md"
+        run: node .github/scripts/jira-dispatch.mjs comment-product-deploy
+
+      - name: Require successful build and Pages deploy
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.bd.outcome }}" != "success" ]; then
+            echo "Build step did not succeed."
+            exit 1
+          fi
+          if [ "${{ steps.pages_upload.outcome }}" != "success" ]; then
+            echo "Pages artifact upload did not succeed."
+            exit 1
+          fi
+          if [ "${{ steps.deployment.outcome }}" != "success" ]; then
+            echo "GitHub Pages deploy did not succeed."
+            exit 1
+          fi
+          echo "Build and GitHub Pages deploy succeeded."

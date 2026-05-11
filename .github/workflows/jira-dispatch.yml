@@ -12,6 +12,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 concurrency:
   group: tdf-dispatch-${{ github.event.client_payload.issue_key || github.event.inputs.issue_key }}
@@ -20,7 +21,7 @@ concurrency:
 jobs:
   handle:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     env:
       ISSUE_KEY: ${{ github.event.client_payload.issue_key || github.event.inputs.issue_key }}
 
@@ -29,7 +30,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-          token: ${{ secrets.GH_PR_TOKEN }}
           fetch-depth: 0
 
       - name: Configure git identity
@@ -66,6 +66,10 @@ jobs:
       - name: Run Claude Code
         if: env.SHOULD_RUN == 'true'
         id: claude
+        env:
+          GH_TOKEN:       ${{ github.token }}
+          DISPATCH_PAT:   ${{ secrets.DISPATCH_PAT }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         uses: anthropics/claude-code-base-action@main
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -73,6 +77,7 @@ jobs:
             { "model": "opus", "effortLevel": "high" }
           prompt_file: ${{ env.PROMPT_FILE }}
           claude_args: ${{ env.CLAUDE_ARGS }}
+          show_full_output: true
 
       - name: Record run outputs
         if: env.SHOULD_RUN == 'true'
@@ -100,7 +105,7 @@ jobs:
         if: env.SHOULD_RUN == 'true' && env.KIND == 'pr'
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
-          GH_TOKEN: ${{ secrets.GH_PR_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: node .github/scripts/jira-dispatch.mjs ensure-pr
 
       - name: Comment back on Jira

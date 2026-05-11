@@ -1,0 +1,130 @@
+name: Requirements To Jira Plan
+
+# Mirrors the architecture of jira-dispatch.yml:
+#   thin deterministic glue (fetch ticket, write prompt, apply JSON, comment back)
+#   + Claude Code in the middle doing the actual planning reasoning.
+#
+# Trigger:
+#   Manual Jira automation button → event_type = jira_requirements_button
+#   Or workflow_dispatch for testing.
+
+on:
+  repository_dispatch:
+    types: [jira_requirements_button]
+  workflow_dispatch:
+    inputs:
+      issue_key:
+        description: "Jira issue key holding the requirements (e.g. TDS-17)"
+        required: true
+        type: string
+      project_key:
+        description: "Target Jira project key for created issues"
+        required: false
+        default: "TDS"
+        type: string
+      apply_approve:
+        description: "Create Jira issues (false = dry run, inspect plan first)"
+        required: false
+        default: false
+        type: boolean
+      plan_out:
+        description: "Path for the generated plan JSON"
+        required: false
+        default: "output/generated-plan.json"
+        type: string
+      ledger_out:
+        description: "Path for the created-issues ledger"
+        required: false
+        default: "output/applied-issues.json"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: requirements-jira-${{ github.event.client_payload.issue_key || inputs.issue_key || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  plan-and-apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ISSUE_KEY:    ${{ github.event.client_payload.issue_key   || inputs.issue_key }}
+      SOURCE_PATH:  output/requirements-from-jira.md
+      PLAN_OUT:     ${{ github.event.client_payload.plan_out    || inputs.plan_out    || 'output/generated-plan.json' }}
+      PROJECT_KEY:  ${{ github.event.client_payload.project_key || inputs.project_key || 'TDS' }}
+      APPLY_APPROVE: ${{ github.event.client_payload.apply_approve || inputs.apply_approve || 'false' }}
+      LEDGER_OUT:   ${{ github.event.client_payload.ledger_out  || inputs.ledger_out  || 'output/applied-issues.json' }}
+      JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+      JIRA_EMAIL:    ${{ secrets.JIRA_EMAIL }}
+      JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+    steps:
+      # ── 1. DETERMINISTIC: checkout + toolchain ────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 2. DETERMINISTIC: fetch the Jira ticket → requirements markdown ──
+      - name: Fetch requirements from Jira ticket
+        run: node .github/scripts/jira-requirements-source.mjs
+
+      # ── 3. DETERMINISTIC: build the planning prompt for Claude ─────────────
+      - name: Prepare planning prompt
+        run: node .github/scripts/jira-plan-prepare.mjs
+
+      # ── 4. AGENTIC: Claude reads the spec, decides the plan, writes JSON ──
+      - name: Run Claude Code — generate plan
+        uses: anthropics/claude-code-base-action@main
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          settings: |
+            { "model": "sonnet", "effortLevel": "high" }
+          prompt_file: output/planning-prompt.md
+          claude_args: "--max-turns 10 --permission-mode bypassPermissions"
+
+      # ── 5. DETERMINISTIC: validate the JSON Claude produced ───────────────
+      #     Hard gate: every Epic MUST have an E2E task. If Claude forgets,
+      #     fail here so no Jira issues get created.
+      - name: Validate generated plan
+        run: node .github/scripts/jira-plan-validate.mjs
+
+      # ── 6. DETERMINISTIC: commit the plan file for audit trail ───────────
+      - name: Commit generated plan
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/
+          git diff --cached --quiet \
+            && echo "No changes to commit." \
+            || git commit -m "${ISSUE_KEY}: generated plan (run ${GITHUB_RUN_ID})" \
+            && git push origin HEAD:main
+
+      # ── 7. DETERMINISTIC: preflight print or create Jira issues ─────────
+      - name: Preflight or apply to Jira
+        run: |
+          set -euo pipefail
+          if [[ "$APPLY_APPROVE" == "true" || "$APPLY_APPROVE" == "1" ]]; then
+            npx tsx scripts/dark-factory.ts apply "$PLAN_OUT" \
+              --project "$PROJECT_KEY" --approve --out "$LEDGER_OUT"
+          else
+            npx tsx scripts/dark-factory.ts apply "$PLAN_OUT" --project "$PROJECT_KEY"
+          fi
+
+      # ── 8. DETERMINISTIC: post summary comment back to Jira ──────────────
+      - name: Comment back on Jira
+        if: always()
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node .github/scripts/jira-plan-comment.mjs

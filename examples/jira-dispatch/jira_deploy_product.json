@@ -1,0 +1,8 @@
+{
+  "event_type": "jira_deploy_product",
+  "client_payload": {
+    "issue_key": "{{issue.key}}",
+    "client": "example",
+    "delivery": "demo"
+  }
+}
