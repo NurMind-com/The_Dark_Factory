@@ -106,6 +106,30 @@ Re-committed `spec/TDS-10/visual-checks/full-page.png`, `diagram-1.png`, `diagra
 
 Re-triggered with no new comment from the reporter; the most recent comment in `spec.md` is the bot's own success summary from Run 5. Nothing in `docs/workflows.md`, `.github/scripts/visual-check-md.mjs`, or `spec/TDS-10/visual-checks/` was changed in this run — re-running the renderer would only regenerate identical PNGs and create churn. Treating this as a confirmation pass: prior fix stands, awaiting reporter sign-off or further feedback.
 
+## Run 7 (continuation) — ticket already closed, post-merge re-trigger
+
+State at the start of this run:
+
+- Branch: `main` (not the original `tdf/tds-10` work branch).
+- Ticket status (per `spec.md`): **Done**.
+- PR #11 merged into `main` at commit `d503938` (`Merge pull request #11 from NurMind-com/tdf/tds-10`).
+- A follow-up ticket **TDS-14** has since modified `docs/workflows.md` (commit `03dcaae`).
+- Most recent comment on the Jira ticket is the bot success summary from Run 6 — no new reporter feedback.
+- Many new workflows have landed since this ticket closed (`deploy-on-merge.yml`, `epic-runner.yml`, `jira-pr-merged.yml`, `jira-product-deploy.yml`, `jira-requirements-dispatch.yml`). Those are out of scope for TDS-10 — if the diagram needs to reflect them, that belongs in a new ticket.
+
+Action taken in this run: none beyond updating this plan and the response. Touching `docs/workflows.md` on `main` without a fresh request would be (a) outside the scope of this closed ticket and (b) potentially in conflict with the already-merged TDS-14 update. No code changes committed.
+
+## Run 8 (continuation) — second post-merge re-trigger, still no new feedback
+
+State at the start of this run:
+
+- Branch: `tdf/tds-10`.
+- Ticket status: still **Done**.
+- Newest comment in `spec.md` is the automation's "🤖 Dark Factory PR run started" notice (run #19) — not a reporter instruction.
+- No new user feedback since the ticket closed.
+
+Same conclusion as Run 7: nothing to do on the ticket itself. Plan and response updated to log this re-trigger; no code or doc changes.
+
 ## Scope
 
 The repo has three GitHub Actions workflows under `.github/workflows/`:

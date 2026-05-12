@@ -109,3 +109,25 @@
   Minimal-diff state: only the ticket folder files (`plan.md`, `response.md`, refreshed `spec.md`, new `runs/` dir) have been touched. `docs/workflows.md` and `spec/TDS-10/visual-checks/` are unchanged from the previous run's committed state — no churn.
   
   Summary: this run had no new reporter feedback, so it's treated as a no-op confirmation pass. Plan and response updated to reflect that. Prior fix (mermaid `[TICKET-ID]` placeholders, `<br>` for parser safety, status-coloured workflow boxes, committed visual-check screenshots) stands.
+
+## Run 2026-05-11T20:26:52.059Z
+- run_kind: continuation
+- prev_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- new_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- session_id_rotated: false
+- conclusion: success
+- run_dir: spec/TDS-10/runs/20260511T202503Z-25695221227
+- assistant_summary:
+  Minimal-diff state: only ticket-folder files touched (`plan.md`, `response.md`, refreshed `spec.md`, new `runs/` dir).
+  
+  Summary: TDS-10 is **Done** — PR #11 merged into `main`, and TDS-14 has since updated `docs/workflows.md` further. This run was a post-merge re-trigger with no new reporter feedback. I deliberately did not touch `docs/workflows.md` because (a) the ticket is closed, (b) we're on `main` not a feature branch, and (c) anything that would extend the diagram to cover the new post-TDS-10 workflows (`deploy-on-merge.yml`, `epic-runner.yml`, etc.) belongs in a fresh ticket.
+
+## Run 2026-05-12T04:31:15.278Z
+- run_kind: continuation
+- prev_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- new_session_id: 6004d4d2-c055-48eb-89a6-931632f49085
+- session_id_rotated: false
+- conclusion: success
+- run_dir: spec/TDS-10/runs/20260512T043003Z-25713426396
+- assistant_summary:
+  Minimal-diff state preserved: only ticket-folder files touched. Ticket remains **Done**, no new reporter feedback, no code or doc changes. Response.md nudges the reporter to open a fresh ticket if the goal is to extend the diagram to cover the new post-TDS-10 workflows.

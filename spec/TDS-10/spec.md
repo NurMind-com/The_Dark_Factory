@@ -1,6 +1,6 @@
 # TDS-10: Workflow Diagram
 
-Generated from Jira on 2026-05-08T00:03:22.440Z.
+Generated from Jira on 2026-05-12T04:30:03.465Z.
 
 ## Issue Details
 
@@ -9,20 +9,20 @@ Generated from Jira on 2026-05-08T00:03:22.440Z.
 | Key | TDS-10 |
 | Title | Workflow Diagram |
 | Type | Task |
-| Status | In Progress |
+| Status | Done |
 | Priority | Medium |
 | Assignee | - |
 | Reporter | Roland Abou Younes |
 | Labels | - |
 | Components | - |
 | Created | 2026-05-08T02:04:24.145+0300 |
-| Updated | 2026-05-08T03:03:04.530+0300 |
+| Updated | 2026-05-11T23:25:02.874+0300 |
 
 ## Description
 
 Make a very high level diagram of the workflows we have in the solution
 
-## Comments (9)
+## Comments (11)
 
 ### Roland Abou Younes on 2026-05-08T02:08:16.781+0300
 
@@ -296,3 +296,36 @@ The workflow comparison table and the swimlane still include `jira-branch-readme
 
 - Local mermaid renderer behaved differently from GitHub's renderer for HTML entities. Mitigation: avoid angle brackets in mermaid sequence diagrams entirely, regardless of escaping. Documented this in the plan for future reference.
 - No code paths or workflow behaviour change. Documentation only.
+
+### Roland Abou Younes on 2026-05-08T03:05:07.974+0300
+
+[TDF-bot] Claude Code processed TDS-10 (conclusion: success).
+
+Branch: [https://github.com/NurMind-com/The_Dark_Factory/tree/tdf%2Ftds-10](https://github.com/NurMind-com/The_Dark_Factory/tree/tdf%2Ftds-10)
+
+Pull request: [https://github.com/NurMind-com/The_Dark_Factory/pull/11](https://github.com/NurMind-com/The_Dark_Factory/pull/11)
+
+# TDS-10: Workflow Diagram — confirmation pass (no-op)
+
+This run was triggered with no new comment from the reporter — the most recent
+comment on the ticket is the bot summary from the previous run.
+
+## What this run did
+
+Nothing to `docs/workflows.md`, `.github/scripts/visual-check-md.mjs`, or
+`spec/TDS-10/visual-checks/` was changed. Re-running the visual-check renderer
+would only regenerate identical PNGs and create churn, so it was skipped.
+
+## What is already in place from prior runs
+
+- `docs/workflows.md` with the corrected mermaid sources (`[TICKET-ID]`
+  placeholders, `<br>` line breaks, status-coloured workflow boxes).
+- `.github/scripts/visual-check-md.mjs` reusable visual-check tool.
+- `spec/TDS-10/visual-checks/full-page.png`, `diagram-1.png`, `diagram-2.png`
+  committed as proof of the most recent visual validation.
+
+Awaiting reporter sign-off or further feedback.
+
+### Roland Abou Younes on 2026-05-11T23:25:02.874+0300
+
+🤖 Dark Factory PR run started · [watch live (run #19)](https://github.com/NurMind-com/The_Dark_Factory/actions/runs/25695221227)
