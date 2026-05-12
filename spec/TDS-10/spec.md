@@ -1,6 +1,6 @@
 # TDS-10: Workflow Diagram
 
-Generated from Jira on 2026-05-11T20:25:03.586Z.
+Generated from Jira on 2026-05-12T04:30:03.465Z.
 
 ## Issue Details
 
@@ -16,13 +16,13 @@ Generated from Jira on 2026-05-11T20:25:03.586Z.
 | Labels | - |
 | Components | - |
 | Created | 2026-05-08T02:04:24.145+0300 |
-| Updated | 2026-05-08T03:12:54.078+0300 |
+| Updated | 2026-05-11T23:25:02.874+0300 |
 
 ## Description
 
 Make a very high level diagram of the workflows we have in the solution
 
-## Comments (10)
+## Comments (11)
 
 ### Roland Abou Younes on 2026-05-08T02:08:16.781+0300
 
@@ -325,3 +325,7 @@ would only regenerate identical PNGs and create churn, so it was skipped.
   committed as proof of the most recent visual validation.
 
 Awaiting reporter sign-off or further feedback.
+
+### Roland Abou Younes on 2026-05-11T23:25:02.874+0300
+
+🤖 Dark Factory PR run started · [watch live (run #19)](https://github.com/NurMind-com/The_Dark_Factory/actions/runs/25695221227)

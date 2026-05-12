@@ -119,6 +119,17 @@ State at the start of this run:
 
 Action taken in this run: none beyond updating this plan and the response. Touching `docs/workflows.md` on `main` without a fresh request would be (a) outside the scope of this closed ticket and (b) potentially in conflict with the already-merged TDS-14 update. No code changes committed.
 
+## Run 8 (continuation) — second post-merge re-trigger, still no new feedback
+
+State at the start of this run:
+
+- Branch: `tdf/tds-10`.
+- Ticket status: still **Done**.
+- Newest comment in `spec.md` is the automation's "🤖 Dark Factory PR run started" notice (run #19) — not a reporter instruction.
+- No new user feedback since the ticket closed.
+
+Same conclusion as Run 7: nothing to do on the ticket itself. Plan and response updated to log this re-trigger; no code or doc changes.
+
 ## Scope
 
 The repo has three GitHub Actions workflows under `.github/workflows/`:
